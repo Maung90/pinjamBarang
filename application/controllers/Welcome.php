@@ -21,10 +21,11 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		$data['title'] = "POLITEKNIK NEGERI BALI";
-		$this->load->view('view_web/head',$data);
-		$this->load->view('view_web/side');
-		$this->load->view('view_web/nav');
+		$this->load->view('partials/head',$data);
+		$this->load->view('partials/side');
+		$this->load->view('partials/nav');
 		$this->load->view('admin/dashboard/index'); //Contoh
-		$this->load->view('view_web/footer');
+		$this->load->view('partials/copyright');
+		$this->load->view('partials/footer');
 	}
 }
