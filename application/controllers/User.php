@@ -9,7 +9,7 @@ class User extends CI_Controller
 	{
 		$data['title'] = 'Home';
 		$this->load->view('partials/head',$data);
-		$this->load->view('user/index'); //Contoh
+		$this->load->view('user/index'); 
 		$this->load->view('partials/footer');
 	}
 
