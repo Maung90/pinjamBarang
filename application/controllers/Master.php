@@ -15,10 +15,4 @@ class Master extends CI_Controller
 		$this->load->view('partials/copyright');
 		$this->load->view('partials/footer');
 	}
-
-
 }
-
-
-
-?>

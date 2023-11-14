@@ -25,7 +25,7 @@
 
     <!-- Page JS -->
     <script src="<?= base_url('assets/js/dashboards-analytics.js') ?>"></script>
-    <script src="<?= base_url('assets/js/tables-datatables-basic2.js');  ?> "></script>
+    
   </body>
 </html>
 

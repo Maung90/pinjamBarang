@@ -3,7 +3,7 @@
 <!-- DataTable with Buttons -->
 <div class="card">
 	<div class="card-datatable table-responsive pt-0">
-		<table class="datatables-basic table">
+		<table class="datatables-basic table" id="table-artikel">
 			<thead>
 				<tr>
 					<th></th>
@@ -20,6 +20,42 @@
 		</table>
 	</div>
 </div>
+<script>
+    var tabel = null;
+    $(document).ready(function() {
+        tabel = $('#table-artikel').DataTable({
+            "processing": true,
+            "responsive":true,
+            "serverSide": true,
+            "ordering": true, // Set true agar bisa di sorting
+            "order": [[ 0, 'asc' ]], // Default sortingnya berdasarkan kolom / field ke 0 (paling pertama)
+            "ajax":
+            {
+                "url": "<?= base_url('Kategori/get_data');?>", // URL file untuk proses select datanya
+                "type": "POST"
+            },
+            "deferRender": true,
+            "aLengthMenu": [[5, 10, 50],[ 5, 10, 50]], // Combobox Limit
+            "columns": [
+                {"data": 'id_artikel',"sortable": false, 
+                    render: function (data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    }  
+                },
+                { "data": "judul" }, // Tampilkan judul
+                { "data": "kategori" },  // Tampilkan kategori
+                { "data": "penulis" },  // Tampilkan penulis
+                { "data": "tgl_posting" },  // Tampilkan tgl posting
+                { "data": "id_artikel",
+                    "render": 
+                    function( data, type, row, meta ) {
+                        return '<a href="show/'+data+'">Show</a>';
+                    }
+                },
+            ],
+        });
+    });
+</script>
 <!-- Modal to add new record -->
 <div class="offcanvas offcanvas-end" id="add-new-record">
 	<div class="offcanvas-header border-bottom">
