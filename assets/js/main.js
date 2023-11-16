@@ -86,6 +86,7 @@ if (document.getElementById('layout-menu')) {
     });
   }
 
+
   // Style Switcher (Light/Dark Mode)
   //---------------------------------
 
