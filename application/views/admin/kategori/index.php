@@ -1,5 +1,4 @@
 
-<<<<<<< HEAD
 <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">DataMaster /</span> Kategori</h4>
 <div class="card p-4">
 	<?php 
@@ -61,88 +60,6 @@
 							<?php $no++;} ?>
 						</tbody>
 					</table> 
-=======
-<!-- DataTable with Buttons -->
-<div class="card">
-	<div class="card-datatable table-responsive pt-0">
-		<table class="datatables-basic table" id="table-artikel">
-			<thead>
-				<tr>
-					<th></th>
-					<th></th>
-					<th>id</th>
-					<th>Name</th>
-					<th>Email</th>
-					<th>Date</th>
-					<th>Salary</th>
-					<th>Status</th>
-					<th>Action</th>
-				</tr>
-			</thead>
-		</table>
-	</div>
-</div>
-<script>
-    var tabel = null;
-    $(document).ready(function() {
-        tabel = $('#table-artikel').DataTable({
-            "processing": true,
-            "responsive":true,
-            "serverSide": true,
-            "ordering": true, // Set true agar bisa di sorting
-            "order": [[ 0, 'asc' ]], // Default sortingnya berdasarkan kolom / field ke 0 (paling pertama)
-            "ajax":
-            {
-                "url": "<?= base_url('Kategori/get_data');?>", // URL file untuk proses select datanya
-                "type": "POST"
-            },
-            "deferRender": true,
-            "aLengthMenu": [[5, 10, 50],[ 5, 10, 50]], // Combobox Limit
-            "columns": [
-                {"data": 'id_artikel',"sortable": false, 
-                    render: function (data, type, row, meta) {
-                        return meta.row + meta.settings._iDisplayStart + 1;
-                    }  
-                },
-                { "data": "judul" }, // Tampilkan judul
-                { "data": "kategori" },  // Tampilkan kategori
-                { "data": "penulis" },  // Tampilkan penulis
-                { "data": "tgl_posting" },  // Tampilkan tgl posting
-                { "data": "id_artikel",
-                    "render": 
-                    function( data, type, row, meta ) {
-                        return '<a href="show/'+data+'">Show</a>';
-                    }
-                },
-            ],
-        });
-    });
-</script>
-<!-- Modal to add new record -->
-<div class="offcanvas offcanvas-end" id="add-new-record">
-	<div class="offcanvas-header border-bottom">
-		<h5 class="offcanvas-title" id="exampleModalLabel">New Record</h5>
-		<button
-		type="button"
-		class="btn-close text-reset"
-		data-bs-dismiss="offcanvas"
-		aria-label="Close"></button>
-	</div>
-	<div class="offcanvas-body flex-grow-1">
-		<form class="add-new-record pt-0 row g-2" id="form-add-new-record" onsubmit="return false">
-			<div class="col-sm-12">
-				<label class="form-label" for="basicFullname">Full Name</label>
-				<div class="input-group input-group-merge">
-					<span id="basicFullname2" class="input-group-text"><i class="ti ti-user"></i></span>
-					<input
-					type="text"
-					id="basicFullname"
-					class="form-control dt-full-name"
-					name="basicFullname"
-					placeholder="John Doe"
-					aria-label="John Doe"
-					aria-describedby="basicFullname2" />
->>>>>>> f984095bffdba630e69c2ac1d4dde606e6dda58c
 				</div>
 			</div>
 		</div>
