@@ -14,7 +14,7 @@
             </div>
         </div>
         <div class="row mb-3">
-            <label class="col-sm-2 col-form-label" for="basic-default-company">Passwod</label>
+            <label class="col-sm-2 col-form-label" for="basic-default-company">Password</label>
             <div class="col-sm-10">
             <input
                 type="password"
@@ -70,3 +70,33 @@
     </div>
 </div>
 </div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">No</th>
+      <th scope="col">Username</th>
+      <th scope="col">Nama</th>
+      <th scope="col">No.Telp</th>
+      <th scope="col">Alamat</th>
+      <th scope="col">Unit Kerja</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+        	<button type="button" class="btn btn-sm btn-primary">Edit</button>
+        	<button type="button" class="btn btn-sm btn-danger">Hapus</button>
+        </td>
+      </tr>
+      
+  </tbody>
+</table>

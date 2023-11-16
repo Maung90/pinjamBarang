@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 <!-- Layout wrapper -->
 <div class="layout-wrapper layout-content-navbar">
@@ -20,6 +21,28 @@
 
       <div class="menu-inner-shadow"></div>
 
+=======
+<!-- Menu -->
+<div class="layout-wrapper layout-content-navbar">
+  <div class="layout-container">
+    <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+      <div class="app-brand demo">
+        <a href="#" class="app-brand-link">
+          <span class="app-brand-logo demo">
+            <img src="https://elearning.pnb.ac.id/img/logo-pnb.3aae610b.png" width="22" height="22" fill="none"></img>
+          </span>
+          <span class="app-brand-text menu-text fw-bold">PNB - Pinjam Barang</span>
+        </a>
+
+        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
+          <i class="ti menu-toggle-icon d-none d-xl-block ti-sm align-middle"></i>
+          <i class="ti ti-x d-block d-xl-none ti-sm align-middle"></i>
+        </a>
+      </div>
+
+      <div class="menu-inner-shadow"></div>
+
+>>>>>>> f984095bffdba630e69c2ac1d4dde606e6dda58c
       <ul class="menu-inner py-1">
         <!-- Dashboards -->
         <li class="menu-item active open">
@@ -54,4 +77,8 @@
         </li>
       </ul>
     </aside>
+<<<<<<< HEAD
         <!-- / Menu -->
+=======
+    <!-- / Menu -->
+>>>>>>> f984095bffdba630e69c2ac1d4dde606e6dda58c
