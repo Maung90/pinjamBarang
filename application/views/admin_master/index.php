@@ -6,11 +6,22 @@
         <h5 class="mb-0">Form Admin</h5>
     </div>
     <div class="card-body">
-        <form>
+    <?php
+        if ($this->session->userdata('pesan')){
+            echo $this->session->userdata('pesan');
+        }
+        ?>
+        <form method="POST" action="<?php echo base_url ('Master/simpanAdmin')?>">
+        <div class="row mb-3">
+            <label class="col-sm-2 col-form-label" for="basic-default-name">No Identitas</label>
+            <div class="col-sm-10">
+            <input type="text" class="form-control" id="basic-default-name" name="no_user" placeholder="Masukan No Identitas" />
+            </div>
+        </div>
         <div class="row mb-3">
             <label class="col-sm-2 col-form-label" for="basic-default-name">Username</label>
             <div class="col-sm-10">
-            <input type="text" class="form-control" id="basic-default-name" placeholder="Masukan Username" />
+            <input type="text" class="form-control" id="basic-default-name" name="username" placeholder="Masukan Username" />
             </div>
         </div>
         <div class="row mb-3">
@@ -20,13 +31,14 @@
                 type="password"
                 class="form-control"
                 id="basic-default-company"
+                name="password"
                 placeholder="Masukan Password" />
             </div>
         </div>
         <div class="row mb-3">
             <label class="col-sm-2 col-form-label" for="basic-default-name">Nama</label>
             <div class="col-sm-10">
-            <input type="text" class="form-control" id="basic-default-name" placeholder="Masukan Nama" />
+            <input type="text" class="form-control" id="basic-default-name" name="nama_user" placeholder="Masukan Nama" />
             </div>
         </div>
         <div class="row mb-3">
@@ -36,8 +48,9 @@
                 type="text"
                 id="basic-default-phone"
                 class="form-control phone-mask"
-                placeholder="Masukan No.Telepon"
-                aria-describedby="basic-default-phone" />
+                aria-describedby="basic-default-phone"
+                name="no_telp" 
+                placeholder="Masukan No.Telepon" />
             </div>
         </div>
         <div class="row mb-3">
@@ -46,6 +59,7 @@
             <textarea
                 id="basic-default-message"
                 class="form-control"
+                name="alamat"
                 placeholder="Masukan Alamat"
             ></textarea>
             </div>
@@ -53,7 +67,7 @@
         <div class="row mb-3">
             <label class="col-sm-2 col-form-label" for="basic-default-name">Unit Kerja</label>
             <div class="col-sm-10">
-            <select id="formtabs-Unit" class="select2 form-select" data-allow-clear="true">
+            <select id="formtabs-Unit" class="select2 form-select" data-allow-clear="true" name="unit_kerja">
                 <option disbaled >Masukan Unit Kerja</option>
                 <option value="Lab MI">Lab MI</option>
             </select>
@@ -75,6 +89,7 @@
   <thead>
     <tr>
       <th scope="col">No</th>
+      <th scope="col">No Identitas</th>
       <th scope="col">Username</th>
       <th scope="col">Nama</th>
       <th scope="col">No.Telp</th>
@@ -86,6 +101,8 @@
   <tbody>
 
       <tr>
+        <td></td>
+        <td></td>
         <td></td>
         <td></td>
         <td></td>

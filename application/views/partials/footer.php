@@ -22,17 +22,10 @@
 <!-- Main JS -->
 <script src="<?= base_url('assets/js/main.js') ?>"></script>
 
-<<<<<<< HEAD
 <!-- Page JS -->
 <script src="<?= base_url('assets/js/dashboards-analytics.js') ?>"></script>
 <!-- <script src="<?= base_url('assets/js/tables-datatables-basic2.js');  ?> "></script> -->
 </body>
-=======
-    <!-- Page JS -->
-    <script src="<?= base_url('assets/js/dashboards-analytics.js') ?>"></script>
-    
-  </body>
->>>>>>> f984095bffdba630e69c2ac1d4dde606e6dda58c
 </html>
 
 

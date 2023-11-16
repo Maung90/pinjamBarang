@@ -1,8 +1,5 @@
 
-<<<<<<< HEAD
-=======
     <!-- Layout wrapper -->
->>>>>>> f984095bffdba630e69c2ac1d4dde606e6dda58c
         <div class="layout-page">
           <!-- Navbar -->
 
