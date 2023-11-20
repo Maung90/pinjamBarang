@@ -38,7 +38,7 @@
   <link rel="stylesheet" href="<?= base_url('assets/vendor/libs/apex-charts/apex-charts.css'); ?>" />
   <link rel="stylesheet" href="<?= base_url('assets/vendor/libs/swiper/swiper.css'); ?>" />
   <link rel="stylesheet" href="<?= base_url('assets/vendor/libs/animate-css/animate.css'); ?>" /> 
-<!--   <link rel="stylesheet" href="<?= base_url('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css'); ?>" />
+  <!-- <link rel="stylesheet" href="<?= base_url('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css'); ?>" />
   <link rel="stylesheet" href="<?= base_url('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css'); ?>" />
   <link rel="stylesheet" href="<?= base_url('assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css'); ?>" /> -->
 

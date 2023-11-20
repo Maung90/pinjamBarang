@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="<?=base_url('assets/DataTables/DataTables/css/dataTables.bootstrap5.css');?>"> 
-<link rel="stylesheet" href="<?=base_url('assets/DataTables/dataTables.css');?>"> 
 
 <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">DataMaster /</span> Kategori</h4>
 <div class="card p-4">
@@ -33,9 +31,9 @@
 				</form>
 			</div>
 		</div>
-		<div class="col-md-7"> 
+		<div class="col-7"> 
 			<div class="table-responsive pt-0 my-3">
-				<table class="table-bordered table" id="dataTable">
+				<table class="table-bordered table">
 					<thead>
 						<tr>
 							<th>No</th>
@@ -67,16 +65,6 @@
 		</div> 
 	</div>
 
-
-	<script src="<?= base_url('assets/DataTables/dataTables.js') ?>"> </script>
-	<script src="<?= base_url('assets/DataTables/dataTables/js/dataTables.bootstrap5.js') ?>"></script>
-	<script src="<?= base_url('assets/DataTables/dataTables/js/dataTables.dataTables.js') ?>"></script>
-	<script src="<?= base_url('assets/DataTables/dataTables/js/jquery.dataTables.js') ?>"></script>
-	<script>
-		$(document).ready(function(){
-			$('#dataTable').DataTable();
-		});
-	</script>
 	<script>
 
 		$(document).ready(function(){
