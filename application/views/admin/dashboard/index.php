@@ -10,7 +10,7 @@
         <div class="row mb-3">
             <label class="col-sm-2 col-form-label" for="basic-default-name">Kode Barang</label>
             <div class="col-sm-10">
-            <input type="text" class="form-control" id="basic-default-name" placeholder="Masukan Kode" />
+            <input type="text" class="form-control" id="basic-default-name" name="kode_barang" placeholder="Masukan Kode" />
             </div>
         </div>
         <div class="row mb-3">
@@ -20,13 +20,14 @@
                 type="password"
                 class="form-control"
                 id="basic-default-company"
+                name="nama_barang"
                 placeholder="Masukan Nama" />
             </div>
         </div>
         <div class="row mb-3">
             <label class="col-sm-2 col-form-label" for="basic-default-name">Merk Barang</label>
             <div class="col-sm-10">
-            <input type="text" class="form-control" id="basic-default-name" placeholder="Masukan Merk" />
+            <input type="text" class="form-control" id="basic-default-name" name="merk_barang" placeholder="Masukan Merk" />
             </div>
         </div>
         <div class="row mb-3">
@@ -34,8 +35,9 @@
             <div class="col-sm-10">
             <input
                 type="text"
-                id="basic-default-phone"
                 class="form-control phone-mask"
+                id="basic-default-phone"
+                name="status_barang"
                 placeholder="Masukan Status"
                 aria-describedby="basic-default-phone" />
             </div>
@@ -43,11 +45,13 @@
         <div class="row mb-3">
             <label class="col-sm-2 col-form-label" for="basic-default-message">Gambar Barang</label>
             <div class="col-sm-10">
-            <textarea
-                id="basic-default-message"
+            <input
+                type="file"
                 class="form-control"
+                id="basic-default-message"
+                name="image"
                 placeholder="Masukan Gambar"
-            ></textarea>
+            />
             </div>
         </div>
         <div class="row justify-content-end">
@@ -81,9 +85,8 @@
         <td></td>
         <td></td>
         <td></td>
-        <td></td>
         <td>
-        	<button type="button" class="btn btn-sm btn-primary">Edit</button>
+            <button type="button" class="btn btn-sm btn-primary">Edit</button>
         	<button type="button" class="btn btn-sm btn-danger">Hapus</button>
         </td>
       </tr>
