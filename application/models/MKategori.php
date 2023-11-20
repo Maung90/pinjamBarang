@@ -36,9 +36,9 @@ class	MKategori extends CI_Model {
 		redirect('Kategori/', 'refresh');
 	}
 
-	public function update()
+	public function update($id)
 	{
-		$id = $this->input->post('id_kategori');
+		// $id = $this->input->post('id_kategori');
 		$nama_kategori = $this->input->post('nama_kategori');
 		
 
@@ -46,7 +46,7 @@ class	MKategori extends CI_Model {
 
 		$this->db->where('id_kategori',$id);
 		$response = $this->db->update('tbkategori', ['nama_kategori' => $nama_kategori], $condition);
-		echo $response;
+
 
 		if ($response > 0) {
 			$this->session->set_flashdata('crud','<div class="alert alert-success" role="alert">

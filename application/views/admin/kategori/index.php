@@ -9,7 +9,7 @@
 	<div class="row">
 		<div class="col-5"> 
 			<div class="mb-4">
-				<form action="<?= base_url('Kategori/insertData'); ?>" method="POST" id="formInsert">
+				<form action="<?= base_url('Kategori/insertData'); ?>" method="POST" id="form">
 					<div class="my-3 px-4 py-3" style="border:1px solid #dbdade;">
 						<div>
 							<label for="defaultFormControlInput" class="form-label">Nama Kategori</label>
@@ -31,7 +31,7 @@
 				</form>
 
 
-				<form action="<?= base_url('Kategori/updateData'); ?>" method="POST" id="formUpdate">
+				<!-- <form action="<?= base_url('Kategori/updateData'); ?>" method="POST" id="formUpdate">
 					<div class="my-3 px-4 py-3" style="border:1px solid #dbdade;">
 						<div>
 							<input type="hidden" name="id_kategori" id="inputHide">
@@ -51,7 +51,7 @@
 							<button type="submit" class="btn btn-primary">Submit</button>
 						</div>
 					</div>
-				</form>
+				</form> -->
 			</div>
 		</div>
 		<div class="col-7"> 
@@ -77,7 +77,7 @@
 								</th>
 								<th>
 									<button type="button" id="update-<?=$d->id_kategori;?>" class="btn btn-sm btn-primary">EDIT</button>
-									<a href="<?= base_url('Kategori/deleteData/'.$d->id_kategori) ?>" onclick="return confirm('apakah yakin dihapus?');" class="btn btn-sm btn-danger">HAPUS</a>
+									<a onclick="return confirm('apakah yakin dihapus?');" href="<?= base_url('Kategori/deleteData/'.$d->id_kategori) ?>"  class="btn btn-sm btn-danger">HAPUS</a>
 								</th>
 							</tr>
 							<?php $no++;} ?>
@@ -92,8 +92,7 @@
 
 		$(document).ready(function(){
 
-			$('#formUpdate').hide();
-			var angkaNotif = 0;
+
 			$('[id^=update]').on('click',function(){
 				var id = $(this).attr('id').split('-')[1]; 
 
@@ -102,11 +101,10 @@
 					type :'GET',
 					dataType : 'json', 
 					success : function (response){
-						$('#formInsert').hide();
 
-						$('#inputHide').val(response[0]['id_kategori']);
-						$('#defaultFormControlUpdate').val(response[0]['nama_kategori']);	
-						$('#formUpdate').show();
+						$('#form').attr('action','<?= base_url('Kategori/updateData/')?>'+id); 
+						// $('#inputHide').val(response[0]['id_kategori']);
+						$('#defaultFormControlInput').val(response[0]['nama_kategori']);	 
 
 					},
 					error : function (xhr, status, error) {

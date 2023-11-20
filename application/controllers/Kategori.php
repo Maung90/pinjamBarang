@@ -37,9 +37,9 @@ class Kategori extends CI_Controller
 		$this->MKategori->delete($id);
 	}
 
-	public function updateData()
+	public function updateData($id)
 	{
-		$this->MKategori->update();
+		$this->MKategori->update($id);
 	}
 
 
