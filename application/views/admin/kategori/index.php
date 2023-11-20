@@ -31,9 +31,9 @@
 				</form>
 			</div>
 		</div>
-		<div class="col-7"> 
-			<div class="table-responsive pt-0 my-3">
-				<table class="table-bordered table">
+		<div class="col-md-7"> 
+			<div class="table-responsive pt-0">
+				<table class="table-bordered table" id="dataTable">
 					<thead>
 						<tr>
 							<th>No</th>
@@ -53,8 +53,12 @@
 									<?=$d->nama_kategori;?> 
 								</th>
 								<th>
-									<button type="button" id="update-<?=$d->id_kategori;?>" class="btn btn-sm btn-primary">EDIT</button>
-									<a onclick="return confirm('apakah yakin dihapus?');" href="<?= base_url('Kategori/deleteData/'.$d->id_kategori) ?>"  class="btn btn-sm btn-danger">HAPUS</a>
+									<button type="button" id="update-<?=$d->id_kategori;?>" class="btn btn-sm btn-primary">
+										<label class="ti ti-edit "></label>
+									</button>
+									<a onclick="return confirm('apakah yakin dihapus?');" href="<?= base_url('Kategori/deleteData/'.$d->id_kategori) ?>"  class="btn btn-sm btn-danger">
+										<label class="ti ti-trash"></label>
+									</a>
 								</th>
 							</tr>
 							<?php $no++;} ?>
@@ -65,6 +69,11 @@
 		</div> 
 	</div>
 
+	<script>
+		$(document).ready(function(){
+			$('#dataTable').DataTable();
+		});
+	</script>
 	<script>
 
 		$(document).ready(function(){
