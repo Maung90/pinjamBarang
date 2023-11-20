@@ -7,7 +7,7 @@
 	endif
 	?>
 	<div class="row">
-		<div class="col-5"> 
+		<div class="col-md-5"> 
 			<div class="mb-4">
 				<form action="<?= base_url('Kategori/insertData'); ?>" method="POST" id="form">
 					<div class="my-3 px-4 py-3" style="border:1px solid #dbdade;">
@@ -54,7 +54,7 @@
 				</form> -->
 			</div>
 		</div>
-		<div class="col-7"> 
+		<div class="col-md-7"> 
 			<div class="table-responsive pt-0 my-3">
 				<table class="table-bordered table">
 					<thead>
