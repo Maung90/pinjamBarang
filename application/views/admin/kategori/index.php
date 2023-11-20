@@ -1,6 +1,3 @@
-<link rel="stylesheet" href="<?=base_url('assets/DataTables/DataTables/css/dataTables.bootstrap5.css');?>"> 
-<link rel="stylesheet" href="<?=base_url('assets/DataTables/dataTables.css');?>"> 
-
 <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">DataMaster /</span> Kategori</h4>
 <div class="card p-4">
 	<?php 
@@ -34,7 +31,7 @@
 			</div>
 		</div>
 		<div class="col-md-7"> 
-			<div class="table-responsive pt-0 my-3">
+			<div class="table-responsive pt-0">
 				<table class="table-bordered table" id="dataTable">
 					<thead>
 						<tr>
@@ -55,8 +52,12 @@
 									<?=$d->nama_kategori;?> 
 								</th>
 								<th>
-									<button type="button" id="update-<?=$d->id_kategori;?>" class="btn btn-sm btn-primary">EDIT</button>
-									<a onclick="return confirm('apakah yakin dihapus?');" href="<?= base_url('Kategori/deleteData/'.$d->id_kategori) ?>"  class="btn btn-sm btn-danger">HAPUS</a>
+									<button type="button" id="update-<?=$d->id_kategori;?>" class="btn btn-sm btn-primary">
+										<label class="ti ti-edit "></label>
+									</button>
+									<a onclick="return confirm('apakah yakin dihapus?');" href="<?= base_url('Kategori/deleteData/'.$d->id_kategori) ?>"  class="btn btn-sm btn-danger">
+										<label class="ti ti-trash"></label>
+									</a>
 								</th>
 							</tr>
 							<?php $no++;} ?>
@@ -68,10 +69,6 @@
 	</div>
 
 
-	<script src="<?= base_url('assets/DataTables/dataTables.js') ?>"> </script>
-	<script src="<?= base_url('assets/DataTables/dataTables/js/dataTables.bootstrap5.js') ?>"></script>
-	<script src="<?= base_url('assets/DataTables/dataTables/js/dataTables.dataTables.js') ?>"></script>
-	<script src="<?= base_url('assets/DataTables/dataTables/js/jquery.dataTables.js') ?>"></script>
 	<script>
 		$(document).ready(function(){
 			$('#dataTable').DataTable();

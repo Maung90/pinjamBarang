@@ -1,5 +1,10 @@
 
 
+	<script src="<?= base_url('assets/DataTables/dataTables.js') ?>"> </script>
+	<script src="<?= base_url('assets/DataTables/dataTables/js/dataTables.bootstrap5.js') ?>"></script>
+	<script src="<?= base_url('assets/DataTables/dataTables/js/dataTables.dataTables.js') ?>"></script>
+	<script src="<?= base_url('assets/DataTables/dataTables/js/jquery.dataTables.js') ?>"></script>
+
 <!-- Core JS -->
 <!-- build:js assets/vendor/js/core.js -->
 <script src="<?= base_url('assets/vendor/libs/popper/popper.js') ?>"></script>
