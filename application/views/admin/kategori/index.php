@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="<?=base_url('assets/DataTables/DataTables/css/dataTables.bootstrap5.css');?>"> 
+<link rel="stylesheet" href="<?=base_url('assets/DataTables/dataTables.css');?>"> 
 
 <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">DataMaster /</span> Kategori</h4>
 <div class="card p-4">
@@ -29,34 +31,11 @@
 						</div>
 					</div>
 				</form>
-
-
-				<!-- <form action="<?= base_url('Kategori/updateData'); ?>" method="POST" id="formUpdate">
-					<div class="my-3 px-4 py-3" style="border:1px solid #dbdade;">
-						<div>
-							<input type="hidden" name="id_kategori" id="inputHide">
-							<label for="defaultFormControlUpdate" class="form-label">Nama Kategori</label>
-							<input
-							type="text"
-							class="form-control"
-							id="defaultFormControlUpdate"
-							placeholder="Kabel Roll"
-							name="nama_kategori"
-							aria-describedby="defaultFormControlHelp" />
-							<div id="defaultFormControlHelp" class="form-text"> 
-								*Masukan nama kategori barang
-							</div>
-						</div>
-						<div class="mt-3 d-flex justify-content-end">
-							<button type="submit" class="btn btn-primary">Submit</button>
-						</div>
-					</div>
-				</form> -->
 			</div>
 		</div>
 		<div class="col-md-7"> 
 			<div class="table-responsive pt-0 my-3">
-				<table class="table-bordered table">
+				<table class="table-bordered table" id="dataTable">
 					<thead>
 						<tr>
 							<th>No</th>
@@ -88,6 +67,16 @@
 		</div> 
 	</div>
 
+
+	<script src="<?= base_url('assets/DataTables/dataTables.js') ?>"> </script>
+	<script src="<?= base_url('assets/DataTables/dataTables/js/dataTables.bootstrap5.js') ?>"></script>
+	<script src="<?= base_url('assets/DataTables/dataTables/js/dataTables.dataTables.js') ?>"></script>
+	<script src="<?= base_url('assets/DataTables/dataTables/js/jquery.dataTables.js') ?>"></script>
+	<script>
+		$(document).ready(function(){
+			$('#dataTable').DataTable();
+		});
+	</script>
 	<script>
 
 		$(document).ready(function(){
