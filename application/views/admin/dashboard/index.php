@@ -66,6 +66,10 @@
 </div>
 </div>
 
+
+<div class="card">
+  <div class="card-body">
+    <div class="table-responsive pt-0">
 <table class="table">
   <thead>
     <tr>
@@ -93,3 +97,6 @@
       
   </tbody>
 </table>
+        </div>
+    </div>
+</div>

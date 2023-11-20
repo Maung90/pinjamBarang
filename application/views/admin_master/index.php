@@ -84,8 +84,10 @@
     </div>
 </div>
 </div>
-
-<table class="table">
+<div class="card">
+  <div class="card-body">
+  <div class="table-responsive pt-0">
+<table class="table" id="datatable">
   <thead>
     <tr>
       <th scope="col">No</th>
@@ -98,22 +100,40 @@
       <th scope="col">Action</th>
     </tr>
   </thead>
-  <tbody>
 
+  <tbody>
+    <?php
+    $no = 1;
+    $data = $this->db->get('tbuser')->result();
+    foreach ($data as $value):
+    ?>
       <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td><?= $no; ?></td>
+        <td><?= $value->no_user; ?></td>
+        <td><?= $value->username; ?></td>
+        <td><?= $value->nama_user; ?></td>
+        <td><?= $value->no_telp; ?></td>
+        <td><?= $value->alamat; ?></td>
+        <td><?= $value->unit_kerja; ?></td>
         <td>
         	<button type="button" class="btn btn-sm btn-primary">Edit</button>
         	<button type="button" class="btn btn-sm btn-danger">Hapus</button>
         </td>
       </tr>
+    <?php 
+    $no++;
+    endforeach; 
+    ?>
       
   </tbody>
 </table>
+</div>
+  </div>
+</div>
+
+
+<script>
+    $(document).ready(function(){
+		$('#datatable').DataTable();
+	});   
+</script>
