@@ -18,7 +18,7 @@
 			}
 		};
 
-		if (typeof window !== 'undefined') {
+		if (typeof window === 'undefined') {
 			module.exports = function (root, $) {
 				if ( ! root ) {
 					// CommonJS environments without a window global must pass a
@@ -53,7 +53,7 @@ var DataTable = $.fn.dataTable;
  * DataTables integration for FomanticUI (formally SemanticUI)
  *
  * This file sets the defaults and adds options to DataTables to style its
- * controls using Bootstrap. See http://datatables.net/manual/styling/bootstrap
+ * controls using Bootstrap. See https://datatables.net/manual/styling/bootstrap
  * for further information.
  */
 
@@ -165,10 +165,10 @@ DataTable.ext.renderer.pageButton.semanticUI = function ( settings, host, idx, b
 							'aria-controls': settings.sTableId,
 							'aria-disabled': disabled ? 'true' : null,
 							'aria-label': aria[ button ],
-							'aria-role': 'link',
+							'role': 'link',
 							'aria-current': btnClass === 'active' ? 'page' : null,
 							'data-dt-idx': button,
-							'tabindex': settings.iTabIndex
+							'tabindex': disabled ? -1 : settings.iTabIndex
 						} )
 						.html( btnDisplay )
 						.appendTo( container );
