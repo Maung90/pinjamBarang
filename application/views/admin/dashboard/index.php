@@ -6,6 +6,11 @@
         <h5 class="mb-0">Form Barang</h5>
     </div>
     <div class="card-body">
+    <?php
+        if ($this->session->userdata('pesan')){
+            echo $this->session->userdata('pesan');
+        }
+    ?>
         <form>
         <div class="row mb-3">
             <label class="col-sm-2 col-form-label" for="basic-default-name">Kode Barang</label>
@@ -66,6 +71,10 @@
 </div>
 </div>
 
+
+<div class="card">
+  <div class="card-body">
+    <div class="table-responsive pt-0">
 <table class="table">
   <thead>
     <tr>
@@ -93,3 +102,6 @@
       
   </tbody>
 </table>
+        </div>
+    </div>
+</div>
