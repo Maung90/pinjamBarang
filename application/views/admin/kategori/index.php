@@ -1,3 +1,4 @@
+
 <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">DataMaster /</span> Kategori</h4>
 <div class="card p-4">
 	<?php 
@@ -67,7 +68,6 @@
 			</div>
 		</div> 
 	</div>
-
 
 	<script>
 		$(document).ready(function(){

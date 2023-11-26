@@ -42,6 +42,4 @@ class User extends CI_Controller
 	{
 		$this->MUser->ProsesCheckout();  
 	}
-
-
 }
