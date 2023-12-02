@@ -24,11 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['base_url'] = 'http://localhost/pinjamBarang/';
-<<<<<<< HEAD
-//$config['base_url'] = 'http://localhost:8080/pinjamBarang/';
-=======
-// $config['base_url'] = 'http://localhost:8080/pinjamBarang/';
->>>>>>> 2a08017e652eb4e0d487285f60c1aca74f16982d
+// //$config['base_url'] = 'http://localhost:8080/pinjamBarang/';
 
 /*
 |--------------------------------------------------------------------------
