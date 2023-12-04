@@ -1,6 +1,3 @@
- <?php 
- $this->session->sess_destroy(); 
- ?>
  <nav class="navbar navbar-expand bg-primary">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Navbar</a>
@@ -15,7 +12,7 @@
         <li class="nav-item">
           <a class="nav-link" href="<?=base_url('User/Checkout/')   ?> ">  
             <i class="fas fa-suitcase text-white"></i>
-            <span class="badge bg-danger rounded-pill badge-notifications" id="notif">0</span>
+            <span class="badge bg-danger rounded-pill badge-notifications" id="notif"><?=$jumlahOrder?></span>
           </a>
         </li>
       </ul>
@@ -51,9 +48,17 @@
           class="img-fluid d-flex rounded mb-3"
           src="<?= base_url('assets/img/elements/4.jpg'); ?>"
           alt="Card image cap" />
-          <button type="button" class="btn btn-sm btn-outline-primary mx-auto" id="id-<?=$d->id_kategori?>" data-bs-toggle="modal" data-bs-target="#modalCenter-<?=$d->id_kategori?>">
-            Pinjam Barang
-          </button> 
+          <?php
+          $id_kategori = $this->db->query("SELECT COUNT(*) AS count FROM tb_order WHERE id_peminjam = 1 AND id_kategori = '$d->id_kategori'")->row();
+          if (intval($id_kategori->count) > 0): ?>
+            <button type="button" class="btn btn-sm btn-outline-danger mx-auto" id="id-<?=$d->id_kategori?>">
+              Batal
+            </button>  
+          <?php else: ?>
+            <button type="button" class="btn btn-sm btn-outline-primary mx-auto" id="id-<?=$d->id_kategori?>" data-bs-toggle="modal" data-bs-target="#modalCenter-<?=$d->id_kategori?>">
+              Pinjam Barang
+            </button> 
+          <?php endif ?>
         </div>
       </div>
       <!-- Modal -->
@@ -79,8 +84,7 @@
                     name="jumlah"
                     class="form-control"
                     placeholder="Masukan Jumlah" min="0" max='<?=$d->jumlah_max;?>'/>
-                    <input type="hidden" id='idKategori-<?=$d->id_kategori?>' name="idKategori" value="<?=$d->id_kategori?>">
-                    <input type="hidden" id='nama_kategori-<?=$d->id_kategori?>' name="idKategori" value="<?=$d->nama_kategori;?>">
+                    <span class="text-danger" id="errorMessage"></span>
                   </div>
                   <div class="col-12 text-secondary" style="font-size:0.8rem">
                     *Stok Tersedia : <?=$d->jumlah_max;?>
@@ -146,40 +150,62 @@
     var angkaNotif = 0;
     $('[id^=simpan]').on('click',function(){
       var id = $(this).attr('id').split('-')[1]; 
-      var data = { 
-        id_Kategori : $('#idKategori-'+id).val(),
-        nama_kategori : $('#nama_kategori-'+id).val(),
-        jumlah : $('#jumlah-'+id).val(),
-      };
-      $.ajax({
-        url : '<?= base_url('User/proses_session');?>',
-        type : 'POST',
-        data : data,
-        success : function (response){ 
-          $('#notif').text(response);
-          $('#jumlah-'+id).val('0');
-          $('#id-'+id).addClass('btn-outline-danger');
-          $('#id-'+id).text('Batal');
-          $('#id-'+id).removeClass('btn-outline-primary');
-          $('#id-'+id).removeAttr('data-bs-toggle');
-          $('#id-'+id).removeAttr('data-bs-target');
-          $('.modal, .fade').modal('hide');
-        },
-        error : function (xhr, status, error) {
-          console.error('gagal mengubah sesi' + error);
-        }
+      if ($.trim($('#jumlah-'+id).val()) === '' || $('#jumlah-'+id).val() == null || $('#jumlah-'+id).val() == 0) {
+        $('#errorMessage').html(`<div class="alert alert-danger" role="alert">
+          Field Tidak Boleh Kosong!
+          </div>`);
+      }else{
+        var data = { 
+          id_kategori :id,
+          jumlah : $('#jumlah-'+id).val(),
+        };
+        $.ajax({
+          url : '<?= base_url('User/proses_order');?>',
+          type : 'POST',
+          data : data,
+          success : function (response){ 
+            $('#notif').text(response);
+            $('#jumlah-'+id).val('0');
+            $('#id-'+id).addClass('btn-outline-danger');
+            $('#id-'+id).text('Batal');
+            $('#id-'+id).removeClass('btn-outline-primary');
+            $('#id-'+id).removeAttr('data-bs-toggle');
+            $('#id-'+id).removeAttr('data-bs-target');
+            $('.modal, .fade').modal('hide');
+          },
+          error : function (xhr, status, error) {
+            console.error('gagal mengubah sesi' + error);
+          }
 
-      });
+        });
+      }
     });
 
     $('[id^=id]').on('click',function(){
       if ($(this).hasClass('btn-outline-danger')){
-        var id = $(this).attr('id').split('-')[1];  
-        $('#id-'+id).attr('data-bs-toggle','modal');
-        $('#id-'+id).attr('data-bs-target','#modalCenter-'+id);
-        $('#id-'+id).addClass('btn-outline-primary');
-        $('#id-'+id).text('Pinjam Barang');
-        $('#id-'+id).removeClass('btn-outline-danger');
+        var id = $(this).attr('id').split('-')[1];
+
+        var data = {
+          id_kategori : id,
+        };
+        $.ajax({
+          url : '<?= base_url('User/delete_order');?>',
+          type : 'POST',
+          data : data,
+          success : function (response){ 
+            $('#notif').text(response);
+            $('#id-'+id).attr('data-bs-toggle','modal');
+            $('#id-'+id).attr('data-bs-target','#modalCenter-'+id);
+            $('#id-'+id).addClass('btn-outline-primary');
+            $('#id-'+id).text('Pinjam Barang');
+            $('#id-'+id).removeClass('btn-outline-danger');
+          },
+          error : function (xhr, status, error) {
+            console.error('gagal mengubah sesi' + error);
+          }
+
+        });
+
       }
     }); 
   });
