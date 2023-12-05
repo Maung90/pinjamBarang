@@ -114,7 +114,8 @@
         <td><?= $value->id_kategori; ?></td>
         <td>
         	<button type="button" class="btn btn-sm btn-primary">Edit</button>
-        	<button type="reset" onclick="hapusBarang(<?php echo $value->kode_barang; ?>)" class="btn btn-sm btn-danger">Hapus</button>
+        	<a onclick="return confirm('Apakah yakin ingin menghapus data ini?')"
+          href="<?= base_url("barang/hapusBarang/".$value->kode_barang);?>" class="btn btn-sm btn-danger">Hapus</a>
         </td>
       </tr>
     <?php 
@@ -130,14 +131,4 @@
     $(document).ready(function(){
 		$('#datatable').DataTable();
 	});   
-</script>
-
-<script language="javascript">
-  	function hapusBarang(kode_barang)
-	{
-		if(confirm("Apakah yakin menghapus data ini?"))
-		{
-			window.open("<?php echo base_url() ?>Barang/hapusBarang/"+kode_barang,"_self");
-		}	
-	}
 </script>

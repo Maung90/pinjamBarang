@@ -24,7 +24,7 @@ class Barang extends CI_Controller
 		$this->mbarang->simpanBarang();
 	}
 	function hapusBarang($kode_barang)
-		{
-			$this->mbarang->hapusBarang($kode_barang);	
-		}
+	{
+		$this->mbarang->hapusBarang($kode_barang);	
+	}
 }
