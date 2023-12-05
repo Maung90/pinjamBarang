@@ -24,7 +24,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['base_url'] = 'http://localhost/pinjamBarang/';
-// //$config['base_url'] = 'http://localhost:8080/pinjamBarang/';
+// <<<<<<< HEAD
+// // //$config['base_url'] = 'http://localhost:8080/pinjamBarang/';
+// =======
+// <<<<<<< HEAD
+// // <<<<<<< HEAD
+// // // $config['base_url'] = 'http://localhost:8080/pinjamBarang/'
+// // =======
+// // <<<<<<< HEAD
+// // //$config['base_url'] = 'http://localhost:8080/pinjamBarang/';
+// // =======
+// // // $config['base_url'] = 'http://localhost:8080/pinjamBarang/';
+// // >>>>>>> 2a08017e652eb4e0d487285f60c1aca74f16982d
+// // >>>>>>> 08e484a63cca73e68a022b402b7b6a74a4701de5
+// =======
+// // $config['base_url'] = 'http://localhost:8080/pinjamBarang/';
+// >>>>>>> bb96cace44561e17de7302901acbe4b7a6b88237
+// >>>>>>> 893e33cfd7df23bd29de8cd95d5cbfcb3dedffb9
 
 /*
 |--------------------------------------------------------------------------

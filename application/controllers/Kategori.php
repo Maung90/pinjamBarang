@@ -22,11 +22,6 @@ class Kategori extends CI_Controller
 		$this->load->view('partials/copyright');
 		$this->load->view('partials/footer');
 	} 
-
-	public function get_data($id)
-	{ 
-		$this->MKategori->get_data($id);
-	}
 	public function insertData()
 	{
 		$this->MKategori->insert();
@@ -42,24 +37,10 @@ class Kategori extends CI_Controller
 		$this->MKategori->update($id);
 	}
 
-
-
-
-	public function proses_session()
-	{
-
-		if (!$this->session->userdata('session')) {
-			$temp[] = $this->input->post();
-			$this->session->set_userdata('session',$temp);
-		}else{
-			$tempLama =  $this->session->userdata('session');
-			$tempLama[] = $this->input->post(); 
-
-			$this->session->set_userdata('session',$tempLama);
-		}
-
-		echo count($this->session->userdata('session'));
-
+	public function get_data($id)
+	{ 
+		$this->MKategori->get_data($id);
 	}
+
 
 }
