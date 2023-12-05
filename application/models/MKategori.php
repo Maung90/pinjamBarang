@@ -30,6 +30,7 @@ class	MKategori extends CI_Model {
 				Data gagal dihapus! Data masih terkoneksi dengan barang!
 				</div>'); 		
 		}else{ 
+			$this->db->where('id_kategori',$id);
 			$response = $this->db->delete('tbkategori');
 			if ($response > 0) {
 				$this->session->set_flashdata('crud','<div class="alert alert-success" role="alert">
@@ -73,7 +74,6 @@ class	MKategori extends CI_Model {
 		$data = $this->db->get('tbkategori')->result();
 		echo json_encode($data);
 	}
-
 	public function joinBarang()
 	{
 		
@@ -88,6 +88,10 @@ class	MKategori extends CI_Model {
 	}
 
 }
+
+
+
+
 
 /* End of file Kategori.php */
 /* Location: ./application/models/Kategori.php */
