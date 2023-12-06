@@ -10,7 +10,7 @@
 </head>
 <body>
 
-    <form name="formlogin" method="post" action="<?php echo base_url('Login/tampil'); ?>">
+    <form name="formlogin" method="post" action="<?php echo base_url(''); ?>">
         <!----------------------- Main Container -------------------------->
         <div class="container d-flex justify-content-center align-items-center min-vh-100">
         <!----------------------- Login Container -------------------------->
