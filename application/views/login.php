@@ -10,7 +10,7 @@
 </head>
 <body>
 
-    <form name="formlogin" method="post" action="<?php echo base_url(''); ?>">
+    <form name="formlogin" method="post" action="<?php echo base_url('Login/proseslogin'); ?>">
         <!----------------------- Main Container -------------------------->
         <div class="container d-flex justify-content-center align-items-center min-vh-100">
         <!----------------------- Login Container -------------------------->
@@ -32,10 +32,10 @@
                         <p>Peminjaman Barang Politeknik Negeri Bali</p>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control form-control-lg bg-light fs-6" placeholder="Email address">
+                        <input type="text" name="username" class="form-control form-control-lg bg-light fs-6" placeholder="Username ">
                     </div>
                     <div class="input-group mb-1">
-                        <input type="password" class="form-control form-control-lg bg-light fs-6" placeholder="Password">
+                        <input type="password" name="password" class="form-control form-control-lg bg-light fs-6" placeholder="Password">
                     </div>
                     <div class="input-group mb-5 d-flex justify-content-between">
                     </div>

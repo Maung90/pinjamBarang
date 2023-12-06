@@ -62,10 +62,6 @@ class User extends CI_Controller
 		$this->load->view('partials/footer');
 		$this->load->view('partials/copyright');
 	}
-	public function proses_session()
-	{
-		$this->MUser->ProsesSession(); 
-	}
 
 	public function ProsesCheckout()
 	{
