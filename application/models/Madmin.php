@@ -25,5 +25,45 @@
         redirect('Master/index', 'refresh');
         }
         
+        public function get_admin($id)
+        {
+            $this->db->where('no_user', $id);
+            $data = $this->db->get('tbuser')->result();
+            echo json_encode($data);
+        }
+
+        public function update_admin($id)
+        {
+            $data = $_POST;
+            $this->db->where('no_user',$id);
+            $data = $this->db->update('tbuser', $data);
+            if($data){
+                $this->session->set_flashdata('success','<div class="alert alert-success" role="alert">
+                    Data berhasil diupdate!
+                </div>');
+            } else {
+                $this->session->set_flashdata('error','<div class="alert alert-danger" role="alert">
+                    Data gagal diupdate!
+                </div>');
+            }
+            redirect('Master/index', 'refresh');
+        }
+
+        public function delete_admin($id)
+        {
+            $this->db->where('no_user',$id);
+            $data = $this->db->delete('tbuser');
+            if($data){
+                $this->session->set_flashdata('success','<div class="alert alert-success" role="alert">
+                    Data berhasil diupdate!
+                </div>');
+            } else {
+                $this->session->set_flashdata('error','<div class="alert alert-danger" role="alert">
+                    Data gagal diupdate!
+                </div>');
+            }
+            redirect('Master/index', 'refresh');
+        }
     }
+
 ?>

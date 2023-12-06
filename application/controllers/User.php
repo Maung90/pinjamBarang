@@ -1,7 +1,4 @@
 <?php 
-/**
- * 
- */
 class User extends CI_Controller
 {
 	function __construct()
@@ -33,7 +30,7 @@ class User extends CI_Controller
 		$this->load->view('user/checkout',$data); 
 		$this->load->view('partials/footer');
 	}
- 
+
 	public function proses_order()
 	{
 		$this->MUser->prosesOrder(); 
@@ -61,7 +58,6 @@ class User extends CI_Controller
 		$this->load->view('partials/head');
 		$this->load->view('partials/footer');
 		$this->load->view('partials/copyright');
-
 	}
 	public function proses_session()
 	{
@@ -70,6 +66,6 @@ class User extends CI_Controller
 
 	public function ProsesCheckout()
 	{
-		$this->MUser->ProsesCheckout();   
+		$this->MUser->ProsesCheckout();
 	}
 }

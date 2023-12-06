@@ -1,7 +1,4 @@
 <?php 
-/**
- * 
- */
 class Master extends CI_Controller
 {
 	public function __construct()
@@ -35,4 +32,19 @@ class Master extends CI_Controller
 		$this->load->view('partials/copyright');
 		$this->load->view('partials/footer');
 	}
+
+	public function get($id)
+    {
+        $this->madmin->get_admin($id);
+    }
+
+	public function update($id)
+    {
+        $this->madmin->update_admin($id);
+    }
+
+	public function delete($id)
+    {
+        $this->madmin->delete_admin($id);
+    }
 }
