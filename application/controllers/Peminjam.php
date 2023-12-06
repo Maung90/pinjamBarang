@@ -24,4 +24,19 @@ class Peminjam extends CI_Controller {
     {
         $this->mpeminjam->insert_peminjam();
     }
+
+    public function get($id)
+    {
+        $this->mpeminjam->get_peminjam($id);
+    }
+    
+    public function update($id)
+    {
+        $this->mpeminjam->update_peminjam($id);
+    }
+
+    public function delete($id)
+    {
+        $this->mpeminjam->delete_peminjam($id);
+    }
 }

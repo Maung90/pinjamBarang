@@ -24,4 +24,19 @@ class Master extends CI_Controller
 	{
 		$this->madmin->simpanData();
 	}
+
+	public function get($id)
+    {
+        $this->madmin->get_admin($id);
+    }
+
+	public function update($id)
+    {
+        $this->madmin->update_admin($id);
+    }
+
+	public function delete($id)
+    {
+        $this->madmin->delete_admin($id);
+    }
 }
