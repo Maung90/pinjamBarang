@@ -16,23 +16,50 @@ class User extends CI_Controller
 	{
 		
 		$data['data'] = $this->MKategori->joinBarang();
-
+		$data['jumlahOrder'] = $this->MUser->jumlahOrder(1);
 		$data['title'] = 'Home';
+
 		$this->load->view('partials/head',$data);
 		$this->load->view('user/index',$data); 
 		$this->load->view('partials/footer');
 	} 
-
 	public function checkout()
-	{
-
-
+	{ 
+		$data['data'] = $this->MUser->joinOrderBarang();
+		$data['total'] = $this->MUser->sumOrder(1);
 		$data['title'] = 'Home';
+		
 		$this->load->view('partials/head',$data);
-		$this->load->view('user/checkout'); 
+		$this->load->view('user/checkout',$data); 
 		$this->load->view('partials/footer');
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+	public function proses_order()
+	{
+		$this->MUser->prosesOrder(); 
+	}
+
+	public function delete_order()
+	{
+		$this->MUser->deleteOrder(); 
+	}
+
+	public function update_order_minus($id)
+	{
+		$this->MUser->order_minus($id); 
+	}
+
+	public function update_order_plus($id)
+	{
+		$this->MUser->order_plus($id); 
+	}
+
+=======
+<<<<<<< HEAD
+>>>>>>> 41e2d3e802c75635579835e38d5f3dce7ef32495
 	public function status(){
 		$this->load->view('partials/side');
 		$this->load->view('partials/nav');
@@ -43,7 +70,12 @@ class User extends CI_Controller
 	}
 
 		
+<<<<<<< HEAD
 
+=======
+=======
+>>>>>>> 893e33cfd7df23bd29de8cd95d5cbfcb3dedffb9
+>>>>>>> 41e2d3e802c75635579835e38d5f3dce7ef32495
 	public function proses_session()
 	{
 		$this->MUser->ProsesSession(); 
