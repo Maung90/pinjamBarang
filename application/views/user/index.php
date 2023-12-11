@@ -1,25 +1,3 @@
- <nav class="navbar navbar-expand bg-primary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Info</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?=base_url('User/Checkout/')   ?> ">  
-            <i class="fas fa-suitcase text-white"></i>
-            <span class="badge bg-danger rounded-pill badge-notifications" id="notif"><?=$jumlahOrder?></span>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
 <div class="container">
   <div class="row mt-5"> 
     <div class="col-12 d-flex justify-content-end">
@@ -109,39 +87,6 @@
   ?>
 </div>
 </div>
-
-
-<!-- <section id="adv-footer" style="position: static;z-index: 99; bottom: 0;"> 
-  <footer class="footer bg-light">
-    <div class="container-fluid container-p-x pt-3 pb-2">
-      <div class="row">
-        <div class="col-12 col-sm-6 col-md-3 mb-4 mb-sm-0">
-          <h4 class="fw-bolder mb-3">
-            <a
-            href="#"
-            target="_blank"
-            class="footer-text"
-            >Politeknik Negeri Bali
-          </a>
-        </h4>
-        <div class="col-12 col-sm-6 col-md-3 mb-4 mb-md-0">
-          <h5>Contact</h5>
-          <ul class="list-unstyled">
-            <li><a href="javascript:void(0)" class="footer-link d-block pb-2">Admin I </a></li> 
-          </div> 
-          <p class="pt-4">
-            <script>
-              document.write(new Date().getFullYear());
-            </script>
-            © Team2One
-          </p>
-        </div>
-      </div>
-    </div>
-  </footer>
-</section> -->
-
-<!-- </div> -->
 
 <script>
 
