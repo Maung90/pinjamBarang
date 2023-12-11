@@ -18,37 +18,42 @@
 
       <div class="menu-inner-shadow"></div>
 
-      <ul class="menu-inner py-1">
-        <!-- Dashboards -->
-        <li class="menu-item active open">
-          <a href="javascript:void(0);" class="menu-link menu-toggle">
+      <ul class="menu-inner py-1 gap-1">
+        <li class="menu-item active">
+          <a href="<?=base_url();?>" class="menu-link">
             <i class="menu-icon tf-icons ti ti-smart-home"></i>
-            <div>Dashboards</div>
+            <div>Dashboard</div>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="<?=base_url();?>" class="menu-link">
+            <i class="menu-icon tf-icons ti ti-history"></i>
+            <div>History</div>
+          </a>
+        </li>
+        <li class="menu-item active">
+          <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class="menu-icon tf-icons ti ti-building-warehouse"></i>
+            <div>Data Master</div>
             <div class="badge bg-label-primary rounded-pill ms-auto">3</div>
           </a>
           <ul class="menu-sub">
             <li class="menu-item active">
-              <a href="index.html" class="menu-link">
-                <div>Analytics</div>
+              <a href="<?=base_url('Peminjam/');?>" class="menu-link">
+                <div>Data User</div>
               </a>
             </li>
             <li class="menu-item">
-              <a href="dashboards-crm.html" class="menu-link">
-                <div>CRM</div>
+              <a href="<?=base_url('Barang/');?>" class="menu-link">
+                <div>Data Barang</div>
               </a>
             </li>
             <li class="menu-item">
-              <a href="dashboards-ecommerce.html" class="menu-link">
-                <div>eCommerce</div>
+              <a href="<?=base_url('Kategori/');?>" class="menu-link">
+                <div>Data Kategori</div>
               </a>
             </li>
           </ul>
-        </li>
-        <li class="menu-item">
-          <a href="form-validation.html" class="menu-link">
-            <i class="menu-icon tf-icons ti ti-checkbox"></i>
-            <div>Form Validation</div>
-          </a>
-        </li>
+        </li> 
       </ul>
     </aside>
