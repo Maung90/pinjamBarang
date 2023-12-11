@@ -19,8 +19,16 @@
       <div class="menu-inner-shadow"></div>
 
       <ul class="menu-inner py-1 gap-1">
+        <?php //if ($data == 'master'): ?>
+       <!--  <li class="menu-item active">
+          <a href="<?=base_url('Master/');?>" class="menu-link">
+            <i class="menu-icon tf-icons ti ti-smart-home"></i>
+            <div>Data Admin</div>
+          </a>
+        </li> -->
+        <?php //else if($data == 'admin') : ?>
         <li class="menu-item active">
-          <a href="<?=base_url();?>" class="menu-link">
+          <a href="<?=base_url('Dashboard/');?>" class="menu-link">
             <i class="menu-icon tf-icons ti ti-smart-home"></i>
             <div>Dashboard</div>
           </a>
@@ -52,7 +60,9 @@
               <a href="<?=base_url('Kategori/');?>" class="menu-link">
                 <div>Data Kategori</div>
               </a>
-            </li>
+            </li> 
+            <?php //else: ?> 
+            <?php //endif ?>
           </ul>
         </li> 
       </ul>
