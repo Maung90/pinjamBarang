@@ -42,13 +42,13 @@
                         }
 
                     }	
-                    elseif($querypeminjam->num_rows()>0){
+                    else if($querypeminjam->num_rows()>0){
                         $data=$querypeminjam->row();
                         $array=array(
                             'no_identitas'=>$data->no_identitas,    
                         );	
                         $this->session->set_userdata($array);	
-                        $this->session->set_flashdata('pesan','Login gagal...');
+                        $this->session->set_flashdata('pesan','Login berhasil...');
                         redirect('peminjam/index','refresh');		
                         echo "peminjam";
                     }
