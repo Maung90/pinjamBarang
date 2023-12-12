@@ -38,12 +38,16 @@ class User extends CI_Controller
 	{ 
 		$data['data'] = $this->MUser->joinOrderBarang();
 		$data['total'] = $this->MUser->sumOrder(1);
+		$data['jumlahOrder'] = $this->MUser->jumlahOrder(1);
 		$data['title'] = 'Home';
 		
 		$this->load->view('partials/head',$data);
+		$this->load->view('partials/navbarUser');
 		$this->load->view('user/checkout',$data); 
 		$this->load->view('partials/footer');
 	}
+	
+
 
 	public function proses_order()
 	{

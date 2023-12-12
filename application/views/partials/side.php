@@ -17,16 +17,15 @@
       </div>
 
       <div class="menu-inner-shadow"></div>
-
       <ul class="menu-inner py-1 gap-1">
-        <?php //if ($data == 'master'): ?>
-       <!--  <li class="menu-item active">
+        <?php if ($this->session->userdata('id_role') == 1): ?>
+        <li class="menu-item active">
           <a href="<?=base_url('Master/');?>" class="menu-link">
             <i class="menu-icon tf-icons ti ti-smart-home"></i>
             <div>Data Admin</div>
           </a>
-        </li> -->
-        <?php //else if($data == 'admin') : ?>
+        </li>
+        <?php elseif ($this->session->userdata('id_role') == 2) : ?>
         <li class="menu-item active">
           <a href="<?=base_url('Dashboard/');?>" class="menu-link">
             <i class="menu-icon tf-icons ti ti-smart-home"></i>
@@ -34,7 +33,7 @@
           </a>
         </li>
         <li class="menu-item">
-          <a href="<?=base_url();?>" class="menu-link">
+          <a href="#" class="menu-link">
             <i class="menu-icon tf-icons ti ti-history"></i>
             <div>History</div>
           </a>
@@ -61,8 +60,8 @@
                 <div>Data Kategori</div>
               </a>
             </li> 
-            <?php //else: ?> 
-            <?php //endif ?>
+            <?php else: ?> 
+            <?php endif ?>
           </ul>
         </li> 
       </ul>

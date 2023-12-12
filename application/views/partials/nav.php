@@ -12,17 +12,7 @@
     </a>
   </div>
 
-  <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-    <!-- Search -->
-    <div class="navbar-nav align-items-center">
-      <div class="nav-item navbar-search-wrapper mb-0">
-        <a class="nav-item nav-link search-toggler d-flex align-items-center px-0" href="javascript:void(0);">
-          <i class="ti ti-search ti-md me-2"></i>
-          <span class="d-none d-md-inline-block text-muted">Search (Ctrl+/)</span>
-        </a>
-      </div>
-    </div>
-    <!-- /Search -->
+  <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse"> 
 
     <ul class="navbar-nav flex-row align-items-center ms-auto">
 
@@ -135,7 +125,7 @@
           <div class="dropdown-divider"></div>
         </li>
         <li>
-          <a class="dropdown-item" href="<?=base_url();?>" target="_blank">
+          <a class="dropdown-item" href="<?=base_url('Login/Logout');?>">
             <i class="ti ti-logout me-2 ti-sm"></i>
             <span class="align-middle">Log Out</span>
           </a>

@@ -30,7 +30,7 @@
             <input
                 type="email"
                 class="form-control"
-                id="basic-default-company"
+                id="email"
                 name="email"
                 placeholder="Masukan Email" />
             </div>
@@ -153,6 +153,7 @@
                 $('#no_user').val(data.no_user);
                 $('#username').val(data.username);
                 $('#nama').val(data.nama_user);
+                $('#email').val(data.email);
                 $('#alamat').val(data.alamat);
                 $('#no_telp').val(data.no_telp);
                 $('#kerja').val(data.unit_kerja);

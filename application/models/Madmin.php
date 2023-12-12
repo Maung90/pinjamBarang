@@ -57,11 +57,16 @@
                 'unit_kerja' =>$unit_kerja,
                 'id_role' =>$id_role
         );
-        $this->db->insert('tbuser',$data);
-        $this->sendMail($email,$username,$password);
-        $this->session->set_flashdata('pesan','<div class="alert alert-success" role="alert"> Data Disimpan </div>');
-        redirect('Master/index', 'refresh');
+        $response = $this->db->insert('tbuser',$data);
+        if ($response) {
+            $this->sendMail($email,$username,$password);
+            $this->session->set_flashdata('pesan','<div class="alert alert-success" role="alert"> Data Disimpan </div>');
+            redirect('Master/index', 'refresh');
+        }else{
+            $this->session->set_flashdata('pesan','<div class="alert alert-danger" role="alert"> Data gagal </div>');
+            redirect('Master/index', 'refresh');
         }
+    }
         
         public function get_admin($id)
         {

@@ -87,7 +87,7 @@ INSERT INTO `tbkategori` (`id_kategori`, `nama_kategori`) VALUES
 
 CREATE TABLE `tbnote` (
   `keterangan` varchar(100) DEFAULT NULL,
-  `id_peminjaman` int(11) NOT NULL
+  `id_peminjaman` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
