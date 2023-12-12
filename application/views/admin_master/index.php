@@ -25,14 +25,14 @@
             </div>
         </div>
         <div class="row mb-3">
-            <label class="col-sm-2 col-form-label" for="basic-default-company">Password</label>
+            <label class="col-sm-2 col-form-label" for="basic-default-company">Email</label>
             <div class="col-sm-10">
             <input
-                type="password"
+                type="email"
                 class="form-control"
                 id="basic-default-company"
-                name="password"
-                placeholder="Masukan Password" />
+                name="email"
+                placeholder="Masukan Email" />
             </div>
         </div>
         <div class="row mb-3">
@@ -94,6 +94,7 @@
       <th scope="col">No</th>
       <th scope="col">No Identitas</th>
       <th scope="col">Username</th>
+      <th scope="col">Email</th>
       <th scope="col">Nama</th>
       <th scope="col">No.Telp</th>
       <th scope="col">Alamat</th>
@@ -112,6 +113,7 @@
         <td><?= $no; ?></td>
         <td><?= $value->no_user; ?></td>
         <td><?= $value->username; ?></td>
+        <td><?= $value->email; ?></td>
         <td><?= $value->nama_user; ?></td>
         <td><?= $value->no_telp; ?></td>
         <td><?= $value->alamat; ?></td>
