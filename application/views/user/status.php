@@ -24,9 +24,15 @@
 
                       <div id="accordionWithIcon-1" class="accordion-collapse collapse show">
                         <div class="accordion-body">
-                          Lemon drops chocolate cake gummies carrot cake chupa chups muffin topping. Sesame snaps icing
-                          marzipan gummi bears macaroon dragée danish caramels powder. Bear claw dragée pastry topping
-                          soufflé. Wafer gummi bears marshmallow pastry pie.
+                          <table class="table">
+                          <thead>
+                            <tr>
+                              <th>Nama Barang</th>
+                              <th>Kode Barang</th>
+                            </tr> 
+                           </thead>
+                          </table>
+
                         </div>
                       </div>
                     </div>

@@ -54,6 +54,7 @@ class User extends CI_Controller
 		$this->MUser->order_plus($id); 
 	}
 
+
 	public function status(){
 		$this->load->view('partials/side');
 		$this->load->view('partials/nav');
@@ -62,6 +63,8 @@ class User extends CI_Controller
 		$this->load->view('partials/footer');
 		$this->load->view('partials/copyright');
 	}
+
+		
 
 	public function ProsesCheckout()
 	{
