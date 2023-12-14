@@ -1,30 +1,51 @@
 <?php
     class Mbarang extends CI_Model{
-        function simpanBarang(){
-            $kode_barang = $this->input->post('kode_barang');
-            $nama_barang = $this->input->post('nama_barang');
-            $merk_barang = $this->input->post('merk_barang');
-            $status_barang = $this->input->post('status_barang');
-            $image = $this->input->post('image');
-            $id_kategori = 1;
-
-            $data = array(
-                'kode_barang' =>$kode_barang,
-                'nama_barang' =>$nama_barang,
-                'merk_barang' =>$merk_barang,
-                'status_barang' =>$status_barang,
-                'image' =>$image,
-                'id_kategori' =>$id_kategori
-        );
+        function simpanBarang($data){
+            
         $this->db->insert('tbbarang',$data);
         $this->session->set_flashdata('pesan','<div class="alert alert-success" role="alert"> Data Barang Disimpan </div>');
-        redirect('Barang/index', 'refresh');
+        redirect('Barang/', 'refresh');
         }
+
+        public function get_barang($id)
+        {
+            $this->db->where('kode_barang', $id);
+            $data = $this->db->get('tbbarang')->result();
+            echo json_encode($data);
+        }
+
+        public function getBarang()
+        {
+            $this->db->select('*');
+            $this->db->from('tbbarang'); 
+            $this->db->join('tbkategori', 'tbbarang.id_kategori = tbkategori.id_kategori', 'inner');  
+            $query = $this->db->get();
+
+            return $query->result();
+        }
+        public function updateBarang($id)
+        {
+            $data = $_POST;
+            $this->db->where('kode_barang',$id);
+            $data = $this->db->update('tbbarang', $data);
+            if($data){
+                $this->session->set_flashdata('success','<div class="alert alert-success" role="alert">
+                    Data berhasil diupdate!
+                </div>');
+            } else {
+                $this->session->set_flashdata('error','<div class="alert alert-danger" role="alert">
+                    Data gagal diupdate!
+                </div>');
+            }
+            redirect('Barang/', 'refresh');
+        }
+
         function hapusBarang($kode_barang)
 		{
 			$sql="delete from tbbarang where kode_barang='".$kode_barang."'";
 			$this->db->query($sql);
-			redirect('Barang/index','refresh');	
+			redirect('Barang/','refresh');	
 		}
+
     }
 ?>
