@@ -5,6 +5,14 @@ class Master extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('madmin');
+
+		if ($this->session->userdata('id_role') == null) { 
+			redirect('Login/','refresh');
+		 }
+		 
+		 if ($this->session->userdata('id_role') != '1') { 
+			redirect('Dashboard/','refresh');
+		 }
 	}
 	public function index()
 	{
