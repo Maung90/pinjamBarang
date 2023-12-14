@@ -2,22 +2,6 @@
 
 $jumlah = intval($total); 
 ?>
-<nav class="navbar navbar-expand bg-primary">
-  <div class="container">
-    <a class="navbar-brand" href="<?=base_url('User/')   ?> ">Navbar</a>
-    <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="<?=base_url('User/')?>">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Info</a>
-        </li> 
-      </ul>
-    </div>
-  </div>
-</nav>
-
 <div class="container"> 
   <?php  
   if ( $jumlah > 0) :

@@ -15,7 +15,7 @@ class Barang extends CI_Controller
 		$this->load->view('partials/head',$data);
 		$this->load->view('partials/side');
 		$this->load->view('partials/nav');
-		$this->load->view('admin/dashboard/index'); //Contoh
+		$this->load->view('admin/barang/index'); //Contoh
 		$this->load->view('partials/copyright');
 		$this->load->view('partials/footer');
 	}

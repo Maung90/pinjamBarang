@@ -8,12 +8,15 @@ class Login extends CI_Controller {
 		$this->load->model('Mlogin');
 	}
 
-	public function tampil(){
+	public function index(){
 		$this->load->view('login');
 	}
 
 	public function proseslogin(){
 		$this->Mlogin->cekLogin();
+	}
+	public function Logout(){
+		$this->Mlogin->Logout(); 
 	}
 
 }
