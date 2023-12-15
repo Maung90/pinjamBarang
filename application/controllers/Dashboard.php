@@ -25,6 +25,10 @@ class Dashboard extends CI_Controller {
 		 if ($this->session->userdata('id_role') == null) { 
 			redirect('Login/','refresh');
 		 }
+		 
+		 if ($this->session->userdata('id_role') != '2') { 
+			redirect('Master/','refresh');
+		 }
 	 } 
 	function index()
 	{
