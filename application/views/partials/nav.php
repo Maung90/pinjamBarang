@@ -125,7 +125,7 @@
           <div class="dropdown-divider"></div>
         </li>
         <li>
-          <a class="dropdown-item" href="<?=base_url('Login/Logout');?>">
+          <a class="dropdown-item" href="<?=base_url('Logout/');?>">
             <i class="ti ti-logout me-2 ti-sm"></i>
             <span class="align-middle">Log Out</span>
           </a>
@@ -137,14 +137,14 @@
 </div>
 
 <!-- Search Small Screens -->
-<div class="navbar-search-wrapper search-input-wrapper d-none">
+<!-- <div class="navbar-search-wrapper search-input-wrapper d-none">
   <input
   type="text"
   class="form-control search-input container-xxl border-0"
   placeholder="Search..."
   aria-label="Search..." />
   <i class="ti ti-x ti-sm search-toggler cursor-pointer"></i>
-</div>
+</div> -->
 </nav>
 
 <!-- / Navbar -->

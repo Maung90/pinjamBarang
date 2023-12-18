@@ -56,10 +56,10 @@
 									<button type="button" id="update-<?=$d->id_kategori;?>" class="btn btn-sm btn-primary">
 										<label class="ti ti-edit "></label>
 									</button>
-									<a onclick="return confirm('apakah yakin dihapus?');" href="<?= base_url('Kategori/deleteData/'.$d->id_kategori) ?>"  class="btn btn-sm btn-danger">
+									<button  onclick="hapus(<?=$d->id_kategori;?>)" class="btn btn-sm btn-danger">
 										<label class="ti ti-trash"></label>
-									</a>
-								</th>
+									</button>
+								</th> 
 							</tr>
 							<?php $no++;} ?>
 						</tbody>
@@ -76,8 +76,21 @@
 	</script>
 	<script>
 
-		$(document).ready(function(){
+		function hapus(id) {
+			Swal.fire({
+				icon: "question",
+				title: "Apakah yakin ingin menghapus data ini?",
+				showCancelButton: true,
+				confirmButtonText: "Hapus"
+			}).then((result) => {
+				if (result.isConfirmed) {
+					document.location = '<?= base_url('Kategori/deleteData/')?>'+id;
+				}
+			});
+		}
 
+
+		$(document).ready(function(){
 
 			$('[id^=update]').on('click',function(){
 				var id = $(this).attr('id').split('-')[1]; 
@@ -90,8 +103,7 @@
 
 						$('#form').attr('action','<?= base_url('Kategori/updateData/')?>'+id); 
 						// $('#inputHide').val(response[0]['id_kategori']);
-						$('#defaultFormControlInput').val(response[0]['nama_kategori']);	 
-
+						$('#defaultFormControlInput').val(response[0]['nama_kategori']);	  
 					},
 					error : function (xhr, status, error) {
 						console.error('gagal mengubah form' + error);

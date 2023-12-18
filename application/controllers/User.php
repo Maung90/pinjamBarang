@@ -11,9 +11,10 @@ class User extends CI_Controller
 
 	public function index()
 	{
-		
+		$no_identitas = 1;
+
 		$data['data'] = $this->MKategori->joinBarang();
-		$data['jumlahOrder'] = $this->MUser->jumlahOrder(1);
+		$data['jumlahOrder'] = $this->MUser->jumlahOrder($no_identitas);
 		$data['title'] = 'Home';
 
 		$this->load->view('partials/head',$data);
@@ -24,9 +25,16 @@ class User extends CI_Controller
 	} 
 
 	public function status(){
+		$no_identitas = 1;
+
 		$data['title'] = 'Status Pinjam';
+
 		$data['jumlahOrder'] = $this->MUser->jumlahOrder(1);
 		$data["datastatus"] = $this->MUser->infoStatus(1); 
+
+		$data['jumlahOrder'] = $this->MUser->jumlahOrder($no_identitas);
+		
+
 		$this->load->view('partials/head',$data);
 		$this->load->view('partials/navbarUser');
 		$this->load->view('user/status',$data);
@@ -36,9 +44,12 @@ class User extends CI_Controller
 
 	public function checkout()
 	{ 
+
+		$no_identitas = 1;
+
 		$data['data'] = $this->MUser->joinOrderBarang();
-		$data['total'] = $this->MUser->sumOrder(1);
-		$data['jumlahOrder'] = $this->MUser->jumlahOrder(1);
+		$data['total'] = $this->MUser->sumOrder($no_identitas);
+		$data['jumlahOrder'] = $this->MUser->jumlahOrder($no_identitas);
 		$data['title'] = 'Home';
 		
 		$this->load->view('partials/head',$data);
@@ -48,6 +59,12 @@ class User extends CI_Controller
 	}
 	
 
+	public function searching($keyword)
+	{ 
+		$data['data'] = $this->MUser->searching($keyword);
+		$result = $this->load->view('user/search',$data,true);
+		echo json_encode(['result' => $result]);
+	}
 
 	public function proses_order()
 	{
