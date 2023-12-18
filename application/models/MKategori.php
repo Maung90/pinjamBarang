@@ -10,7 +10,7 @@ class	MKategori extends CI_Model {
 		$response = $this->db->insert('tbkategori',$data);
 		if ($response > 0) {
 			$this->session->set_flashdata('crud','<div class="alert alert-success" role="alert">
-				Data sudah disimpan!
+				Data berhasil disimpan!
 				</div>'); 		
 		}else{ 
 			$this->session->set_flashdata('crud','<div class="alert alert-danger" role="alert">
@@ -34,7 +34,7 @@ class	MKategori extends CI_Model {
 			$response = $this->db->delete('tbkategori');
 			if ($response > 0) {
 				$this->session->set_flashdata('crud','<div class="alert alert-success" role="alert">
-					Data sudah dihapus!
+					Data berhasil dihapus!
 					</div>'); 		
 			}else{ 
 				$this->session->set_flashdata('crud','<div class="alert alert-danger" role="alert">
@@ -59,7 +59,7 @@ class	MKategori extends CI_Model {
 
 		if ($response > 0) {
 			$this->session->set_flashdata('crud','<div class="alert alert-success" role="alert">
-				Data sudah diedit!
+				Data berhasil diedit!
 				</div>'); 		
 		}else{ 
 			$this->session->set_flashdata('crud','<div class="alert alert-danger" role="alert">
