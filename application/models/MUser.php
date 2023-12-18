@@ -11,8 +11,7 @@ class MUser extends CI_Model {
 		$waktu_pengembalian = $this->input->post('Waktu-Pengembalian'); 
 		$jumlah = $this->input->post('jumlah'); 
 
-		$data = array(
-			'id_peminjaman' => '1',
+		$data = array( 
 			'no_identitas' => $no_Identitas,
 			'waktu_pengembalian' => $waktu_pengembalian,
 			'status_peminjaman' => 'pending',
