@@ -161,6 +161,15 @@ class MUser extends CI_Model {
 		}
 	}
 
+	public function infoStatus($no_identitas){
+		$this->db->select("*");
+		$this->db->from('tb_peminjaman'); 
+		$this->db->join('tb_history', 'tb_history.id_peminjaman = tb_peminjaman.id_peminjaman', 'inner');
+		$this->db->where('tb_peminjaman.no_identitas', $no_identitas);
+		$query = $this->db->get()->result();
+		return $query;
+	}
+
 
 }
 
