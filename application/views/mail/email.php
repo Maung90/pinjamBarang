@@ -127,9 +127,9 @@
                         <tr>
                             <td class="sm-py-32 sm-px-24"
                                 style="mso-line-height-rule: exactly; padding: 24px; text-align: center; font-family: Montserrat, -apple-system, 'Segoe UI', sans-serif;">
-                                <a href=" { Base URL } "
+                                <a href="<?php echo base_url();?>"
                                     style="font-family: 'Montserrat', sans-serif; mso-line-height-rule: exactly;">
-                                    <img src=" { Logo PNB } "
+                                    <img src="https://elearning.pnb.ac.id/img/logo-pnb.3aae610b.png"
                                         style="max-width: 100%; vertical-align: middle; line-height: 100%; border: 0;">
                                         
                                 </a>
@@ -147,13 +147,15 @@
                                                 Hai,</p>
                                             <p
                                                 style="font-family: 'Montserrat', sans-serif; mso-line-height-rule: exactly; margin-top: 0; font-size: 18px; font-weight: 700; color: #0099ff;">
-                                                RaCas</p>
+                                                Peminjam</p>
                                             <p
                                                 style="font-family: 'Montserrat', sans-serif; font-size: 12px; mso-line-height-rule: exactly; margin: 0; margin-bottom: 8px;">
-                                                Kami ingin memberitahu Anda bahwa deposit yang Anda ajukan telah berhasil disetujui. Saldo telah ditambahkan ke akun Anda sesuai permintaan deposit.
+                                                Kami ingin memberitahu Anda bahwa pendaftaran telah berhasil. Akun anda telah didaftarkan sesuai data yang diberikan.
                                             </p>
                                             <hr style="border-top:dashed 1px">
-                                            <!-- Taruh pesan disini -->
+                                            Berikut username :<?= $username;?>
+                                            <br> 
+                                            Berikut password :<?= $password;?>
                                             <hr style="border-top:dashed 1px">
                                             <p
                                                 style="font-family: 'Montserrat', sans-serif; font-size: 12px; mso-line-height-rule: exactly; margin: 0; margin-bottom: 8px;">
@@ -165,7 +167,7 @@
                                             <hr style="border-top:dashed 1px">
                                             <p
                                                 style="font-family: 'Montserrat', sans-serif; font-size: 12px; mso-line-height-rule: exactly; margin: 0; margin-bottom: 8px;">
-                                                Website : { BaseURL }
+                                                Website : <?php echo base_url();?>
                                                 <br> 
                                                 Email : { Email CS }
                                             </p>
