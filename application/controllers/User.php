@@ -5,8 +5,7 @@ class User extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('MKategori');
-		$this->load->model('MUser');
-		
+		$this->load->model('MUser');    
 	}
 
 	public function index()
@@ -81,23 +80,14 @@ class User extends CI_Controller
 		$this->MUser->order_plus($id); 
 	}
 
+ 
+	public function proses_session()
+	{
+		$this->MUser->ProsesSession(); 
 
-	// public function status(){
-	// 	$this->load->view('partials/side');
-	// 	$this->load->view('partials/nav');
-	// 	$this->load->view('user/status');
-	// 	$this->load->view('partials/head');
-	// 	$this->load->view('partials/footer');
-	// 	$this->load->view('partials/copyright');
-	// }
+	}
 
-		public function proses_session()
-		{
-			$this->MUser->ProsesSession(); 
-	
-		}
 
-		
 
 	public function ProsesCheckout()
 	{

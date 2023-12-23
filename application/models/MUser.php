@@ -41,8 +41,7 @@ class MUser extends CI_Model {
 
 		// inisialisasi untuk input peminjaman 
 		$no_Identitas = '1';
-		$waktu_pengembalian = $this->input->post('Waktu-Pengembalian'); 
-		$jumlah = $this->input->post('jumlah'); 
+		$waktu_pengembalian = $this->input->post('Waktu_Pengembalian');  
 
 		$data = array(
 			'id_peminjaman' => $idPeminjaman,
@@ -78,36 +77,13 @@ class MUser extends CI_Model {
 			$response2 = $this->db->delete('tb_order');
 			if ($response2) {
 				
-				$this->session->set_flashdata('checkout',' <script> $(document).ready(function(){ 
-						Swal.fire({
-							icon: "success",
-							title: "Success!!",
-							text: "Barang berhasil di checkout!", 
-							showCancelButton: false,
-							showConfirmButton: false,
-							timer : 3000,
-							});
-							}); 
-							</script> '); 
+				$this->session->set_flashdata('checkout',$this->sweetalert->alert('success','Success!','Barang Berhasil Diproses!','',3000)); 
 			}
 			redirect('User/Checkout/', 'refresh'); 
 
 
 		else:
-			$this->session->set_flashdata('checkout','
-				<script>
-				$(document).ready(function(){ 
-					Swal.fire({
-						icon: "error",
-						title: "Oopss!!",
-						text: "Barang gagal di checkout!", 
-						showCancelButton: false,
-						showConfirmButton: false,
-						footer : "Jika gagal terus harap hubungi admin!",
-						timer : 3000,
-						});
-						}); 
-						</script>'); 
+			$this->session->set_flashdata('checkout',$this->sweetalert->alert('error','Oopss !!','Data Berhasil Disimpan',"Jika gagal terus harap hubungi admin!",4500)); 
 		endif;
 	}
 

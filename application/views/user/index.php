@@ -1,3 +1,45 @@
+
+<div class="container-fluid m-0 p-0" style="height: 40vh;">
+  <div id="carouselExample" class="carousel slide " data-bs-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-bs-target="#carouselExample" data-bs-slide-to="0" class="active"></li>
+      <li data-bs-target="#carouselExample" data-bs-slide-to="1"></li>
+      <li data-bs-target="#carouselExample" data-bs-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item vw-100 active">
+        <img class="d-block" width="100%" height="250px" src="11145.jpg" alt="First slide" />
+        <div class="carousel-caption d-none d-md-block">
+          <h4>First slide</h4>
+          <p>Eos mutat malis maluisset et, agam ancillae quo te, in vim congue pertinacia.</p>
+        </div>
+      </div>
+      <div class="carousel-item vw-100" >
+        <img class="d-block" width="100%" height="250px" src="11145.jpg" alt="Second slide" />
+        <div class="carousel-caption d-none d-md-block">
+          <h4>Second slide</h4>
+          <p>In numquam omittam sea.</p>
+        </div>
+      </div>
+      <div class="carousel-item vw-100">
+        <img class="d-block" width="100%" height="250px" src="11146.jpeg" alt="Third slide" />
+        <div class="carousel-caption d-none d-md-block">
+          <h4>Third slide</h4>
+          <p>Lorem ipsum dolor sit amet, virtute consequat ea qui, minim graeco mel no.</p>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExample" role="button" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExample" role="button" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </a>
+  </div>
+</div>
+
 <div class="container">
   <div class="row mt-5"> 
     <div class="col-12 d-flex justify-content-end">

@@ -9,13 +9,9 @@ class	MKategori extends CI_Model {
 
 		$response = $this->db->insert('tbkategori',$data);
 		if ($response > 0) {
-			$this->session->set_flashdata('crud','<div class="alert alert-success" role="alert">
-				Data berhasil disimpan!
-				</div>'); 		
+				$this->session->set_flashdata('crud',$this->sweetalert->alert('success','Success!','Data berhasil disimpan!','',4500)); 	
 		}else{ 
-			$this->session->set_flashdata('crud','<div class="alert alert-danger" role="alert">
-				Data gagal disimpan!
-				</div>'); 	
+				$this->session->set_flashdata('crud',$this->sweetalert->alert('error','Ooppss!','Data gagal disimpan!','',4500)); 	
 		}
 		redirect('Kategori/', 'refresh');
 		
@@ -26,20 +22,14 @@ class	MKategori extends CI_Model {
 		$countBarang = count($this->db->get('tbbarang')->result()); 
 
 		if ($countBarang > 0) {
-			$this->session->set_flashdata('crud','<div class="alert alert-danger" role="alert">
-				Data gagal dihapus! Data masih terkoneksi dengan barang!
-				</div>'); 		
+			$this->session->set_flashdata('crud',$this->sweetalert->alert('error','Ooppss!!','Data gagal dihapus!','Data masih terkoneksi dengan barang!',4500));  
 		}else{ 
 			$this->db->where('id_kategori',$id);
 			$response = $this->db->delete('tbkategori');
 			if ($response > 0) {
-				$this->session->set_flashdata('crud','<div class="alert alert-success" role="alert">
-					Data berhasil dihapus!
-					</div>'); 		
+				$this->session->set_flashdata('crud',$this->sweetalert->alert('success','Succes!','Data berhasil dihapus!','',3000)); 
 			}else{ 
-				$this->session->set_flashdata('crud','<div class="alert alert-danger" role="alert">
-					Data gagal dihapus!
-					</div>'); 	
+				$this->session->set_flashdata('crud',$this->sweetalert->alert('error','Ooppss!!','Data gagal dihapus!','',4500)); 
 			}
 		}
 		redirect('Kategori/', 'refresh');
@@ -58,13 +48,9 @@ class	MKategori extends CI_Model {
 
 
 		if ($response > 0) {
-			$this->session->set_flashdata('crud','<div class="alert alert-success" role="alert">
-				Data berhasil diedit!
-				</div>'); 		
+				$this->session->set_flashdata('crud',$this->sweetalert->alert('success','Succes!','Data berhasil diupdate!','',3000)); 
 		}else{ 
-			$this->session->set_flashdata('crud','<div class="alert alert-danger" role="alert">
-				Data gagal diedit!
-				</div>'); 	
+				$this->session->set_flashdata('crud',$this->sweetalert->alert('error','Ooppss!','Data gagal diupdate!','',4500)); 	
 		}
 		redirect('Kategori/', 'refresh');
 	}
