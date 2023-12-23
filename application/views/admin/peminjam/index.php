@@ -28,8 +28,8 @@
                 <input id="no_telp" name="no_telp" type="text" class="form-control">
             </div>
             <div class="mb-3">
-                <label for="password">Password</label>
-                <input id="password" name="password" type="password" class="form-control">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" class="form-control">
             </div>
             <div class="d-flex justify-content-end">
                 <button type="submit" class="btn btn-primary" id="btn_tambah">Tambah</button>
@@ -53,6 +53,7 @@
                     <th>Kelas</th>
                     <th>Alamat</th>
                     <th>Telephone</th>
+                    <th>Email</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -69,6 +70,7 @@
                         <td><?= $row->kelas; ?></td>
                         <td><?= $row->alamat; ?></td>
                         <td><?= $row->no_telp; ?></td>
+                        <td><?= $row->email; ?></td>
                         <td><button onclick="edit('<?= $row->no_identitas; ?>')" class="btn btn-sm btn-primary"><i class="ti ti-edit"></i></button><button onclick="hapus('<?= $row->no_identitas; ?>')" class="ms-1 btn btn-sm btn-danger"><i class="ti ti-trash"></i></button></td>
                     </tr>
                 <?php
@@ -94,6 +96,7 @@
                 $('#kelas').val(data.kelas);
                 $('#alamat').val(data.alamat);
                 $('#no_telp').val(data.no_telp);
+                $('#email').val(data.email);
                 $('#title').text('Update Peminjam');
                 $('#btn_tambah').prop('disabled', true);
                 $('#btn_update').prop('disabled', false);

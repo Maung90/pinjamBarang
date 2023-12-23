@@ -27,8 +27,13 @@ class User extends CI_Controller
 		$no_identitas = 1;
 
 		$data['title'] = 'Status Pinjam';
+
+		$data['jumlahOrder'] = $this->MUser->jumlahOrder(1);
+		$data["datastatus"] = $this->MUser->infoStatus(1); 
+
 		$data['jumlahOrder'] = $this->MUser->jumlahOrder($no_identitas);
 		
+
 		$this->load->view('partials/head',$data);
 		$this->load->view('partials/navbarUser');
 		$this->load->view('user/status',$data);
@@ -80,6 +85,7 @@ class User extends CI_Controller
 		$this->MUser->order_plus($id); 
 	}
 
+<<<<<<< HEAD
  
 	public function proses_session()
 	{
@@ -87,6 +93,13 @@ class User extends CI_Controller
 
 	}
 
+=======
+		public function proses_session()
+		{
+			$this->MUser->ProsesSession(); 
+	
+		}
+>>>>>>> ceb4285881e50764e1e4cbc76a75d4595c75dabb
 
 
 	public function ProsesCheckout()

@@ -2,49 +2,15 @@
 
 class MUser extends CI_Model {
 
-	public function searching($key)
-	{
-		$this->db->select('tbkategori.nama_kategori,tbbarang.id_kategori,COUNT(tbbarang.id_kategori) AS jumlah_max');
-		$this->db->from('tbbarang'); 
-		$this->db->join('tbkategori', 'tbbarang.id_kategori = tbkategori.id_kategori', 'inner');
-		$this->db->where('status_barang', 'tersedia');
-		$this->db->like('nama_kategori',$key);
-		$this->db->group_by('tbbarang.id_kategori'); 
-		$query = $this->db->get()->result();
-		return $query;
-	}  
-
 	public function ProsesCheckout()
 	{
-		//Membuat kode peminjaman 
-		$queryKodePeminjam = $this->db->query('SELECT id_peminjaman FROM tb_peminjaman ORDER BY id_peminjaman DESC LIMIT 1');  
-
-		if ($queryKodePeminjam->num_rows() > 0) { 
-			// mengambil nilai terakhir
-			$row = $queryKodePeminjam->row();
-			$lastCode = $row->id_peminjaman;
-
-			 // mengubah angka dari nilai terakhir
-			$lastNumber = intval(substr($lastCode, 4));
-			// echo $lastNumber.'<br>=====<br>';
-			$newNumber = $lastNumber+1;
-
-			$newCodeNumber = str_pad($newNumber, 4, '0', STR_PAD_LEFT);
-			// echo $newCodeNumber.'<br>=====<br>';
-
-			$idPeminjaman = 'PNJ'.$newCodeNumber;
-			// echo $newCode.'<br>=====<br>'; 
-		}else{
-			$idPeminjaman = 'PNJ0001';
-		}  
-		//tutup 
+		// $id_Peminjaman = '2';
 
 		// inisialisasi untuk input peminjaman 
 		$no_Identitas = '1';
 		$waktu_pengembalian = $this->input->post('Waktu_Pengembalian');  
 
-		$data = array(
-			'id_peminjaman' => $idPeminjaman,
+		$data = array( 
 			'no_identitas' => $no_Identitas,
 			'waktu_pengembalian' => $waktu_pengembalian,
 			'status_peminjaman' => 'pending',
@@ -61,30 +27,42 @@ class MUser extends CI_Model {
 			foreach ($query as $q) { 
 				$query2 = $this->db->select('kode_barang,id_kategori')->where(['id_kategori' => $q->id_kategori, 
 					'status_barang' => 'tersedia'])->get('tbbarang')->result(); 
-
 				foreach ($query2 as $q2) :
 					$history = array(
-						'id_peminjaman' => $idPeminjaman,
+						'id_peminjaman' => '1',
 						'kode_barang' => $q2->kode_barang);
 					$this->db->insert('tb_history',$history); 
-
 				endforeach;
 			}
+			$this->session->set_flashdata('crud','<div class="alert alert-success" role="alert">
+				Data sudah disimpan!
+				</div>');
 
 			// mambuat trigger manual delete setelah insert
 
 			$this->db->where('id_peminjam',$no_Identitas);
 			$response2 = $this->db->delete('tb_order');
+<<<<<<< HEAD
 			if ($response2) {
 				
 				$this->session->set_flashdata('checkout',$this->sweetalert->alert('success','Success!','Barang Berhasil Diproses!','',3000)); 
 			}
+=======
+>>>>>>> ceb4285881e50764e1e4cbc76a75d4595c75dabb
 			redirect('User/Checkout/', 'refresh'); 
 
-
 		else:
+<<<<<<< HEAD
 			$this->session->set_flashdata('checkout',$this->sweetalert->alert('error','Oopss !!','Data Berhasil Disimpan',"Jika gagal terus harap hubungi admin!",4500)); 
+=======
+			$this->session->set_flashdata('crud','<div class="alert alert-danger" role="alert">
+				Data gagal disimpan!
+				</div>'); 
+>>>>>>> ceb4285881e50764e1e4cbc76a75d4595c75dabb
 		endif;
+		
+
+
 	}
 
 	public function prosesOrder()
@@ -118,13 +96,11 @@ class MUser extends CI_Model {
 			echo $jumlahOrder;
 		}
 	}
-
 	public function jumlahOrder($id)
 	{
 		$jumlahOrder = intval($this->db->select('COUNT("id_peminjam") AS totalOrder')->where('id_peminjam',$id)->get('tb_order')->row()->totalOrder);
 		return $jumlahOrder;
 	}
-
 	public function sumOrder($id)
 	{	
 		$this->db->select('SUM(tb_order.jumlah) as jumlah_total');
@@ -133,7 +109,6 @@ class MUser extends CI_Model {
 		$query = $this->db->get()->result();
 		return $query[0]->jumlah_total;
 	}
-
 	public function joinOrderBarang()
 	{
 		$this->db->select('tbkategori.id_kategori,tb_order.jumlah,tb_order.id_order,tbkategori.nama_kategori,COUNT(tbbarang.id_kategori) AS jumlah_max');
@@ -188,7 +163,7 @@ class MUser extends CI_Model {
 		$data = array(
 			'jumlah_order' => intval($this->db->select('jumlah')->where('id_order',$id)->get('tb_order')->row()->jumlah), 
 			'jumlah_total' => $this->sumOrder(1) );
-
+		
 		if ($response) {
 			echo json_encode($data);
 		}else{
@@ -196,8 +171,17 @@ class MUser extends CI_Model {
 		}
 	}
 
+	public function infoStatus($no_identitas){
+		$this->db->select("*");
+		$this->db->from('tb_peminjaman'); 
+		$this->db->join('tb_history', 'tb_history.id_peminjaman = tb_peminjaman.id_peminjaman', 'inner');
+		$this->db->where('tb_peminjaman.no_identitas', $no_identitas);
+		$query = $this->db->get()->result();
+		return $query;
+	}
+
 
 }
 
 /* End of file MUser.php */
-			/* Location: ./application/models/MUser.php */
+/* Location: ./application/models/MUser.php */
