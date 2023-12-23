@@ -95,19 +95,19 @@
   $(document).ready(function(){
 
     $('#Search').on('input',function(){
-      if ($.trim($(this).val()) != null && $.trim($(this).val()) != '') {
+      
         $.ajax({
-          url : '<?= base_url('User/searching/');?>/'+$.trim($(this).val()),
+          url : '<?= base_url('User/searching/');?>'+$.trim($(this).val()),
           type : 'GET',  
-          dataType :'json',
+          // dataType :'html',
           success : function (response){
-            $('#result').html(response.result);
+            console.log(response);
+            $('#result').html(response);
           },
           error : function (xhr, status, error) {
             console.error('gagal mendapatkan hasil ' + error);
           } 
         });  
-      }
     });
 
 

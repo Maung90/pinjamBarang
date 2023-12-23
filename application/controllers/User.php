@@ -57,8 +57,7 @@ class User extends CI_Controller
 	public function searching($keyword)
 	{ 
 		$data['data'] = $this->MUser->searching($keyword);
-		$result = $this->load->view('user/search',$data,true);
-		echo json_encode(['result' => $result]);
+		echo $this->load->view('user/search',$data,true);
 	}
 
 	public function proses_order()

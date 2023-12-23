@@ -23,6 +23,7 @@
 <script src="<?= base_url('assets/vendor/libs/sweetalert2/sweetalert2.js') ?>"></script>
 <script src="<?= base_url('assets/vendor/libs/apex-charts/apexcharts.js') ?>"></script>
 <script src="<?= base_url('assets/vendor/libs/swiper/swiper.js') ?>"></script>
+<script src="<?= base_url('assets/vendor/libs/toastr/toastr.js') ?>"></script>
 <!-- <script src="<?= base_url('assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js') ?>"></script> -->
 
 <!-- Main JS -->
