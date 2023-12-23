@@ -28,8 +28,13 @@ class User extends CI_Controller
 		$no_identitas = 1;
 
 		$data['title'] = 'Status Pinjam';
+
+		$data['jumlahOrder'] = $this->MUser->jumlahOrder(1);
+		$data["datastatus"] = $this->MUser->infoStatus(1); 
+
 		$data['jumlahOrder'] = $this->MUser->jumlahOrder($no_identitas);
 		
+
 		$this->load->view('partials/head',$data);
 		$this->load->view('partials/navbarUser');
 		$this->load->view('user/status',$data);
@@ -79,16 +84,6 @@ class User extends CI_Controller
 	{
 		$this->MUser->order_plus($id); 
 	}
-
-
-	// public function status(){
-	// 	$this->load->view('partials/side');
-	// 	$this->load->view('partials/nav');
-	// 	$this->load->view('user/status');
-	// 	$this->load->view('partials/head');
-	// 	$this->load->view('partials/footer');
-	// 	$this->load->view('partials/copyright');
-	// }
 
 		public function proses_session()
 		{

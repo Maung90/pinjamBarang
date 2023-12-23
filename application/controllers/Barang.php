@@ -8,6 +8,14 @@ class Barang extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('mbarang');
+
+		if ($this->session->userdata('id_role') == null) { 
+			redirect('Login/','refresh');
+		 }
+		 
+		 if ($this->session->userdata('id_role') != '2') { 
+			redirect('Master/','refresh');
+		 }
 	}
     public function index()
 	{
