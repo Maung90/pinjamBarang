@@ -70,7 +70,7 @@
           src="<?= base_url('assets/img/elements/4.jpg'); ?>"
           alt="Card image cap" />
           <?php
-          $id_kategori = $this->db->query("SELECT COUNT(*) AS count FROM tb_order WHERE id_peminjam = 1 AND id_kategori = '$d->id_kategori'")->row();
+          $id_kategori = $this->db->query("SELECT COUNT(*) AS count FROM tb_order WHERE id_peminjam = '".$this->session->userdata('no_identitas')."' AND id_kategori = '$d->id_kategori'")->row();
           if (intval($id_kategori->count) > 0): ?>
             <button type="button" class="btn btn-sm btn-outline-danger mx-auto" id="id-<?=$d->id_kategori?>">
               Batal
@@ -106,8 +106,7 @@
                   id="jumlah-<?=$d->id_kategori?>"
                   name="jumlah"
                   class="form-control"
-                  placeholder="Masukan Jumlah" min="0" max='<?=$d->jumlah_max;?>'/>
-                  <span class="text-danger" id="errorMessage"></span>
+                  placeholder="Masukan Jumlah" min="0" max='<?=$d->jumlah_max;?>'/> 
                 </div>
                 <div class="col-12 text-secondary" style="font-size:0.8rem">
                   *Stok Tersedia : <?=$d->jumlah_max;?>
@@ -135,11 +134,11 @@
 <script>
 
   $(document).ready(function(){
-
+    const no_identitas = "<?= $this->session->userdata('no_identitas')?>" ? "<?= $this->session->userdata('no_identitas')?>"  : null;
     $('#Search').on('input',function(){
       if ($.trim($(this).val()) != null && $.trim($(this).val()) != '') {
         $.ajax({
-          url : '<?= base_url('User/searching/');?>/'+$.trim($(this).val()),
+          url : '<?= base_url('User/searching/');?>'+$.trim($(this).val()),
           type : 'GET',  
           dataType :'json',
           success : function (response){
@@ -154,14 +153,30 @@
 
 
     $('[id^=simpan]').on('click',function(response){
-      simpanData(response);
+      if ( no_identitas != null) {
+        simpanData(response);
+      }else{
+        toastr.error("Silahkan login terlebih dahulu!", 'Error', {
+          closeButton: true,
+          tapToDismiss: false,
+          progressBar: true
+        });
+      }
     });
 
     $('[id^=jumlah]').on('keyup',function(response){
       if(event.keyCode == 13){ 
-       simpanData(response);
-     }
-   });
+        if ( no_identitas != null) {
+          simpanData(response);
+        }else{
+          toastr.error("Silahkan login terlebih dahulu!", 'Error', {
+            closeButton: true,
+            tapToDismiss: false,
+            progressBar: true
+          });
+        }
+      }
+    });
 
     $('[id^=id]').on('click',function(){
       const id = $(this).attr('id').split('-')[1];
@@ -197,10 +212,12 @@
     function simpanData(response) { 
       const id = $(response.target).attr('id').split('-')[1]; 
       if ($.trim($('#jumlah-'+id).val()) != '' && $('#jumlah-'+id).val() != null && $('#jumlah-'+id).val() != 0) { 
-       if ($('#jumlah-'+id).val() > parseInt($('#jumlah-'+id).attr('max')) ) {
-        $('#alert-'+id).removeClass('d-none');
-        $('#alert-'+id).text('Inputan yang anda masukan melebihi batas!');
-        $('#alert-'+id).addClass('d-block'); 
+       if ($('#jumlah-'+id).val() > parseInt($('#jumlah-'+id).attr('max')) ) { 
+        toastr.error("Inputan yang anda masukan melebihi batas!", 'Error', {
+          closeButton: true,
+          tapToDismiss: false,
+          progressBar: true
+        });
       }else{
         var data = { 
           id_kategori :id,
@@ -226,9 +243,11 @@
         });  
       }
     }else{
-      $('#alert-'+id).removeClass('d-none');
-      $('#alert-'+id).text('Masukan input dengan benar!');
-      $('#alert-'+id).addClass('d-block');
+      toastr.error("masukan inputan dengan benar!", 'Error', {
+        closeButton: true,
+        tapToDismiss: false,
+        progressBar: true
+      });
     }
   }
 });

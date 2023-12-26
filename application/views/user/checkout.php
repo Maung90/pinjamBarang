@@ -7,7 +7,7 @@ $jumlah = intval($total);
   if ($this->session->flashdata('checkout')) {
     echo($this->session->flashdata('checkout'));
   }
-  if ( $jumlah > 0) :
+  if ( $jumlah > 0) : 
     ?>
     <div class="accordion mt-3 " id="accordionExample">
       <?php foreach ($data as $d): ?>
@@ -71,7 +71,7 @@ $jumlah = intval($total);
   </footer>
 </section>
 <!-- Modal -->
-<form method="POST" action="<?=base_url('User/ProsesCheckout/') ?>">
+<form method="POST" id="form-checkout">
   <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
@@ -107,17 +107,28 @@ $jumlah = intval($total);
 
 
 <script> 
-  $(document).ready(function(){ 
-    $('#save').on('click',()=>{ 
-      console.log("waktu skrg : "+new Date().getTime())
-      console.log("--------")
-      console.log("waktu pengembalian : "+new Date($('#waktuPengembalian').val()).getTime());
-
-      if(new Date().getTime() > new Date($('#waktuPengembalian').val()).getTime()){
-        console.log('lebihbeasar');
+  $(document).ready(function(){
+    $('#waktuPengembalian').on('input',()=>{
+      if(new Date().getTime() >= new Date($('#waktuPengembalian').val()).getTime()){
+        $('#form-checkout').attr('action','');
+        $('#save').attr('type','button');
+      }else{
+        $('#form-checkout').attr('action','<?=base_url('User/ProsesCheckout/') ?>');
+        $('#save').attr('type','submit'); 
       }
     });
 
+    $('#save').on('click',()=>{ 
+      if ($.trim($('#waktuPengembalian').val()) != '' && $.trim($('#waktuPengembalian').val()) != null) {
+        if(new Date().getTime() > new Date($('#waktuPengembalian').val()).getTime()){ 
+          toastr.error("Waktu yang anda masukan salah!", 'Error', {
+            closeButton: true,
+            tapToDismiss: false,
+            progressBar: true
+          });
+        } 
+      }
+    });
     $('.fa-circle-minus').on('click',function(){ 
       var id_order = $(this).attr('id');
       if ( $('#inputValue-'+id_order).val() > 0) {

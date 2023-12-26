@@ -61,7 +61,7 @@
                     </div>
                   </div>
                   <div class="flex-grow-1 d-flex align-items-center">
-                    <span class="fw-semibold d-block"> Users</span> 
+                    <span class="fw-semibold d-block">  <?=$this->session->userdata('nama_peminjam');   ?> </span> 
                   </div>
                 </div>
               </a>
@@ -70,22 +70,13 @@
               <div class="dropdown-divider"></div>
             </li>
             <li>
-              <a class="dropdown-item" href="pages-profile-user.html">
+              <a class="dropdown-item" href="<?=base_url('ChangePassword/')   ?> ">
                 <i class="ti ti-user-check me-2 ti-sm"></i>
-                <span class="align-middle">My Profile</span>
+                <span class="align-middle">Change Password</span>
               </a>
-            </li>
-            <!-- <li>
-              <a class="dropdown-item" href="pages-account-settings-account.html">
-                <i class="ti ti-settings me-2 ti-sm"></i>
-                <span class="align-middle">Settings</span>
-              </a>
-            </li>  -->
-            <!-- <li>
-              <div class="dropdown-divider"></div>
-            </li> -->
+            </li> 
             <li>
-              <a class="dropdown-item" href="<?=base_url('Login/Logout');?>">
+              <a class="dropdown-item" href="<?=base_url('Logout/');?>">
                 <i class="ti ti-sign-in me-2 ti-sm"></i>
                 <span class="align-middle">Log Out</span>
               </a>

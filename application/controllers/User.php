@@ -10,7 +10,7 @@ class User extends CI_Controller
 
 	public function index()
 	{
-		$no_identitas = 1;
+		$no_identitas = $this->session->userdata('no_identitas');
 
 		$data['data'] = $this->MKategori->joinBarang();
 		$data['jumlahOrder'] = $this->MUser->jumlahOrder($no_identitas);
@@ -24,7 +24,10 @@ class User extends CI_Controller
 	} 
 
 	public function status(){
-		$no_identitas = 1;
+		if ($this->session->userdata('no_identitas') == '') { 
+			redirect('Login/','refresh');
+		}
+		$no_identitas = $this->session->userdata('no_identitas');
 
 		$data['title'] = 'Status Pinjam';
 
@@ -43,8 +46,11 @@ class User extends CI_Controller
 
 	public function checkout()
 	{ 
+		if ($this->session->userdata('no_identitas') == '') { 
+			redirect('Login/','refresh');
+		}
 
-		$no_identitas = 1;
+		$no_identitas = $this->session->userdata('no_identitas');
 
 		$data['data'] = $this->MUser->joinOrderBarang();
 		$data['total'] = $this->MUser->sumOrder($no_identitas);
@@ -84,23 +90,6 @@ class User extends CI_Controller
 	{
 		$this->MUser->order_plus($id); 
 	}
-
-<<<<<<< HEAD
- 
-	public function proses_session()
-	{
-		$this->MUser->ProsesSession(); 
-
-	}
-
-=======
-		public function proses_session()
-		{
-			$this->MUser->ProsesSession(); 
-	
-		}
->>>>>>> ceb4285881e50764e1e4cbc76a75d4595c75dabb
-
 
 	public function ProsesCheckout()
 	{

@@ -15,14 +15,16 @@
                     if($data->id_role=="1"){
                         $array=array(
                             'no_user'=>$data->no_user,
-                            'id_role'=>$data->id_role
+                            'id_role'=>$data->id_role,
+                            'nama_user'=>$data->nama_user,
                         );	
                         $this->session->set_userdata($array);
                         redirect('Master/','refresh');	
                     }elseif($data->id_role=="2"){ 
                             $array=array(
                                 'no_user'=>$data->no_user,
-                                'id_role'=>$data->id_role
+                                'id_role'=>$data->id_role,
+                                'nama_user'=>$data->nama_user,
                             );	
                             $this->session->set_userdata($array);
                             redirect('Dashboard/','refresh');	    
@@ -37,11 +39,12 @@
             }else if($querypeminjam->num_rows()>0){
                 $data=$querypeminjam->row();
                 $array=array(
-                    'no_identitas'=>$data->no_identitas,    
+                    'no_identitas'=>$data->no_identitas,
+                    'nama_peminjam'=>$data->nama_peminjam,    
                 );	
                 $this->session->set_userdata($array);	
                 $this->session->set_flashdata('pesan','Login berhasil...');
-                redirect('User/','refresh'); 
+                redirect('/','refresh'); 
             }else{
                 echo "Error";
                 $this->session->set_flashdata('loginfailed','Login gagal...');
