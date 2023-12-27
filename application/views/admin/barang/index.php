@@ -117,8 +117,10 @@
           <button onclick="edit('<?= $value->kode_barang; ?>')" type="button" class="btn btn-sm btn-primary">
             <label class="ti ti-edit "></label>
           </button>
-        	<a onclick="return confirm('Apakah yakin ingin menghapus data ini?')"
-          href="<?= base_url("barang/hapus/".$value->kode_barang);?>" class="btn btn-sm btn-danger">Hapus</a>
+        	<a href="<?= base_url("barang/hapus/".$value->kode_barang);?>" class="btn btn-sm btn-danger">
+          <label class="ti ti-trash"></label>
+          </a>
+
         </td>
       </tr>
     <?php 
@@ -137,6 +139,20 @@
 </script>
 
 <script>
+
+function hapus(id) {
+			Swal.fire({
+				icon: "question",
+				title: "Apakah yakin ingin menghapus data ini?",
+				showCancelButton: true,
+				confirmButtonText: "Hapus"
+			}).then((result) => {
+				if (result.isConfirmed) {
+					document.location = '<?= base_url('Barang/hapus/')?>'+id;
+				}
+			});
+		}
+
   function edit(id) {
         $.ajax({
             url: '<?=  base_url('barang/get/') ?>' + id,
