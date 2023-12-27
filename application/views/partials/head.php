@@ -38,7 +38,11 @@
   <link rel="stylesheet" href="<?= base_url('assets/vendor/libs/typeahead-js/typeahead.css'); ?>" />
   <link rel="stylesheet" href="<?= base_url('assets/vendor/libs/apex-charts/apex-charts.css'); ?>" />
   <link rel="stylesheet" href="<?= base_url('assets/vendor/libs/swiper/swiper.css'); ?>" />
+<<<<<<< HEAD
   <link rel="stylesheet" href="<?= base_url('assets/vendor/libs/toastr/toastr.css'); ?>" /> 
+=======
+  <link rel="stylesheet" href="<?= base_url('assets/vendor/libs/toastr/toastr.css') ?>" />
+>>>>>>> 351eb7fea7a271a2e2004b6d26678abe714e5d84
   <link rel="stylesheet" href="<?= base_url('assets/vendor/libs/animate-css/animate.css'); ?>" /> 
 
   <link rel="stylesheet" href="<?=base_url('assets/DataTables/DataTables/css/dataTables.bootstrap5.css');?>"> 

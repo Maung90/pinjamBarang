@@ -39,6 +39,23 @@
                             <td><?= $row->waktu_pengembalian; ?></td>
                             <td><?= $row->approved_by; ?></td>
                             <td><?= $row->status_peminjaman; ?></td>
+                            <td>
+                                    <?php 
+                                    $data = $this->db->query('SELECT * FROM tb_history WHERE id_peminjaman = "'.$row->id_peminjaman.'"')->result();
+                                    foreach ($data as $d) {
+                                    ?>
+
+                                <select name="kode_barang" id="">
+                                    <?php 
+                                    $data = $this->db->query('SELECT * FROM tbbarang WHERE status_barang = "tersedia"')->result();
+                                    foreach ($data as $key) :
+                                    ?>
+                                    <option value=""><?=$key->kode_barang; ?></option>
+                                    <?php endforeach;?>
+                                </select>
+
+                                <?php }?>
+                            </td>
                         </tr>
                     <?php
                     }

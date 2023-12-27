@@ -84,22 +84,29 @@
 <script>
     function edit(id) {
         $.ajax({
-            url: 'Peminjam/get/' + id,
+            url: '<?= base_url('Peminjam/get/') ?>' + id,
             type: 'GET',
             dataType: 'json',
             success: function(data) {
-                var data = data[0];
-                var form = "<?= base_url('Peminjam/update/') ?>" + data.no_identitas;
-                $('#form').attr('action', form);
-                $('#no_identitas').val(data.no_identitas);
-                $('#nama_peminjam').val(data.nama_peminjam);
-                $('#kelas').val(data.kelas);
-                $('#alamat').val(data.alamat);
-                $('#no_telp').val(data.no_telp);
-                $('#email').val(data.email);
-                $('#title').text('Update Peminjam');
-                $('#btn_tambah').prop('disabled', true);
-                $('#btn_update').prop('disabled', false);
+                if(data.length === 0){
+                    toastr.error_log("Data tidak di temukan", 'Oops!', {
+                        closeButton: true,
+                        tapToDismiss: false,
+                        progressBar: true
+                    });
+                }else{
+                    var data = data[0];
+                    var form = "<?= base_url('Peminjam/update/') ?>" + data.no_identitas;
+                    $('#form').attr('action', form);
+                    $('#no_identitas').val(data.no_identitas);
+                    $('#nama_peminjam').val(data.nama_peminjam);
+                    $('#kelas').val(data.kelas);
+                    $('#alamat').val(data.alamat);
+                    $('#no_telp').val(data.no_telp);
+                    $('#title').text('Update Peminjam');
+                    $('#btn_tambah').prop('disabled', true);
+                    $('#btn_update').prop('disabled', false);
+                }
             },
             error: function(error) {
                 toastr.error("Data tidak di temukan", 'Error', {
