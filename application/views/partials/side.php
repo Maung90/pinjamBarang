@@ -18,51 +18,69 @@
 
       <div class="menu-inner-shadow"></div>
       <ul class="menu-inner py-1 gap-1">
-        <?php if ($this->session->userdata('id_role') == 1): ?>
-        <li class="menu-item active">
-          <a href="<?=base_url('Master/');?>" class="menu-link">
-            <i class="menu-icon tf-icons ti ti-smart-home"></i>
-            <div>Data Admin</div>
-          </a>
-        </li>
+        <?php if ($this->session->userdata('id_role') == 1) : ?>
+          <li class="menu-item active">
+            <a href="<?= base_url('Master/'); ?>" class="menu-link">
+              <i class="menu-icon tf-icons ti ti-smart-home"></i>
+              <div>Data Admin</div>
+            </a>
+          </li>
         <?php elseif ($this->session->userdata('id_role') == 2) : ?>
-        <li class="menu-item active">
-          <a href="<?=base_url('Dashboard/');?>" class="menu-link">
-            <i class="menu-icon tf-icons ti ti-smart-home"></i>
-            <div>Dashboard</div>
-          </a>
-        </li>
-        <li class="menu-item">
-          <a href="#" class="menu-link">
-            <i class="menu-icon tf-icons ti ti-history"></i>
-            <div>History</div>
-          </a>
-        </li>
-        <li class="menu-item active">
-          <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <i class="menu-icon tf-icons ti ti-building-warehouse"></i>
-            <div>Data Master</div>
-            <div class="badge bg-label-primary rounded-pill ms-auto">3</div>
-          </a>
-          <ul class="menu-sub">
-            <li class="menu-item active">
-              <a href="<?=base_url('Peminjam/');?>" class="menu-link">
-                <div>Data User</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="<?=base_url('Barang/');?>" class="menu-link">
-                <div>Data Barang</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="<?=base_url('Kategori/');?>" class="menu-link">
-                <div>Data Kategori</div>
-              </a>
-            </li> 
-            <?php else: ?> 
+          <li class="menu-item active">
+            <a href="<?= base_url('Dashboard/'); ?>" class="menu-link">
+              <i class="menu-icon tf-icons ti ti-smart-home"></i>
+              <div>Dashboard</div>
+            </a>
+          </li>
+          <li class="menu-item active">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <i class="menu-icon tf-icons ti ti-history"></i>
+              <div>History</div>
+              <div class="badge bg-label-primary rounded-pill ms-auto">3</div>
+            </a>
+            <ul class="menu-sub">
+              <li class="menu-item active">
+                <a href="<?= base_url('History/Pending'); ?>" class="menu-link">
+                  <div>Pending</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="<?= base_url('History/Dipinjam'); ?>" class="menu-link">
+                  <div>Dipinjam</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="<?= base_url('History/Dikembalikan'); ?>" class="menu-link">
+                  <div>Dikembalikan</div>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="menu-item active">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <i class="menu-icon tf-icons ti ti-building-warehouse"></i>
+              <div>Data Master</div>
+              <div class="badge bg-label-primary rounded-pill ms-auto">3</div>
+            </a>
+            <ul class="menu-sub">
+              <li class="menu-item active">
+                <a href="<?= base_url('Peminjam/'); ?>" class="menu-link">
+                  <div>Data User</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="<?= base_url('Barang/'); ?>" class="menu-link">
+                  <div>Data Barang</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="<?= base_url('Kategori/'); ?>" class="menu-link">
+                  <div>Data Kategori</div>
+                </a>
+              </li>
+            <?php else : ?>
             <?php endif ?>
-          </ul>
-        </li> 
+            </ul>
+          </li>
       </ul>
     </aside>
