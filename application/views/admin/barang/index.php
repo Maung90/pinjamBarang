@@ -11,7 +11,6 @@
             echo $this->session->userdata('pesan');
         }
     ?>
-        <?php //echo form_open_multipart('Barang/simpan', array('method' => 'post')); ?>
         <form action="<?= base_url('Barang/simpan')?>" method="POST" id="form" enctype="multipart/form-data">
         <div class="row mb-3">
             <label class="col-sm-2 col-form-label" for="basic-default-name">Kode Barang</label>
@@ -38,7 +37,6 @@
             <option selected disabled>Pilih</option>
             <option value="Tersedia">Tersedia</option>
             <option value="Tidak Tersedia">Tidak Tersedia</option>
-            <option value="Dipinjam">Dipinjam</option>
             </select>
             </div>
         </div>
@@ -117,8 +115,10 @@
           <button onclick="edit('<?= $value->kode_barang; ?>')" type="button" class="btn btn-sm btn-primary">
             <label class="ti ti-edit "></label>
           </button>
-        	<a onclick="return confirm('Apakah yakin ingin menghapus data ini?')"
-          href="<?= base_url("barang/hapus/".$value->kode_barang);?>" class="btn btn-sm btn-danger">Hapus</a>
+        	<button onclick="hapus('<?= $value->kode_barang;?>')" type="button" class="btn btn-sm btn-danger">
+          <label class="ti ti-trash"></label>
+          </button>
+
         </td>
       </tr>
     <?php 
@@ -127,8 +127,8 @@
     ?>
   </tbody>
 </table>
-        </div>
     </div>
+  </div>
 </div>
 <script>
     $(document).ready(function(){
@@ -137,6 +137,20 @@
 </script>
 
 <script>
+
+  function hapus(id) {
+			Swal.fire({
+				icon: "question",
+				title: "Apakah yakin ingin menghapus data ini?",
+				showCancelButton: true,
+				confirmButtonText: "Hapus"
+			}).then((result) => {
+				if (result.isConfirmed) {
+					document.location = '<?= base_url('Barang/hapus/')?>'+id;
+				}
+			});
+		}
+
   function edit(id) {
         $.ajax({
             url: '<?=  base_url('barang/get/') ?>' + id,
