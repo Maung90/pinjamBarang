@@ -1,8 +1,8 @@
 <div class="row justify-content-center">
-<div class="col-12">
+    <div class="col-12 mb-3">
         <div class="card p-4">
             <div class="row gx-0">
-            <div class="col-4">
+                <div class="col-4">
                     <div class="h-100 d-flex flex-column border-end">
                         <h6 class="text-primary text-center small p-0 m-0">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart-bolt" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -52,7 +52,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 mt-3">
+    <div class="col-md-6 mb-3">
         <div class="card p-4">
             <div class="row gx-0">
                 <div class="col-6">
@@ -76,5 +76,50 @@
             </div>
         </div>
     </div>
-   
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title text-white">Grafik Peminjaman 30 Hari Terakhir</h5>
+                <div id="chart"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts@3"></script>
+
+    <script>
+        var chartData = [
+            <?php foreach (array_reverse($grafik) as $loop){ ?> {
+                    x: '<?= $loop['tanggal']; ?>',
+                    y: <?= $loop['peminjaman']; ?>
+                },
+            <?php } ?>
+        ];
+
+        var options = {
+            chart: {
+                type: 'line',
+                height: 350
+            },
+            series: [{
+                name: 'peminjaman',
+                data: chartData
+            }],
+            xaxis: {
+                type: 'datetime',
+                categories: chartData.map(data => data.x)
+            },
+            yaxis: {
+                title: {
+                    text: 'Grafik Peminjaman 30 Hari Terakhir'
+                }
+            },
+            colors: ['#7888fc']
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+    </script>
+
 </div>
