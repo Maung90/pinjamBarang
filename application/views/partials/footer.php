@@ -24,14 +24,11 @@
 
 <!-- Vendors JS -->
 <script src="<?= base_url('assets/vendor/libs/sweetalert2/sweetalert2.js') ?>"></script>
-<script src="<?= base_url('assets/vendor/libs/apex-charts/apexcharts.js') ?>"></script>
-<<<<<<< HEAD
-<script src="<?= base_url('assets/vendor/libs/swiper/swiper.js') ?>"></script> 
-=======
+<script src="<?= base_url('assets/vendor/libs/apex-charts/apexcharts.js') ?>"></script>  
 <script src="<?= base_url('assets/vendor/libs/swiper/swiper.js') ?>"></script>
 <script src="<?= base_url('assets/vendor/libs/toastr/toastr.js') ?>"></script>
 <!-- <script src="<?= base_url('assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js') ?>"></script> -->
->>>>>>> 351eb7fea7a271a2e2004b6d26678abe714e5d84
+
 
 <!-- Main JS -->
 <script src="<?= base_url('assets/js/main.js') ?>"></script>

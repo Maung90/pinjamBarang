@@ -1,10 +1,12 @@
-<?php echo $this->session->flashdata('notif'); ?>
-
 <div class="card">
 	<div class="card-header">
-		<h4 class="m-0 p-0">Data Peminjaman</h4>
+		<div class="w-100 d-flex justify-content-between align-items-center">
+			
+			<h4 class="m-0 p-0">Data Peminjaman</h4> 
+			<button class="btn btn-primary px-4"><span class="fa fa-print me-1"></span> Cetak Report</button>
+		</div>
 	</div>
-	<div class="card-body">
+	<div class="card-body">  
 		<div class="table-responsive pt-0">
 			<table class="table" id="dataTable">
 				<thead>
@@ -19,7 +21,7 @@
 				</thead>
 				<tbody>
 					<?php 
-					foreach ($pinjam as $p) :
+					foreach ($kembali as $p) :
 						?> 
 						<tr>
 							<th><?= $p->id_peminjaman; ?></th>
@@ -31,9 +33,6 @@
 								<button type="button" class="btn btn-sm btn-outline-primary mx-auto" id="id-<?=$p->id_peminjaman?>" data-bs-toggle="modal" data-bs-target="#modalCenter-<?=$p->id_peminjaman?>">
 									<label class="fa fa-info px-1"></label>
 								</button> 
-								<button  onclick="Dikembalikan('<?=$p->id_peminjaman;?>');" class="btn btn-sm btn-outline-success">
-									<label class="fa fa-check"></label>
-								</button>
 							</td>
 							<!-- Modal -->
 							<div class="modal fade" id="modalCenter-<?=$p->id_peminjaman?>" tabindex="-1" aria-hidden="true">
@@ -85,24 +84,11 @@
 					<?php endforeach; ?>
 				</tbody>
 			</table>
-		</div>
+		</div> 
 	</div>
 </div>
+</div>
 <script>
-
-	function Dikembalikan(id) {
-		Swal.fire({
-			icon: "question",
-			title: "Apakah benar barang yang dipinjam telah dikembalikan?",
-			showCancelButton: true,
-			confirmButtonText: "Sudah",
-		}).then((result) => {
-			if (result.isConfirmed) {
-				document.location = '<?= base_url('History/update/')?>'+id+'/dipinjam';
-			}
-		});
-	}
-
 	$(document).ready(function(){
 		$('#dataTable').DataTable();
 	});

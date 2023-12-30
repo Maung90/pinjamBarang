@@ -69,11 +69,11 @@
 
     function edit(id){
         $.ajax({
-            url: '<?= base_url('History/Modal/') ?>'+id,
+            url: '<?= base_url('History/Modal/') ?>' + id,
             type: 'GET',
             dataType: 'HTML',
             success: function(data) {
-                var form = "<?= base_url('History/update/') ?>" + id;
+                var form = "<?= base_url('History/update/') ?>" + id + '/pending';
                 $('#form').attr('action', form);
                 $('#modal-body').html(data);
             },
