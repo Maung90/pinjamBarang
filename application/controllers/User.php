@@ -31,8 +31,8 @@ class User extends CI_Controller
 
 		$data['title'] = 'Status Pinjam';
 
-		$data['jumlahOrder'] = $this->MUser->jumlahOrder(1);
-		$data["datastatus"] = $this->MUser->infoStatus(1); 
+		$data['jumlahOrder'] = $this->MUser->jumlahOrder($no_identitas);
+		$data["datastatus"] = $this->MUser->infoStatus($no_identitas); 
 
 		$data['jumlahOrder'] = $this->MUser->jumlahOrder($no_identitas);
 		

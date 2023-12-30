@@ -64,7 +64,23 @@
 				<div class="mb-4">
 					<form action="<?= base_url('ChangePassword/update/'.$id); ?>" method="POST" id="form">
 						<div class="my-3 px-4 py-3" style="border:1px solid #dbdade;">
-							<div>
+							<div class="form-password-toggle">
+								<label class="form-label" for="pass">Password</label>
+								<div class="input-group input-group-merge">
+									<input
+									type="password"
+									class="form-control"
+									placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+									name="pass"
+									id="pass" 
+									aria-describedby="basic-default-password" readonly/>
+									<span class="input-group-text cursor-pointer" id="basic-default-password">
+										<i class="ti ti-eye-off"></i>
+									</span>
+								</div>
+							</div>
+
+							<!-- <div>
 								<label for="pass" class="form-label">Password</label>
 								<input
 								type="password"
@@ -75,7 +91,7 @@
 								<div id="defaultFormControlHelp" class="form-text"> 
 									*masukan password baru
 								</div>
-							</div>
+							</div> -->
 							<div class="mt-3 d-flex justify-content-end">
 								<button type="submit" class="btn btn-primary" id="update" disabled>Submit</button>
 							</div>

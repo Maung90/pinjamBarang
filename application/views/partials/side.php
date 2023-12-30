@@ -53,16 +53,16 @@ foreach ($query as $d) {
              <div>History</div> 
            </a>
            <ul class="menu-sub">
-            <li class="menu-item">
+            <li class="menu-item ">
               <a href="<?=base_url('History/Pending/');?>" class="menu-link">
                 <div>Pending</div>
-                <div class="badge bg-label-primary rounded-pill ms-auto"><?=$pending;?></div>
+                <div class="badge bg-label-danger rounded-pill ms-auto"><?=$pending;?></div>
               </a>
             </li>
             <li class="menu-item">
               <a href="<?=base_url('History/Pinjam/');?>" class="menu-link">
                 <div>Dipinjam</div>
-                <div class="badge bg-label-primary rounded-pill ms-auto"><?=$dipinjam;?></div>
+                <div class="badge bg-label-warning rounded-pill ms-auto"><?=$dipinjam;?></div>
               </a>
             </li>
             <li class="menu-item">

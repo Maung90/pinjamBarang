@@ -10,11 +10,11 @@ class History extends CI_Controller {
 
 		if ($this->session->userdata('id_role') == null) { 
 			redirect('Login/','refresh');
-		 }
-		 
-		 if ($this->session->userdata('id_role') != '2') { 
+		}
+
+		if ($this->session->userdata('id_role') != '2') { 
 			redirect('Master/','refresh');
-		 }
+		}
 	}
 
 	public function index(){
@@ -37,5 +37,40 @@ class History extends CI_Controller {
 		$this->load->view('partials/copyright');
 		$this->load->view('partials/footer');   
 	} 
+
+	public function Kembali(){
+		$data['title'] = "POLITEKNIK NEGERI BALI";
+		$data['kembali'] = $this->MHistory2->Kembali();
+
+		$this->load->view('partials/head',$data);
+		$this->load->view('partials/side');
+		$this->load->view('partials/nav');
+		$this->load->view('admin/history/kembali',$data);
+		$this->load->view('partials/copyright');
+		$this->load->view('partials/footer');   
+	} 
+
+	public function update($id)
+	{
+		$this->MHistory2->update($id);
+	}
+	public function report(){
+
+		$this->load->library('pdf');
+
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+		$pdf->SetTitle('Laporan');
+		$pdf->SetTopMargin(20);
+		$pdf->setFooterMargin(20);
+		$pdf->SetAutoPageBreak(true);
+		$pdf->SetAuthor('Author');
+		$pdf->SetDisplayMode('real', 'default');
+		$pdf->AddPage();
+		// $html = 'aa';
+		$html = $this->load->view('admin/history/report','',true);
+		$pdf->writeHTML($html,true,false,true,false);
+		$pdf->Output('laporanpeminjaman.pdf', 'I');
+ 
+	}
 
 }

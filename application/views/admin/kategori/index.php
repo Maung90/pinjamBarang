@@ -19,7 +19,7 @@
 							id="defaultFormControlInput"
 							placeholder="Kabel Roll"
 							name="nama_kategori"
-							aria-describedby="defaultFormControlHelp" />
+							aria-describedby="defaultFormControlHelp" required autocomplete="off"/>
 							<div id="defaultFormControlHelp" class="form-text"> 
 								*Masukan nama kategori barang
 							</div>

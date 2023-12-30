@@ -47,12 +47,7 @@ class	MKategori extends CI_Model {
 		$response = $this->db->update('tbkategori', ['nama_kategori' => $nama_kategori], $condition);
 
 
-		if ($response > 0) {
-				$this->session->set_flashdata('crud',$this->sweetalert->alert('success','Succes!','Data berhasil diupdate!','',3000)); 
-		}else{ 
-				$this->session->set_flashdata('crud',$this->sweetalert->alert('error','Ooppss!','Data gagal diupdate!','',4500)); 	
-		}
-		redirect('Kategori/', 'refresh');
+
 	}
 
 	public function get_data($id){  
