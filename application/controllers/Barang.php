@@ -34,7 +34,7 @@ class Barang extends CI_Controller
 		// Konfigurasi upload
 		$config['upload_path'] = './assets/img/imgBarang/';
 		$config['allowed_types'] = 'gif|jpg|png';
-		$config['max_size'] = 5024; // 1 MB
+		$config['max_size'] = 5024; // 5 MB
 		$config['encrypt_name'] = TRUE;
 
 		$this->load->library('upload', $config);
@@ -63,14 +63,11 @@ class Barang extends CI_Controller
 				'nama_barang' =>$nama_barang,
 				'merk_barang' =>$merk_barang,
 				'status_barang' =>$status_barang,
-				'image' =>  $upload_data['file_name'],
+				'image' =>$upload_data['file_name'],
 				'id_kategori' =>$id_kategori
 			);
 
-			// Simpan data ke database
 			$this->mbarang->simpanBarang($data);
-
-			// Redirect atau tampilkan pesan sukses
 			redirect('barang/');
 		}
 	}
@@ -84,9 +81,9 @@ class Barang extends CI_Controller
 		
 	}
 	public function get($id)
-    {
-        $this->mbarang->get_barang($id);
-    }
+	{
+		$this->mbarang->get_barang($id);
+	}
 	public function update($id)
     {
         $this->mbarang->updateBarang($id);
