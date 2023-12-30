@@ -2,17 +2,51 @@
 
 class MUser extends CI_Model {
 
+	public function searching($key)
+	{
+		$this->db->select('tbkategori.nama_kategori,tbbarang.id_kategori,COUNT(tbbarang.id_kategori) AS jumlah_max');
+		$this->db->from('tbbarang'); 
+		$this->db->join('tbkategori', 'tbbarang.id_kategori = tbkategori.id_kategori', 'inner');
+		$this->db->where('status_barang', 'tersedia');
+		$this->db->like('nama_kategori',$key);
+		$this->db->group_by('tbbarang.id_kategori'); 
+		$query = $this->db->get()->result();
+		return $query;
+	}   
 	public function ProsesCheckout()
 	{
+		//Membuat kode peminjaman 
+		$queryKodePeminjam = $this->db->query('SELECT id_peminjaman FROM tb_peminjaman ORDER BY id_peminjaman DESC LIMIT 1');  
+
+		if ($queryKodePeminjam->num_rows() > 0) { 
+			// mengambil nilai terakhir
+			$row = $queryKodePeminjam->row();
+			$lastCode = $row->id_peminjaman;
+
+			 // mengubah angka dari nilai terakhir
+			$lastNumber = intval(substr($lastCode, 4));
+			// echo $lastNumber.'<br>=====<br>';
+			$newNumber = $lastNumber+1;
+
+			$newCodeNumber = str_pad($newNumber, 4, '0', STR_PAD_LEFT);
+			// echo $newCodeNumber.'<br>=====<br>';
+
+			$idPeminjaman = 'PNJ'.$newCodeNumber;
+			// echo $newCode.'<br>=====<br>'; 
+		}else{
+			$idPeminjaman = 'PNJ0001';
+		}  
+		//tutup 
+
 		// $id_Peminjaman = '2';
 
 		// inisialisasi untuk input peminjaman 
-		$no_Identitas = '1';
-		$waktu_pengembalian = $this->input->post('Waktu-Pengembalian'); 
-		$jumlah = $this->input->post('jumlah'); 
+		$no_identitas = $this->session->userdata('no_identitas');
+		$waktu_pengembalian = $this->input->post('Waktu-Pengembalian');  
 
-		$data = array( 
-			'no_identitas' => $no_Identitas,
+		$data = array(
+			'id_peminjaman' => $idPeminjaman,
+			'no_identitas' => $no_identitas,
 			'waktu_pengembalian' => $waktu_pengembalian,
 			'status_peminjaman' => 'pending',
 		);
@@ -21,7 +55,7 @@ class MUser extends CI_Model {
 
 		// inisialisasi untuk input history
 		// 1. query ke tb order ambil id_kategori berdasarkan id_peminjam
-		$query = $this->db->select('id_kategori')->where('id_peminjam',$no_Identitas)->get('tb_order')->result();
+		$query = $this->db->select('id_kategori')->where('id_peminjam',$no_identitas)->get('tb_order')->result();
 
 		// 2. query ke tb barang ambil kode_barang yang tersedia berdasarkan id_kategori dari tb order
 		if ($response > 0) :
@@ -30,7 +64,7 @@ class MUser extends CI_Model {
 					'status_barang' => 'tersedia'])->get('tbbarang')->result(); 
 				foreach ($query2 as $q2) :
 					$history = array(
-						'id_peminjaman' => '1',
+						'id_peminjaman' => $idPeminjaman,
 						'kode_barang' => $q2->kode_barang);
 					$this->db->insert('tb_history',$history); 
 				endforeach;
@@ -41,32 +75,30 @@ class MUser extends CI_Model {
 
 			// mambuat trigger manual delete setelah insert
 
-			$this->db->where('id_peminjam',$no_Identitas);
+			$this->db->where('id_peminjam',$no_identitas);
 			$response2 = $this->db->delete('tb_order');
+			if ($response2) {
+				$this->session->set_flashdata('checkout',$this->sweetalert->alert('success','Success!','Barang Berhasil Diproses!','',3000)); 
+			}
 			redirect('User/Checkout/', 'refresh'); 
 
 		else:
-			$this->session->set_flashdata('crud','<div class="alert alert-danger" role="alert">
-				Data gagal disimpan!
-				</div>'); 
+			$this->session->set_flashdata('checkout',$this->sweetalert->alert('error','Oopss !!','Data Gagal Disimpan',"Jika gagal terus harap hubungi admin!",4500)); 
 		endif;
-		
-
-
 	}
 
 	public function prosesOrder()
 	{
 
-		$no_Identitas = 1;
+		$no_identitas = $this->session->userdata('no_identitas');
 		$data = array(
 			'id_kategori' => $this->input->post('id_kategori'),
-			'id_peminjam' => $no_Identitas,
+			'id_peminjam' => $no_identitas,
 			'jumlah'      => $this->input->post('jumlah')
 		);
 		$response = $this->db->insert('tb_order',$data);
 		if ($response > 0) {
-			$jumlahOrder = $this->jumlahOrder($no_Identitas);
+			$jumlahOrder = $this->jumlahOrder($no_identitas);
 			echo $jumlahOrder;
 		}
 	}
@@ -74,15 +106,15 @@ class MUser extends CI_Model {
 	public function deleteOrder()
 	{
 
-		$no_Identitas = 1;
+		$no_identitas = $this->session->userdata('no_identitas');
 		$conditions = array(
 			'id_kategori' => $this->input->post('id_kategori'),
-			'id_peminjam' => $no_Identitas, 
+			'id_peminjam' => $no_identitas, 
 		);
 		$this->db->where($conditions);
 		$response = $this->db->delete('tb_order'); 
 		if ($response > 0) {
-			$jumlahOrder = $this->jumlahOrder($no_Identitas);
+			$jumlahOrder = $this->jumlahOrder($no_identitas);
 			echo $jumlahOrder;
 		}
 	}
@@ -115,7 +147,7 @@ class MUser extends CI_Model {
 	}
 	public function order_minus($id)
 	{  
-
+		$no_identitas = $this->session->userdata('no_identitas');
 		$jumlah = intval($this->db->select('jumlah,id_kategori')->where('id_order',$id)->get('tb_order')->row()->jumlah);
 
 		if ($jumlah > 0) {
@@ -124,8 +156,8 @@ class MUser extends CI_Model {
 			$response = false;
 		}
 		$data = array(
-			'jumlah_order' => intval($this->db->select('jumlah')->where('id_order',$id)->get('tb_order')->row()->jumlah), 
-			'jumlah_total' => $this->sumOrder(1) );
+			'jumlah_order' => intval($this->db->select('jumlah')->where(['id_order'=>$id,'id_peminjam'=>$no_identitas])->get('tb_order')->row()->jumlah), 
+			'jumlah_total' => $this->sumOrder($no_identitas) );
 		if ($response) {
 			echo json_encode($data);
 		}else{
@@ -135,7 +167,7 @@ class MUser extends CI_Model {
 
 	public function order_plus($id)
 	{  
-
+		$no_identitas = $this->session->userdata('no_identitas');
 		$query = $this->db->select('jumlah,id_kategori')->where('id_order',$id)->get('tb_order')->row();
 		$jumlah = intval($query->jumlah);
 
@@ -151,8 +183,8 @@ class MUser extends CI_Model {
 		}
 
 		$data = array(
-			'jumlah_order' => intval($this->db->select('jumlah')->where('id_order',$id)->get('tb_order')->row()->jumlah), 
-			'jumlah_total' => $this->sumOrder(1) );
+			'jumlah_order' => intval($this->db->select('jumlah')->where(['id_order'=>$id,'id_peminjam'=>$no_identitas])->get('tb_order')->row()->jumlah), 
+			'jumlah_total' => $this->sumOrder($no_identitas) );
 		
 		if ($response) {
 			echo json_encode($data);
@@ -169,7 +201,6 @@ class MUser extends CI_Model {
 		$query = $this->db->get()->result();
 		return $query;
 	}
-
 
 }
 

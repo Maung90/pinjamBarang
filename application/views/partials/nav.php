@@ -25,7 +25,7 @@
       <!--/ Style Switcher -->
 
       <!-- Notification -->
-      <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-1">
+      <!-- <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-1">
         <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
           <i class="ti ti-bell ti-md"></i>
           <span class="badge bg-danger rounded-pill badge-notifications">5</span>
@@ -78,7 +78,7 @@
           </a>
         </li>
       </ul>
-    </li>
+    </li> -->
     <!--/ Notification -->
 
     <!-- User -->
@@ -91,7 +91,7 @@
       </a>
       <ul class="dropdown-menu dropdown-menu-end">
         <li>
-          <a class="dropdown-item" href="pages-account-settings-account.html">
+          <a class="dropdown-item">
             <div class="d-flex">
               <div class="flex-shrink-0 me-3">
                 <div class="avatar avatar-online">
@@ -100,8 +100,13 @@
                 </div>
               </div>
               <div class="flex-grow-1">
-                <span class="fw-semibold d-block">John Doe</span>
-                <small class="text-muted">Admin</small>
+                <span class="fw-semibold d-block" style="text-transform: capitalize;"><?= $this->session->userdata('nama_user');   ?> </span>
+                <?php if ($this->session->userdata('id_role') == 1): ?>
+                  <small class="text-muted">Master</small> 
+                <?php elseif ($this->session->userdata('id_role') == 2) : ?> 
+                  <small class="text-muted">Admin</small>
+                <?php else: ?>
+                <?php endif;?>
               </div>
             </div>
           </a>
@@ -110,17 +115,17 @@
           <div class="dropdown-divider"></div>
         </li>
         <li>
-          <a class="dropdown-item" href="pages-profile-user.html">
+          <a class="dropdown-item" href="<?=base_url('ChangePassword/')   ?> ">
             <i class="ti ti-user-check me-2 ti-sm"></i>
-            <span class="align-middle">My Profile</span>
+            <span class="align-middle">Change Password</span>
           </a>
         </li>
-        <li>
+        <!-- <li>
           <a class="dropdown-item" href="pages-account-settings-account.html">
             <i class="ti ti-settings me-2 ti-sm"></i>
             <span class="align-middle">Settings</span>
           </a>
-        </li> 
+        </li>  -->
         <li>
           <div class="dropdown-divider"></div>
         </li>
