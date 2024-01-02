@@ -25,10 +25,29 @@ class MHistory2 extends CI_Model
 	{
 		$this->db->select("DATE_FORMAT(tb_peminjaman.waktu_pinjam, '%d %b %Y %H:%i:%s') as waktu_pinjam2, DATE_FORMAT(tb_peminjaman.waktu_pengembalian, '%d %b %Y %H:%i:%s') as waktu_pengembalian2, tb_peminjaman.id_peminjaman,tb_peminjaman.no_identitas, tb_peminjaman.approved_by, tbuser.nama_user");
 		$this->db->from('tb_peminjaman');
-		$this->db->join('tbuser', 'tb_peminjaman.approved_by = tbuser.no_user', 'inner');
+		$this->db->join('tbuser', 'tb_peminjaman.approved_by = tbuser.no_user', 'inner'); 
 		$this->db->where('tb_peminjaman.status_peminjaman', 'dikembalikan');
-		$this->db->order_by('tb_peminjaman.waktu_pinjam', 'DESC');
+		$this->db->order_by('tb_peminjaman.waktu_pinjam', 'DESC'); 
 		$data = $this->db->get()->result();
+
+		return $data;
+	}
+	public function Report()
+	{
+		$this->db->select("DATE_FORMAT(tb_peminjaman.waktu_pinjam, '%d %b %Y %H:%i:%s') as waktu_pinjam2, DATE_FORMAT(tb_peminjaman.waktu_pengembalian, '%d %b %Y %H:%i:%s') as waktu_pengembalian2, tb_peminjaman.id_peminjaman,tb_peminjaman.no_identitas, tb_peminjaman.approved_by, tbuser.nama_user, tb_history.kode_barang");
+		$this->db->from('tb_peminjaman');
+		$this->db->join('tbuser', 'tb_peminjaman.approved_by = tbuser.no_user', 'inner');
+		$this->db->join('tb_history', 'tb_history.id_peminjaman = tb_history.id_peminjaman', 'inner');
+		$this->db->where('tb_peminjaman.status_peminjaman', 'dikembalikan');
+		$this->db->order_by('tb_peminjaman.id_peminjaman', 'ASC'); 
+		$data = $this->db->get()->result();
+
+		return $data;
+	}
+	public function Report2()
+	{ 
+		$data = $this->db->query(" 
+		SELECT tb_history.kode_barang,COUNT(tb_history.kode_barang) AS jumlah FROM tb_history INNER JOIN tbbarang ON tbbarang.kode_barang = tb_history.kode_barang LEFT JOIN tb_peminjaman ON tb_peminjaman.id_peminjaman = tb_history.id_peminjaman WHERE tb_peminjaman.waktu_pinjam >= CONCAT(YEAR(CURDATE()), '-', LPAD(MONTH(CURDATE()), 2, '0'), '-01') AND tb_peminjaman.waktu_pinjam <= LAST_DAY(CURDATE()) AND tb_peminjaman.status_peminjaman = 'dikembalikan' GROUP by tb_history.kode_barang")->result();
 
 		return $data;
 	}
@@ -70,7 +89,7 @@ class MHistory2 extends CI_Model
 			} else {
 				$this->session->set_flashdata('notif', '<script>
 				$(document).ready(function(){  
-					toastr.Error("Berhasil dikembalikan!", "Ooppss!", {
+					toastr.Error("Gagal dikembalikan!", "Ooppss!", {
 						closeButton: true,
 						tapToDismiss: false,
 						progressBar: true

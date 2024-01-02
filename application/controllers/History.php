@@ -63,20 +63,20 @@ class History extends CI_Controller {
 
 	public function report(){
 
-		$this->load->library('pdf');
+		require_once(APPPATH . 'libraries/dompdf/autoload.inc.php');
+		$pdf = new Dompdf\Dompdf();
 
-		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
-		$pdf->SetTitle('Laporan');
-		$pdf->SetTopMargin(20);
-		$pdf->setFooterMargin(20);
-		$pdf->SetAutoPageBreak(true);
-		$pdf->SetAuthor('Author');
-		$pdf->SetDisplayMode('real', 'default');
-		$pdf->AddPage();
-		// $html = 'aa';
-		$html = $this->load->view('admin/history/report','',true);
-		$pdf->writeHTML($html,true,false,true,false);
-		$pdf->Output('laporanpeminjaman.pdf', 'I');
+		$data['barang']= $this->MHistory2->Report();
+		$data['kesimpulan']= $this->MHistory2->Report2();
+		$pdf->setPaper('A4', 'potrait');
+		$pdf->set_option('isRemoteEnabled', TRUE);
+		$pdf->set_option('isHtml5ParserEnabled', true);
+		$pdf->set_option('isPhpEnabled', true);
+		$pdf->set_option('isFontSubsettingEnabled', true);
+		
+		$pdf->loadHtml($this->load->view('admin/history/report',$data,true));
+		$pdf->render();
+		$pdf->stream('namafile', ['Attachment' => false]); 
  
 	}
 
