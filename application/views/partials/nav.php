@@ -100,7 +100,10 @@
                 </div>
               </div>
               <div class="flex-grow-1">
-                <span class="fw-semibold d-block" style="text-transform: capitalize;"><?= $this->session->userdata('nama_user');   ?> </span>
+                <span class="fw-semibold d-block" style="text-transform: capitalize;">
+
+
+                 </span>
                 <?php if ($this->session->userdata('id_role') == 1): ?>
                   <small class="text-muted">Master</small> 
                 <?php elseif ($this->session->userdata('id_role') == 2) : ?> 

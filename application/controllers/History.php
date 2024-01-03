@@ -55,21 +55,8 @@ class History extends CI_Controller {
 		$this->MHistory2->update($id);
 	}
 	public function report(){
-
-		$this->load->library('pdf');
-
-		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
-		$pdf->SetTitle('Laporan');
-		$pdf->SetTopMargin(20);
-		$pdf->setFooterMargin(20);
-		$pdf->SetAutoPageBreak(true);
-		$pdf->SetAuthor('Author');
-		$pdf->SetDisplayMode('real', 'default');
-		$pdf->AddPage();
-		// $html = 'aa';
-		$html = $this->load->view('admin/history/report','',true);
-		$pdf->writeHTML($html,true,false,true,false);
-		$pdf->Output('laporanpeminjaman.pdf', 'I');
+ 
+		$this->load->view('admin/history/report'); 
  
 	}
 
