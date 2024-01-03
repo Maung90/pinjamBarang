@@ -33,10 +33,26 @@ class Dashboard extends CI_Controller {
 	function index()
 	{
 		$data['title'] = "POLITEKNIK NEGERI BALI";
+		$grafik = [];
+		for ($i = 0; $i < 30; $i++) {
+			$date = date('Y-m-d', strtotime("-$i days"));
+
+			$this->db->where('DATE(waktu_pinjam)', $date);
+
+			$peminjaman = $this->db->count_all_results('tb_peminjaman');
+
+			$grafik[] = [
+				'tanggal' => $date,
+				'peminjaman' => $peminjaman,
+			];
+		}
+
+		$data['grafik'] = $grafik;
+
 		$this->load->view('partials/head',$data);
 		$this->load->view('partials/side');
 		$this->load->view('partials/nav');
-		$this->load->view('admin_master/dashboard'); //Contoh
+		$this->load->view('admin_master/dashboard',$data); //Contoh
 		$this->load->view('partials/copyright');
 		$this->load->view('partials/footer');
 	}

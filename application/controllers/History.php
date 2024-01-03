@@ -17,12 +17,12 @@ class History extends CI_Controller {
 		}
 	}
 
-	public function index(){
+	public function pending(){
 		$data['title'] = "POLITEKNIK NEGERI BALI";
 		$this->load->view('partials/head',$data);
 		$this->load->view('partials/side');
 		$this->load->view('partials/nav');
-		$this->load->view('admin/history/index');
+		$this->load->view('admin/history/pending');
 		$this->load->view('partials/copyright');
 		$this->load->view('partials/footer');   
 	}
@@ -38,6 +38,12 @@ class History extends CI_Controller {
 		$this->load->view('partials/footer');   
 	} 
 
+
+	public function Modal($id){
+		$data['id_peminjaman'] = $id;
+		$this->load->view('admin/history/modal', $data);   
+	}
+
 	public function Kembali(){
 		$data['title'] = "POLITEKNIK NEGERI BALI";
 		$data['kembali'] = $this->MHistory2->Kembali();
@@ -50,13 +56,26 @@ class History extends CI_Controller {
 		$this->load->view('partials/footer');   
 	} 
 
-	public function update($id)
+	public function update($id,$status)
 	{
-		$this->MHistory2->update($id);
+		$this->MHistory2->update($id,$status);
 	}
-	public function report(){
- 
-		$this->load->view('admin/history/report'); 
+
+	public function report(){ 
+		require_once(APPPATH . 'libraries/dompdf/autoload.inc.php');
+		$pdf = new Dompdf\Dompdf();
+
+		$data['barang']= $this->MHistory2->Report();
+		$data['kesimpulan']= $this->MHistory2->Report2();
+		$pdf->setPaper('A4', 'potrait');
+		$pdf->set_option('isRemoteEnabled', TRUE);
+		$pdf->set_option('isHtml5ParserEnabled', true);
+		$pdf->set_option('isPhpEnabled', true);
+		$pdf->set_option('isFontSubsettingEnabled', true);
+		
+		$pdf->loadHtml($this->load->view('admin/history/report',$data,true));
+		$pdf->render();
+		$pdf->stream('namafile', ['Attachment' => false]); 
  
 	}
 

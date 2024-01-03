@@ -4,6 +4,9 @@ $this->db->select('status_peminjaman,COUNT(status_peminjaman) as jumlah');
 $this->db->from('tb_peminjaman');
 $this->db->group_by('status_peminjaman'); 
 $query = $this->db->get()->result(); 
+$pending = 0;
+$dipinjam = 0;
+
 foreach ($query as $d) { 
   if (strtolower($d->status_peminjaman) == 'pending') {
    $pending = $d->jumlah;
@@ -32,21 +35,21 @@ foreach ($query as $d) {
       </div>
 
       <div class="menu-inner-shadow"></div>
-      <ul class="menu-inner py-1 gap-1">
+      <ul class="menu-inner py-1 gap-1"> 
         <?php if ($this->session->userdata('id_role') == 1): ?>
           <li class="menu-item active">
-            <a href="<?=base_url('Master/');?>" class="menu-link">
+            <a href="<?=base_url('Master/');?>" class="menu-link"> 
               <i class="menu-icon tf-icons ti ti-smart-home"></i>
               <div>Data Admin</div>
             </a>
           </li>
         <?php elseif ($this->session->userdata('id_role') == 2) : ?>
-          <li class="menu-item active">
+          <li class="menu-item active"> 
             <a href="<?=base_url('Dashboard/');?>" class="menu-link">
               <i class="menu-icon tf-icons ti ti-smart-home"></i>
               <div>Dashboard</div>
             </a>
-          </li>
+          </li>  
           <li class="menu-item"> 
             <a href="javascript:void(0);" class="menu-link menu-toggle">
              <i class="menu-icon tf-icons ti ti-history"></i>

@@ -33,7 +33,7 @@
             </div>
             <div class="d-flex justify-content-end">
                 <button type="submit" class="btn btn-primary" id="btn_tambah">Tambah</button>
-                <button type="submit" class="btn btn-primary ms-3" id="btn_update" disabled>Update</button>
+                <button type="submit" class="btn btn-primary ms-3" id="btn_update" disabled>Edit</button>
                 <button type="reset" class="btn btn-danger ms-3" id="btn_reset">Reset</button>
             </div>
         </form>
@@ -44,7 +44,7 @@
         <div class="card-title">
             <h4>Table Peminjam</h4>
         </div>
-        <table class="table">
+        <table class="table" id="dataTable">
             <thead>
                 <tr>
                     <th>No</th>
@@ -82,6 +82,10 @@
     </div>
 </div>
 <script>
+    $(document).ready(function(){
+        $('#dataTable').DataTable();
+    });
+
     function edit(id) {
         $.ajax({
             url: '<?= base_url('Peminjam/get/') ?>' + id,
@@ -103,7 +107,7 @@
                     $('#kelas').val(data.kelas);
                     $('#alamat').val(data.alamat);
                     $('#no_telp').val(data.no_telp);
-                    $('#title').text('Update Peminjam');
+                    $('#title').text('Edit Peminjam');
                     $('#btn_tambah').prop('disabled', true);
                     $('#btn_update').prop('disabled', false);
                 }

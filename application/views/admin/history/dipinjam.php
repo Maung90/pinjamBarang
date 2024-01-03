@@ -98,7 +98,7 @@
 			confirmButtonText: "Sudah",
 		}).then((result) => {
 			if (result.isConfirmed) {
-				document.location = '<?= base_url('History/update/')?>'+id;
+				document.location = '<?= base_url('History/update/')?>'+id+'/dipinjam';
 			}
 		});
 	}
