@@ -27,7 +27,7 @@
 <script src="<?= base_url('assets/vendor/libs/apex-charts/apexcharts.js') ?>"></script>  
 <script src="<?= base_url('assets/vendor/libs/swiper/swiper.js') ?>"></script>
 <script src="<?= base_url('assets/vendor/libs/toastr/toastr.js') ?>"></script>
-<!-- <script src="<?= base_url('assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js') ?>"></script> -->
+<script src="<?= base_url('assets/vendor/libs/dropzone/dropzone.js') ?>"></script>
 
 
 <!-- Main JS -->
@@ -36,6 +36,7 @@
 <!-- Page JS -->
 <script src="<?= base_url('assets/js/dashboards-analytics.js') ?>"></script> 
 <script src="<?= base_url('assets/js/ui-carousel.js') ?>"></script>  
+<script src="<?= base_url('assets/js/forms-file-upload.js') ?>"></script> 
 </body>
 </html>
 

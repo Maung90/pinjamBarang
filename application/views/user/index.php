@@ -1,4 +1,3 @@
-
 <div class="container-fluid m-0 p-0" style="height: 40vh;">
   <div id="carouselExample" class="carousel slide " data-bs-ride="carousel">
     <ol class="carousel-indicators">
@@ -67,7 +66,7 @@
         <div class="card-body my-0">
           <img
           class="img-fluid d-flex rounded mb-3"
-          src="<?= base_url('assets/img/elements/4.jpg'); ?>"
+          src="<?= base_url('assets/img/imgBarang/'.$d->image);?>"
           alt="Card image cap" />
           <?php
           $id_kategori = $this->db->query("SELECT COUNT(*) AS count FROM tb_order WHERE id_peminjam = '".$this->session->userdata('no_identitas')."' AND id_kategori = '$d->id_kategori'")->row();

@@ -40,7 +40,7 @@ class User extends CI_Controller
 		$this->load->view('partials/head',$data);
 		$this->load->view('partials/navbarUser');
 		$this->load->view('user/status',$data);
-		$this->load->view('partials/copyrightUser');
+		// $this->load->view('partials/copyrightUser');
 		$this->load->view('partials/footer');
 	}
 
@@ -68,6 +68,35 @@ class User extends CI_Controller
 	{ 
 		$data['data'] = $this->MUser->searching($keyword);
 		echo $this->load->view('user/search',$data,true);
+	}
+
+	public function note()
+	{
+		// Konfigurasi upload
+		$config['upload_path'] = './assets/img/bukti/';
+		$config['allowed_types'] = 'jpg|png|jpeg';
+		$config['max_size'] = 5024; // 5 MB
+		$config['encrypt_name'] = TRUE;
+
+		$this->load->library('upload', $config);
+
+		if (!$this->upload->do_upload('file')) {
+			$error = array('error' => $this->upload->display_errors()); 
+			redirect('User/status/');
+		} else {
+			$upload_data = $this->upload->data();
+
+			$id_peminjaman = $this->input->post('id_peminjaman'); 
+
+			// Data gambar untuk disimpan ke database 
+			$data = array(
+				'id_peminjaman' =>$id_peminjaman, 
+				'keterangan' =>$upload_data['file_name'] 
+			);
+
+			$this->MUser->note($data); 
+			redirect('User/status/');
+		} 
 	}
 
 	public function proses_order()

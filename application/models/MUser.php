@@ -202,6 +202,16 @@ class MUser extends CI_Model {
 		return $query;
 	}
 
+
+	public function note($data){
+		$response = $this->db->insert('tbnote',$data);
+		if ($response) {
+			$this->session->set_flashdata('notif',$this->sweetalert->alert('success','Success!','Barang Berhasil Diproses!','',3000)); 
+		}else{
+			$this->session->set_flashdata('notif',$this->sweetalert->alert('error','Oopss !!','Data Gagal Dikirim',"Jika gagal terus harap tunggu admin!",4500)); 
+		}
+	}
+
 }
 
 /* End of file MUser.php */

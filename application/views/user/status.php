@@ -1,58 +1,146 @@
-<div class="container">
+ <?php 
+ $data = $this->db->query('SELECT * FROM tb_peminjaman WHERE no_identitas = '.$this->session->userdata('no_identitas'). ' ORDER BY status_peminjaman DESC')->result();
 
-              <div class="row mb-3">
-                <!-- Accordion with Icon -->
-                <div class="col-md mb-4 mb-md-2">
-                  <div class="accordion mt-3" id="accordionWithIcon">
+ echo $this->session->userdata('notif');
+ ?>
+ <div class="container"> 
+  <div class="p-2">
+    <?php foreach ($data as $d): ?>
+      <div class="card my-2 p-3">
+        <div class="row">
+          <div class="col-md-12 d-flex justify-content-between"> 
+            <label class="fw-bold text-capitalize">
+              <?php if ($d->status_peminjaman == 'pending'){ ?> 
+                <span class="fas fa-circle fs-5 text-danger"></span> 
+                <?= $d->status_peminjaman?>
+              <?php }else if ($d->status_peminjaman == 'dipinjam'){ ?>
+                <span class="fas fa-circle fs-5 text-success"></span> 
+                <?= $d->status_peminjaman?>
+              <?php }else if ($d->status_peminjaman == 'dikembalikan'){ ?>
+                <span class="fas fa-circle fs-5 text-primary"></span> 
+                <?= $d->status_peminjaman?>
+              <?php  }else{} ?>  
+            </label>
+            <span class="fs-6 fw-bold">
+              <?=$d->waktu_pinjam;?> 
+            </span>
+          </div>
+          <div class="col-md-12 d-flex justify-content-between align-items-center">
+            <span class="fw-bold my-3">
+              <?=$d->id_peminjaman;   ?> 
+            </span>
+            <div>
+              <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalCenter-<?=$d->id_peminjaman?>">
+                <span class="fa fa-info "></span>
+              </button>
+              <?php if ($d->status_peminjaman == 'dipinjam'){ ?> 
+                <button class="btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalPhoto-<?=$d->id_peminjaman?>">
+                  <span class="fa fa-camera "></span>
+                </button>
+              <?php }else{}?>
+            </div>
+          </div> 
+          <?php if ($d->status_peminjaman == 'dipinjam'){ ?> 
+            <div class="col-md-12">
+              <span class="text-danger fs-6">*Kirimkan photo jika admin pengelola tidak ada di tempat</span>
+            </div>
+          <?php }else{}?>
+        </div> 
+      </div>
+      <!-- Modal -->
+      <div class="modal fade" id="modalCenter-<?=$d->id_peminjaman?>" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalCenterTitle" style="text-transform: capitalize;"><?=$d->id_peminjaman?></h5>
+              <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"></button>
+            </div>
+            <div class="modal-body">  
+              <div class="row">
+                <div class="col-md-12">  
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item list-group-item-action d-flex justify-content-around align-items-center fw-bold">
+                      Nama Barang
+                      <span class="badge bg-primary fw-bold"> Kode Barang</span>
+                    </li>
+                    <?php 
+                    $this->db->select('tb_history.kode_barang,tbbarang.nama_barang')->from('tb_history');
+                    $this->db->join('tbbarang', 'tb_history.kode_barang = tbbarang.kode_barang', 'inner');
+                    $this->db->where('tb_history.id_peminjaman', $d->id_peminjaman);
+                    $barang = $this->db->get()->result(); 
+                    foreach ($barang as $b) { ?> 
+                      <li class="list-group-item list-group-item-action d-flex justify-content-around align-items-center" style="text-transform:capitalize;">
+                        <?=$b->nama_barang;?>  
+                        <span class="badge bg-primary"> 
+                          <?=$b->kode_barang;?> 
+                        </span>
+                      </li>
+                    <?php } ?>  
+                  </ul>
+                </div> 
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-sm btn-label-secondary" data-bs-dismiss="modal">
+                Close
+              </button> 
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Tutup Modal -->
 
-                  <?php 
-                  $data = $this->db->query('select * from tb_peminjaman where no_identitas = 1 ')->row();
-                
-                  ?>
-                    <div class="card accordion-item active">
-                      <h2 class="accordion-header d-flex align-items-center">
-                        <button
-                          type="button"
-                          class="accordion-button"
-                          data-bs-toggle="collapse"
-                          data-bs-target="#accordionWithIcon-1"
-                          aria-expanded="true">
-                          <!-- <i class="ti ti-progress-alert ti-xs me-2"></i> -->
-                          <?php
-                          if ($data->status_peminjaman == 'pending'):
-                          ?>
-                          <svg xmlns="http://www.w3.org/2000/svg" class="  bg-danger me-1 icon icon-tabler icon-tabler-progress" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 20.777a8.942 8.942 0 0 1 -2.48 -.969" /><path d="M14 3.223a9.003 9.003 0 0 1 0 17.554" /><path d="M4.579 17.093a8.961 8.961 0 0 1 -1.227 -2.592" /><path d="M3.124 10.5c.16 -.95 .468 -1.85 .9 -2.675l.169 -.305" /><path d="M6.907 4.579a8.954 8.954 0 0 1 3.093 -1.356" /></svg>
-                          <?php 
-                          endif;
-                          ?>  
-                          <?=$data->waktu_pinjam;?>
-                        </button>
-                      </h2>
 
-                      <div id="accordionWithIcon-1" class="accordion-collapse collapse show">
-                        <div class="accordion-body">
-                        <table class="table" width="80%">
-                          <tbody>
-                            <?php 
-                            //  foreach ($datastatus as $ds) : 
-                             
-                            ?>
-                            <tr>
-                              <th>Nama Barang</th>
-                              <th>Kode Barang</th>
-                            </tr> 
-
-                            <?php 
-                            // endforeach;
-                            ?>
-
-                           </tbody>
-                          </table>
+      <!-- Modal -->
+      <form action="<?= base_url('user/note')?>" method="POST" enctype="multipart/form-data">
+        <div class="modal fade" id="modalPhoto-<?=$d->id_peminjaman?>" tabindex="-1" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalCenterTitle" style="text-transform: capitalize;">Lampirkan bukti</h5>
+                <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"></button>
+              </div>
+              <div class="modal-body">  
+                <div class="row">
+                  <div class="col-md-12">  
+                    <div class="card mb-4"> 
+                      <div class="card-body dropzone needsclick" id="dropzone-basic">
+                        <div class="dz-message needsclick">
+                          Letakan file  photo disini atau klik tombol upload 
+                          <span class="note needsclick" >
+                            (Photo yang dikirimkan menjadi <strong>bukti</strong> bahwa telah mengembalikan barang.)
+                          </span>
+                        </div>
+                        <div class="fallback">
+                          <input type="hidden" name="id_peminjaman" value="<?=$d->id_peminjaman?>">
+                          <input name="file" type="file" />
                         </div>
                       </div>
                     </div>
-
-                    </div>
-                  </div>
+                  </div> 
                 </div>
-</div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-sm btn-label-primary">
+                  Simpan
+                </button>
+                <button type="button" class="btn btn-sm btn-label-secondary" data-bs-dismiss="modal">
+                  Close
+                </button> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <!-- Tutup Modal -->
+    <?php endforeach; ?>
+  </div>
+</div> 

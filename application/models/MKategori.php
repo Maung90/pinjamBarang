@@ -58,10 +58,11 @@ class	MKategori extends CI_Model {
 	public function joinBarang()
 	{
 		
-		$this->db->select('tbkategori.nama_kategori,tbbarang.id_kategori,COUNT(tbbarang.id_kategori) AS jumlah_max');
+		$this->db->select('tbkategori.nama_kategori,tbbarang.id_kategori,COUNT(tbbarang.id_kategori) AS jumlah_max, tbbarang.image');
 		$this->db->from('tbbarang'); 
 		$this->db->join('tbkategori', 'tbbarang.id_kategori = tbkategori.id_kategori', 'inner');
 		$this->db->where('status_barang', 'tersedia');
+		$this->db->order_by('RAND()');
 		$this->db->group_by('tbbarang.id_kategori');
 		$query = $this->db->get();
 
