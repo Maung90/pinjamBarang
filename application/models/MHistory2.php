@@ -46,8 +46,8 @@ class MHistory2 extends CI_Model
 	}
 	public function Report2()
 	{ 
-		$data = $this->db->query(" 
-		SELECT tb_history.kode_barang,COUNT(tb_history.kode_barang) AS jumlah FROM tb_history INNER JOIN tbbarang ON tbbarang.kode_barang = tb_history.kode_barang LEFT JOIN tb_peminjaman ON tb_peminjaman.id_peminjaman = tb_history.id_peminjaman WHERE tb_peminjaman.waktu_pinjam >= CONCAT(YEAR(CURDATE()), '-', LPAD(MONTH(CURDATE()), 2, '0'), '-01') AND tb_peminjaman.waktu_pinjam <= LAST_DAY(CURDATE()) AND tb_peminjaman.status_peminjaman = 'dikembalikan' GROUP by tb_history.kode_barang")->result();
+		$data = $this->db->query("  
+		SELECT tb_history.kode_barang,COUNT(tb_history.kode_barang) AS jumlah FROM tb_history INNER JOIN tbbarang ON tbbarang.kode_barang = tb_history.kode_barang RIGHT JOIN tb_peminjaman ON tb_peminjaman.id_peminjaman = tb_history.id_peminjaman WHERE tb_peminjaman.waktu_pinjam >= CONCAT(YEAR(CURDATE()), '-', LPAD(MONTH(CURDATE()), 2, '0'), '-01') AND tb_peminjaman.waktu_pinjam <= LAST_DAY(CURDATE()) AND tb_peminjaman.status_peminjaman = 'dikembalikan' GROUP by tb_history.kode_barang")->result();
 
 		return $data;
 	}

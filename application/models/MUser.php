@@ -58,22 +58,22 @@ class MUser extends CI_Model {
 		$query = $this->db->select('id_kategori')->where('id_peminjam',$no_identitas)->get('tb_order')->result();
 
 		// 2. query ke tb barang ambil kode_barang yang tersedia berdasarkan id_kategori dari tb order
-		if ($response > 0) :
+		$index = 0;
+		if ($response > 0) {
 			foreach ($query as $q) { 
-				$query2 = $this->db->select('kode_barang,id_kategori')->where(['id_kategori' => $q->id_kategori, 
+				$q2 = $this->db->select('kode_barang,id_kategori')->where(['id_kategori' => $q->id_kategori, 
 					'status_barang' => 'tersedia'])->get('tbbarang')->result(); 
-				foreach ($query2 as $q2) :
+				// foreach ($query2 as $q2) :
 					$history = array(
 						'id_peminjaman' => $idPeminjaman,
-						'kode_barang' => $q2->kode_barang);
+						'kode_barang' => $q2[$index]->kode_barang);
 					$this->db->insert('tb_history',$history); 
-				endforeach;
+				// endforeach;
+				$index++;
 			}
 			$this->session->set_flashdata('crud','<div class="alert alert-success" role="alert">
 				Data sudah disimpan!
 				</div>');
-
-			// mambuat trigger manual delete setelah insert
 
 			$this->db->where('id_peminjam',$no_identitas);
 			$response2 = $this->db->delete('tb_order');
@@ -82,9 +82,9 @@ class MUser extends CI_Model {
 			}
 			redirect('User/Checkout/', 'refresh'); 
 
-		else:
+		}else{
 			$this->session->set_flashdata('checkout',$this->sweetalert->alert('error','Oopss !!','Data Gagal Disimpan',"Jika gagal terus harap hubungi admin!",4500)); 
-		endif;
+		}
 	}
 
 	public function prosesOrder()
