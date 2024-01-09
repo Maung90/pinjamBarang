@@ -40,7 +40,8 @@ class ChangePassword extends CI_Controller {
 		}else if ($this->session->userdata('no_user') != '') {
 			$id = $this->session->userdata('no_user'); 
 		}
-		$this->MChangePass->getAcc($id); 
+
+		$this->MChangePass->getAcc($id);
 	}
 	public function update()
 	{ 
@@ -51,7 +52,13 @@ class ChangePassword extends CI_Controller {
 			$id = $this->session->userdata('no_user'); 
 		}
 
-		$this->MChangePass->updateAcc($id); 
+		// $this->form_validation->set_rules('pass', 'Password', 'required|trim|min_length[8]'); 
+
+		// if ($this->form_validation->run() != false) {  
+		$this->MChangePass->updateAcc($id);
+		// }else{
+		// 	$this->index();
+		// } 
 	}
 
 }

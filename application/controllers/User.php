@@ -64,7 +64,7 @@ class User extends CI_Controller
 	}
 	
 
-	public function searching($keyword)
+	public function searching($keyword = null)
 	{ 
 		$data['data'] = $this->MUser->searching($keyword);
 		echo $this->load->view('user/search',$data,true);

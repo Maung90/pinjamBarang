@@ -1,4 +1,4 @@
-<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">DataTables /</span> Basic</h4>
+<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">DataMaster /</span> Peminjam</h4>
 <div class="card mb-3">
     <div class="card-body">
         <div class="card-title">
@@ -130,7 +130,7 @@
             confirmButtonText: "Hapus"
         }).then((result) => {
             if (result.isConfirmed) {
-                window.open('<?= base_url('Peminjam/delete/') ?>'+id);
+                window.open('<?= base_url('Peminjam/delete/') ?>'+id, "_self");
             }
         });
     }

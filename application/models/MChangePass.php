@@ -44,7 +44,8 @@ class MChangePass extends CI_Model {
 			$this->db->where('no_user',$id);
 			$response = $this->db->update('tbuser', $data);
 		}
-		var_dump($response);
+		// var_dump($response);
+		
 		if($response){
 			$this->session->set_flashdata('notif','<div class="alert alert-success" role="alert">
 				Data berhasil diupdate!
@@ -55,6 +56,45 @@ class MChangePass extends CI_Model {
 				</div>');
 		}
 		redirect('ChangePassword/');
+	}
+
+	public function UbahPassword()
+	{
+		$pass = password_hash($this->input->post('pass'), PASSWORD_BCRYPT); 
+		$data = array(
+			'password' => $pass,
+		);
+
+		$peminjam = $this->db->select('no_identitas,email')->from('tbpeminjam')
+		->where(['email' => $this->session->userdata('email'), 'no_identitas' =>$this->session->userdata('id')])->get(); 
+
+		$user = $this->db->select('no_user,email')->from('tbuser')
+		->where(['email' => $this->session->userdata('email'), 'no_user' =>$this->session->userdata('id')])->get(); 
+
+		if ($peminjam->num_rows() >= 1) {
+			$this->db->where('no_identitas',$this->session->userdata('id'));
+			$response = $this->db->update('tbpeminjam', $data);
+
+		}else if ($user->num_rows() >= 1) { 
+			$this->db->where('no_user',$this->session->userdata('id'));
+			$response = $this->db->update('tbuser', $data);
+
+		}else{
+			redirect('Login/','refresh');
+		} 
+		
+		if($response){
+			$this->session->set_flashdata('notif','<div class="alert alert-success" role="alert">
+				Data berhasil diupdate!
+				</div>');
+		} else {
+			$this->session->set_flashdata('notif','<div class="alert alert-danger" role="alert">
+				Data gagal diupdate!
+				</div>');
+		}
+		
+		$this->session->sess_destroy();
+		redirect('Login/','refresh');	
 	}
 
 

@@ -2,17 +2,32 @@
 
 class MUser extends CI_Model {
 
-	public function searching($key)
+	// fungsi untuk melakukan search berdasarkan nama kategori
+	public function searching($key = null)
 	{
-		$this->db->select('tbkategori.nama_kategori,tbbarang.id_kategori,COUNT(tbbarang.id_kategori) AS jumlah_max');
-		$this->db->from('tbbarang'); 
-		$this->db->join('tbkategori', 'tbbarang.id_kategori = tbkategori.id_kategori', 'inner');
-		$this->db->where('status_barang', 'tersedia');
-		$this->db->like('nama_kategori',$key);
-		$this->db->group_by('tbbarang.id_kategori'); 
-		$query = $this->db->get()->result();
+		if ($key === null) { 
+			$this->db->select('tbkategori.nama_kategori,tbbarang.id_kategori,COUNT(tbbarang.id_kategori) AS jumlah_max, tbbarang.image');
+			$this->db->from('tbbarang'); 
+			$this->db->join('tbkategori', 'tbbarang.id_kategori = tbkategori.id_kategori', 'inner');
+			$this->db->where('status_barang', 'tersedia');  
+			$this->db->order_by('RAND()');
+			$this->db->group_by('tbbarang.id_kategori'); 
+			$query = $this->db->get()->result();
+		}else{
+			$this->db->select('tbkategori.nama_kategori,tbbarang.id_kategori,COUNT(tbbarang.id_kategori) AS jumlah_max, tbbarang.image');
+			$this->db->from('tbbarang'); 
+			$this->db->join('tbkategori', 'tbbarang.id_kategori = tbkategori.id_kategori', 'inner');
+			$this->db->where('status_barang', 'tersedia');
+			$this->db->like('nama_kategori',$key);
+			$this->db->order_by('RAND()'); 
+			$this->db->group_by('tbbarang.id_kategori'); 
+			$query = $this->db->get()->result();
+		}
+
 		return $query;
 	}   
+
+	// fungsi untuk melakukan cekout barang yang telah di order
 	public function ProsesCheckout()
 	{
 		//Membuat kode peminjaman 
@@ -55,30 +70,36 @@ class MUser extends CI_Model {
 
 		// inisialisasi untuk input history
 		// 1. query ke tb order ambil id_kategori berdasarkan id_peminjam
-		$query = $this->db->select('id_kategori')->where('id_peminjam',$no_identitas)->get('tb_order')->result();
-
+		$query = $this->db->select('id_kategori,jumlah')->where('id_peminjam',$no_identitas)->get('tb_order')->result(); 
+		
 		// 2. query ke tb barang ambil kode_barang yang tersedia berdasarkan id_kategori dari tb order
-		$index = 0;
-		if ($response > 0) {
+		if ($response > 0) {  
 			foreach ($query as $q) { 
 				$q2 = $this->db->select('kode_barang,id_kategori')->where(['id_kategori' => $q->id_kategori, 
 					'status_barang' => 'tersedia'])->get('tbbarang')->result(); 
-				// foreach ($query2 as $q2) :
+
+				// di loop sebanyak jumlah yang di order
+				for ($i=0; $i <$q->jumlah ; $i++) {  
 					$history = array(
 						'id_peminjaman' => $idPeminjaman,
-						'kode_barang' => $q2[$index]->kode_barang);
-					$this->db->insert('tb_history',$history); 
-				// endforeach;
-				$index++;
+						'kode_barang' => $q2[$i]->kode_barang);
+					$this->db->insert('tb_history',$history);  
+				} 
+
 			}
+
 			$this->session->set_flashdata('crud','<div class="alert alert-success" role="alert">
 				Data sudah disimpan!
 				</div>');
 
+
+			// delete data berdasarkan id_peminjam
 			$this->db->where('id_peminjam',$no_identitas);
 			$response2 = $this->db->delete('tb_order');
 			if ($response2) {
-				$this->session->set_flashdata('checkout',$this->sweetalert->alert('success','Success!','Barang Berhasil Diproses!','',3000)); 
+				$this->session->set_flashdata('checkout',$this->sweetalert->alert('success','Success!','Barang Berhasil Diproses!','',2000)); 
+			}else{
+				$this->session->set_flashdata('checkout',$this->sweetalert->alert('error','Oopss !!','Data Gagal Disimpan',"Jika gagal terus harap hubungi admin!",4500)); 
 			}
 			redirect('User/Checkout/', 'refresh'); 
 
@@ -87,6 +108,7 @@ class MUser extends CI_Model {
 		}
 	}
 
+// fungsi untuk membuat orderan atau barang yang akan dipinjam oleh user 
 	public function prosesOrder()
 	{
 
@@ -103,6 +125,8 @@ class MUser extends CI_Model {
 		}
 	}
 
+
+// fungsi untuk menghapus orderan atau barang yang telah diorder oleh user 
 	public function deleteOrder()
 	{
 
@@ -118,11 +142,15 @@ class MUser extends CI_Model {
 			echo $jumlahOrder;
 		}
 	}
+
+// fungsi untuk menghitung jumlah berapa banyak jenis kategori yang telah user order
 	public function jumlahOrder($id)
 	{
 		$jumlahOrder = intval($this->db->select('COUNT("id_peminjam") AS totalOrder')->where('id_peminjam',$id)->get('tb_order')->row()->totalOrder);
 		return $jumlahOrder;
 	}
+
+// fungsi untuk menghitung total jumlah berapa banyak barang yang telah user order
 	public function sumOrder($id)
 	{	
 		$this->db->select('SUM(tb_order.jumlah) as jumlah_total');
@@ -131,6 +159,8 @@ class MUser extends CI_Model {
 		$query = $this->db->get()->result();
 		return $query[0]->jumlah_total;
 	}
+
+// fungsi untuk mengambil dan men joinkan tb_order, tb_kategori dan tbbarang
 	public function joinOrderBarang()
 	{
 		$this->db->select('tbkategori.id_kategori,tb_order.jumlah,tb_order.id_order,tbkategori.nama_kategori,COUNT(tbbarang.id_kategori) AS jumlah_max');
@@ -145,6 +175,8 @@ class MUser extends CI_Model {
 		return $query->result();
 
 	}
+
+// fungsi untuk mengurangi jumlah barang yang di order
 	public function order_minus($id)
 	{  
 		$no_identitas = $this->session->userdata('no_identitas');
@@ -165,6 +197,8 @@ class MUser extends CI_Model {
 		}
 	}
 
+
+// fungsi untuk menambahkan jumlah barang yang di order
 	public function order_plus($id)
 	{  
 		$no_identitas = $this->session->userdata('no_identitas');
@@ -193,6 +227,7 @@ class MUser extends CI_Model {
 		}
 	}
 
+// fungsi untuk mengambil dan men joinkan tb_peminjaman dan tb_history
 	public function infoStatus($no_identitas){
 		$this->db->select("*");
 		$this->db->from('tb_peminjaman'); 
@@ -203,6 +238,7 @@ class MUser extends CI_Model {
 	}
 
 
+// fungsi untuk menginsert data ke tbnote
 	public function note($data){
 		$response = $this->db->insert('tbnote',$data);
 		if ($response) {

@@ -16,76 +16,51 @@
             <span class="badge bg-danger rounded-pill badge-notifications" id="notif"><?=$jumlahOrder?></span>
           </a>
         </li>
-        <li class="nav-item navbar-dropdown dropdown-user dropdown">
-          <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown"> 
-            <span class="ti ti-user" style="line-height:1 !important;font-size: 1.12rem !important;"></span> 
-          </a>
-          <?php if ($this->session->userdata('no_identitas') == '' || $this->session->userdata('no_identitas') == null): ?>
-          <ul class="dropdown-menu dropdown-menu-end">
-            <li>
-              <a class="dropdown-item" href="<?=base_url('Login/');?>">
-                <div class="d-flex">
-                  <div class="flex-shrink-0 me-3">
-                    <div class="avatar avatar-online">
-                      <span class="ti ti-user h-auto rounded-circle" style="background-color: #E9E9E9;padding: 6px;"></span> 
-                    </div>
-                  </div>
-                  <div class="flex-grow-1">
-                    <span class="fw-semibold d-block">
-                      <div class="alert alert-dark" role="alert">
-                        Silahkan Login!
-                      </div>
-                    </span> 
-                  </div>
-                </div>
-              </a>
-            </li> 
-            <li>
-              <div class="dropdown-divider"></div>
-            </li>
-            <li>
-              <a class="dropdown-item" href="<?=base_url('Login/');?>"> 
-                <i class="ti ti-login me-2 ti-sm"></i>
-                <span class="align-middle">Login</span>
-              </a>
-            </li>
-          </ul>
-        <?php else: ?>
-          <ul class="dropdown-menu dropdown-menu-end">
-            <li>
-              <a class="dropdown-item" href="#">
-                <div class="d-flex">
-                  <div class="flex-shrink-0 me-3">
-                    <div class="avatar avatar-online">
-                      <span class="ti ti-user h-auto rounded-circle border p-2"></span> 
-                    </div>
-                  </div>
-                  <div class="flex-grow-1 d-flex align-items-center">
-                    <span class="fw-semibold d-block">  <?=$this->session->userdata('nama_peminjam');   ?> </span> 
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li>
-              <div class="dropdown-divider"></div>
-            </li>
-            <li>
-              <a class="dropdown-item" href="<?=base_url('ChangePassword/')   ?> ">
-                <i class="ti ti-user-check me-2 ti-sm"></i>
-                <span class="align-middle">Change Password</span>
-              </a>
-            </li> 
-            <li>
-              <a class="dropdown-item" href="<?=base_url('Logout/');?>">
-                <i class="ti ti-sign-in me-2 ti-sm"></i>
-                <span class="align-middle">Log Out</span>
-              </a>
-            </li>
-          </ul>
-        <?php endif ?>
+        <?php if ($this->session->userdata('no_identitas') == '' || $this->session->userdata('no_identitas') == null): ?> 
+        <li class="nav-item">  
+          <a class="nav-link text-decoration-underline" href="<?=base_url('Login/') ?>">Login</a>
+        </a>
       </li>
-    </ul>
-  </div>
+    <?php else: ?>
+      <li class="nav-item navbar-dropdown dropdown-user dropdown">
+        <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown"> 
+          <span class="ti ti-user" style="line-height:1 !important;font-size: 1.12rem !important;"></span> 
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li>
+            <a class="dropdown-item" href="#">
+              <div class="d-flex">
+                <div class="flex-shrink-0 me-3">
+                  <div class="avatar avatar-online">
+                    <span class="ti ti-user h-auto rounded-circle border p-2"></span> 
+                  </div>
+                </div>
+                <div class="flex-grow-1 d-flex align-items-center">
+                  <span class="fw-semibold d-block">  <?=$this->session->userdata('nama_peminjam');   ?> </span> 
+                </div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <div class="dropdown-divider"></div>
+          </li>
+          <li>
+            <a class="dropdown-item" href="<?=base_url('ChangePassword/')   ?> ">
+              <i class="ti ti-user-check me-2 ti-sm"></i>
+              <span class="align-middle">Change Password</span>
+            </a>
+          </li> 
+          <li>
+            <a class="dropdown-item" href="<?=base_url('Logout/');?>">
+              <i class="ti ti-sign-in me-2 ti-sm"></i>
+              <span class="align-middle">Log Out</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    <?php endif ?>
+  </ul>
+</div>
 </div>
 </nav>
 <!-- Tutup Navbar -->

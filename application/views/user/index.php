@@ -55,9 +55,7 @@
     </div>
   </div>
   <div class="row mt-3" id="result">
-    <?php   
-    foreach ($data as $d)  :
-     ?>
+    <?php  foreach ($data as $d)  : ?>
      <div class="col-6 col-lg-3  my-2">
       <div class="card  h-100 w-100">
         <div class="card-header fw-bold my-0" style="text-transform: capitalize;">
@@ -122,11 +120,8 @@
         </div>
       </div>
       <!-- Tutup Modal -->
-    </div> 
-
-    <?php 
-  endforeach;
-  ?>
+    </div>  
+  <?php endforeach; ?>
 </div>
 </div>
 
@@ -134,20 +129,18 @@
 
   $(document).ready(function(){
     const no_identitas = "<?= $this->session->userdata('no_identitas')?>" ? "<?= $this->session->userdata('no_identitas')?>"  : null;
-    $('#Search').on('input',function(){
-      
-        $.ajax({
-          url : '<?= base_url('User/searching/');?>'+$.trim($(this).val()),
-          type : 'GET',  
+    $('#Search').on('input',function(){  
+      $.ajax({
+        url : '<?= base_url('User/searching/');?>'+$(this).val(),
+        type : 'GET',  
           // dataType :'html',
-          success : function (response){
-            console.log(response);
-            $('#result').html(response);
-          },
-          error : function (xhr, status, error) {
-            console.error('gagal mendapatkan hasil ' + error);
-          } 
-        });  
+        success : function (response){ 
+          $('#result').html(response);
+        },
+        error : function (xhr, status, error) {
+          console.error('gagal mendapatkan hasil ' + error);
+        } 
+      });  
     });
 
 

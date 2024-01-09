@@ -9,9 +9,9 @@ class	MKategori extends CI_Model {
 
 		$response = $this->db->insert('tbkategori',$data);
 		if ($response > 0) {
-				$this->session->set_flashdata('crud',$this->sweetalert->alert('success','Success!','Data berhasil disimpan!','',4500)); 	
+			$this->session->set_flashdata('crud',$this->sweetalert->alert('success','Success!','Data berhasil disimpan!','',1500)); 	
 		}else{ 
-				$this->session->set_flashdata('crud',$this->sweetalert->alert('error','Ooppss!','Data gagal disimpan!','',4500)); 	
+			$this->session->set_flashdata('crud',$this->sweetalert->alert('error','Ooppss!','Data gagal disimpan!','',2500)); 	
 		}
 		redirect('Kategori/', 'refresh');
 		
@@ -22,22 +22,21 @@ class	MKategori extends CI_Model {
 		$countBarang = count($this->db->get('tbbarang')->result()); 
 
 		if ($countBarang > 0) {
-			$this->session->set_flashdata('crud',$this->sweetalert->alert('error','Ooppss!!','Data gagal dihapus!','Data masih terkoneksi dengan barang!',4500));  
+			$this->session->set_flashdata('crud',$this->sweetalert->alert('error','Ooppss!!','Data gagal dihapus!','Data masih terkoneksi dengan barang!',3500));  
 		}else{ 
 			$this->db->where('id_kategori',$id);
 			$response = $this->db->delete('tbkategori');
 			if ($response > 0) {
-				$this->session->set_flashdata('crud',$this->sweetalert->alert('success','Succes!','Data berhasil dihapus!','',3000)); 
+				$this->session->set_flashdata('crud',$this->sweetalert->alert('success','Succes!','Data berhasil dihapus!','',1500)); 
 			}else{ 
-				$this->session->set_flashdata('crud',$this->sweetalert->alert('error','Ooppss!!','Data gagal dihapus!','',4500)); 
+				$this->session->set_flashdata('crud',$this->sweetalert->alert('error','Ooppss!!','Data gagal dihapus!','',2500)); 
 			}
 		}
 		redirect('Kategori/', 'refresh');
 	}
 
 	public function update($id)
-	{
-		// $id = $this->input->post('id_kategori');
+	{ 
 		$nama_kategori = $this->input->post('nama_kategori');
 		
 
@@ -45,8 +44,13 @@ class	MKategori extends CI_Model {
 
 		$this->db->where('id_kategori',$id);
 		$response = $this->db->update('tbkategori', ['nama_kategori' => $nama_kategori], $condition);
+		if ($response > 0) {
+			$this->session->set_flashdata('crud',$this->sweetalert->alert('success','Succes!','Data berhasil diubah!','',1500)); 
+		}else{ 
+			$this->session->set_flashdata('crud',$this->sweetalert->alert('error','Ooppss!!','Data gagal dihapus!','',2500)); 
+		}
 
-
+		redirect('Kategori/', 'refresh');
 
 	}
 

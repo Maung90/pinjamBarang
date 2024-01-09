@@ -3,7 +3,7 @@
 		<div class="w-100 d-flex justify-content-between align-items-center">
 			
 			<h4 class="m-0 p-0">Data Peminjaman</h4> 
-			<button class="btn btn-primary px-4"><span class="fa fa-print me-1"></span> Cetak Report</button>
+			<button class="btn btn-primary px-4" onclick="report()"><span class="fa fa-print me-1"></span> Cetak Report</button>
 		</div>
 	</div>
 	<div class="card-body">  
@@ -89,6 +89,10 @@
 </div>
 </div>
 <script>
+function report() {
+	window.open("<?=base_url('History/Report/');?>","_blank");
+}
+
 	$(document).ready(function(){
 		$('#dataTable').DataTable();
 	});

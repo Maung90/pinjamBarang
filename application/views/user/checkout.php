@@ -5,7 +5,10 @@ $jumlah = intval($total);
 <div class="container"> 
   <?php  
   if ($this->session->flashdata('checkout')) {
-    echo($this->session->flashdata('checkout'));
+    echo $this->session->flashdata('checkout'); 
+    echo '<script>
+    window.open("'.base_url("User/Status/").'","_self");
+    </script>';
   }
   if ( $jumlah > 0) : 
     ?>

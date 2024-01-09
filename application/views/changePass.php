@@ -78,20 +78,8 @@
 										<i class="ti ti-eye-off"></i>
 									</span>
 								</div>
-							</div>
-
-							<!-- <div>
-								<label for="pass" class="form-label">Password</label>
-								<input
-								type="password"
-								class="form-control"
-								id="pass" 
-								name="pass"
-								aria-describedby="defaultFormControlHelp" readonly />
-								<div id="defaultFormControlHelp" class="form-text"> 
-									*masukan password baru
-								</div>
-							</div> -->
+								<!-- <small class="text-danger"><?php echo validation_errors(); ?></small> -->
+							</div> 
 							<div class="mt-3 d-flex justify-content-end">
 								<button type="submit" class="btn btn-primary" id="update" disabled>Submit</button>
 							</div>

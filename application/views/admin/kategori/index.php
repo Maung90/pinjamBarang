@@ -9,16 +9,17 @@
 	<div class="row">
 		<div class="col-md-5"> 
 			<div class="mb-4">
-				<form action="<?= base_url('Kategori/insertData'); ?>" method="POST" id="form">
+				<form action="<?= base_url('Kategori/insert'); ?>" method="POST" id="form">
 					<div class="my-3 px-4 py-3" style="border:1px solid #dbdade;">
 						<div>
 							<label for="defaultFormControlInput" class="form-label">Nama Kategori</label>
+							 <?php echo  validation_errors(); ?> 
 							<input
 							type="text"
 							class="form-control"
 							id="defaultFormControlInput"
 							placeholder="Kabel Roll"
-							name="nama_kategori"
+							name="nama_kategori" value="<?=set_value('nama_kategori')?>" 
 							aria-describedby="defaultFormControlHelp" required autocomplete="off"/>
 							<div id="defaultFormControlHelp" class="form-text"> 
 								*Masukan nama kategori barang
@@ -101,7 +102,7 @@
 					dataType : 'json', 
 					success : function (response){
 
-						$('#form').attr('action','<?= base_url('Kategori/updateData/')?>'+id); 
+						$('#form').attr('action','<?= base_url('Kategori/update/')?>'+id); 
 						// $('#inputHide').val(response[0]['id_kategori']);
 						$('#defaultFormControlInput').val(response[0]['nama_kategori']);	  
 					},
