@@ -13,7 +13,7 @@
 					<div class="my-3 px-4 py-3" style="border:1px solid #dbdade;">
 						<div>
 							<label for="defaultFormControlInput" class="form-label">Nama Kategori</label>
-							 <?php echo  validation_errors(); ?> 
+							 <!-- <?php echo  validation_errors(); ?>  -->
 							<input
 							type="text"
 							class="form-control"

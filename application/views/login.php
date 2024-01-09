@@ -14,8 +14,8 @@
 
             <div class="col-md-6 right-box">
                 <div class="row align-items-center">
-                    <div class="header-text mb-4">
-                        <h3 class="fw-bold my-1">Selamat Datang Di PNB-PinjamBarang! 👋</h3>
+                    <div class="header-text mb-4 m-3">
+                        <h4 class="fw-bold  my-1">Selamat Datang Di PNB-PinjamBarang! 👋</h4>
                         <p class="mb-4">Silahkan login dan mulai meminjam.</p>
                     </div>
                     <div class="input-group mb-3">

@@ -64,4 +64,4 @@
 
   <body>
 
-    <?= $this->session->flashdata('notif'); ?>
+    <?= $this->session->flashdata('loginNotif'); ?>

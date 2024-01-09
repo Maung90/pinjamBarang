@@ -1,10 +1,8 @@
+<h4 class="fw-bold py-2"><span class="text-muted fw-light">DataMaster /</span> Barang</h4>
 <div class="row">
 <!-- Basic Layout -->
 <div class="col-xxl">
-    <div class="card mb-4">
-    <div class="card-header d-flex align-items-center justify-content-between">
-        <h5 class="mb-0">Form Barang</h5>
-    </div>
+    <div class="card mb-4"> 
     <div class="card-body">
     <?php
         if ($this->session->userdata('pesan')){

@@ -8,10 +8,8 @@ class Kategori extends CI_Controller
 		$this->load->model('MKategori');
 
 		if ($this->session->userdata('id_role') == null) { 
-			redirect('Login/','refresh');
-		}
-
-		if ($this->session->userdata('id_role') != '2') { 
+			redirect('Error/','refresh');
+		} else if ($this->session->userdata('id_role') != '2') { 
 			redirect('Master/','refresh');
 		}
 	} 
@@ -22,7 +20,7 @@ class Kategori extends CI_Controller
 		// if ($this->form_validation->run() == false) {  
 		// 	$this->index();
 		// }else{
-			$this->MKategori->insert();
+		$this->MKategori->insert();
 		// }
 	}
 
@@ -49,7 +47,7 @@ class Kategori extends CI_Controller
 		// if ($this->form_validation->run() == false) {  
 		// 	$this->index();
 		// }else{
-			$this->MKategori->update($id);
+		$this->MKategori->update($id);
 		// }
 	}
 
