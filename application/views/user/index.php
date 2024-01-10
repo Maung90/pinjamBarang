@@ -55,7 +55,8 @@
     </div>
   </div>
   <div class="row mt-3" id="result">
-    <?php  foreach ($data as $d)  : ?>
+    <?php  foreach ($data as $d) : 
+      ?>
      <div class="col-6 col-lg-3  my-2">
       <div class="card  h-100 w-100">
         <div class="card-header fw-bold my-0" style="text-transform: capitalize;">
