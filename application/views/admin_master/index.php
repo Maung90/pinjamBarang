@@ -7,8 +7,8 @@
     </div>
     <div class="card-body">
     <?php
-        if ($this->session->userdata('pesan')){
-            echo $this->session->userdata('pesan');
+        if ($this->session->flashdata('pesan')){
+            echo $this->session->flashdata('pesan');
         }
         ?>
         <form id="form" method="POST" action="<?php echo base_url ('Master/simpanAdmin')?>">
@@ -122,9 +122,9 @@
         	<button onclick="edit('<?= $value->no_user; ?>')" type="button" class="btn btn-sm btn-primary">
                 <label class="ti ti-edit "></label>
             </button>
-        	<a onclick="return confirm('apakah yakin dihapus?');" href="<?= base_url('Master/delete/'.$value->no_user) ?>" class="btn btn-sm btn-danger">
-				<label class="ti ti-trash"></label>
-			</a>
+            <button onclick="hapus('<?= $value->no_user; ?>')" type="button" class="btn btn-sm btn-danger">
+                <label class="ti ti-trash "></label>
+            </button>
         </td>
       </tr>
     <?php 
@@ -140,7 +140,20 @@
 
 
 <script>
-  function edit(id) {
+    function hapus(id) {
+			Swal.fire({
+				icon: "question",
+				title: "Apakah yakin ingin menghapus data ini?",
+				showCancelButton: true,
+				confirmButtonText: "Hapus"
+			}).then((result) => {
+				if (result.isConfirmed) {
+					document.location = '<?= base_url('Master/delete/')?>'+id;
+				}
+			});
+	}
+
+    function edit(id) {
         $.ajax({
             url: '<?=  base_url('master/get/') ?>' + id,
             type: 'GET',

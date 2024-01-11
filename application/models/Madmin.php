@@ -247,7 +247,7 @@
             $this->session->set_flashdata('pesan','<div class="alert alert-success" role="alert"> Data Disimpan </div>');
             redirect('Master/index', 'refresh');
         }else{
-            $this->session->set_flashdata('pesan','<div class="alert alert-danger" role="alert"> Data gagal </div>');
+            $this->session->set_flashdata('pesan','<div class="alert alert-danger" role="alert"> Data gagal disimpan </div>');
             redirect('Master/index', 'refresh');
         }
     }
@@ -265,12 +265,12 @@
             $this->db->where('no_user',$id);
             $data = $this->db->update('tbuser', $data);
             if($data){
-                $this->session->set_flashdata('success','<div class="alert alert-success" role="alert">
-                    Data berhasil diupdate!
+                $this->session->set_flashdata('pesan','<div class="alert alert-success" role="alert">
+                    Data berhasil diubah!
                 </div>');
             } else {
-                $this->session->set_flashdata('error','<div class="alert alert-danger" role="alert">
-                    Data gagal diupdate!
+                $this->session->set_flashdata('pesan','<div class="alert alert-danger" role="alert">
+                    Data gagal diubah!
                 </div>');
             }
             redirect('Master/index', 'refresh');
@@ -281,12 +281,12 @@
             $this->db->where('no_user',$id);
             $data = $this->db->delete('tbuser');
             if($data){
-                $this->session->set_flashdata('success','<div class="alert alert-success" role="alert">
-                    Data berhasil diupdate!
+                $this->session->set_flashdata('pesan','<div class="alert alert-success" role="alert">
+                    Data berhasil dihapus!
                 </div>');
             } else {
-                $this->session->set_flashdata('error','<div class="alert alert-danger" role="alert">
-                    Data gagal diupdate!
+                $this->session->set_flashdata('pesan','<div class="alert alert-danger" role="alert">
+                    Data gagal dihapus!
                 </div>');
             }
             redirect('Master/index', 'refresh');
