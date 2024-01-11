@@ -11,18 +11,19 @@ class Barang extends CI_Controller
 
 		if ($this->session->userdata('id_role') == null) { 
 			redirect('Login/','refresh');
-		 }
-		 
-		 if ($this->session->userdata('id_role') != '2') { 
+		}
+
+		if ($this->session->userdata('id_role') != '2') { 
 			redirect('Master/','refresh');
-		 }
+		}
 	}
-    public function index()
+	public function index()
 	{
 		$data['dataBarang'] = $this->mbarang->getBarang();
 		$data['title'] = "POLITEKNIK NEGERI BALI";
+		$data["url"] = "Barang";
 		$this->load->view('partials/head',$data);
-		$this->load->view('partials/side');
+		$this->load->view('partials/side',$data);
 		$this->load->view('partials/nav');
 		$this->load->view('admin/barang/index',$data); //Contoh
 		$this->load->view('partials/copyright');
@@ -31,9 +32,18 @@ class Barang extends CI_Controller
 
 	
 	public function simpan() {
+
+
+		$this->form_validation->set_rules('kode_barang', 'Kode Barang', 'required|trim|alpha_numeric|is_unique[tbbarang.kode_barang]');
+
+		if ($this->form_validation->run() == false) { 
+			$this->session->set_flashdata('error_validation', validation_errors());
+			redirect('Barang/','refresh');
+		}else{
+
 		// Konfigurasi upload
-		$config['upload_path'] = './assets/img/imgBarang/';
-		$config['allowed_types'] = 'gif|jpg|png';
+			$config['upload_path'] = './assets/img/imgBarang/';
+			$config['allowed_types'] = 'gif|jpg|png';
 		$config['max_size'] = 5024; // 5 MB
 		$config['encrypt_name'] = TRUE;
 
@@ -71,26 +81,27 @@ class Barang extends CI_Controller
 			redirect('barang/');
 		}
 	}
+}
 
     // function simpan()
 	// {
 	// 	$this->mbarang->simpanBarang();
 	// }
-	public function getBarang()
-	{
-		
-	}
-	public function get($id)
-	{
-		$this->mbarang->get_barang($id);
-	}
-	public function update($id)
-    {
-        $this->mbarang->updateBarang($id);
-    }
+public function getBarang()
+{
 
-	function hapus($kode_barang)
-	{
-		$this->mbarang->hapusBarang($kode_barang);	
-	}
+}
+public function get($id)
+{
+	$this->mbarang->get_barang($id);
+}
+public function update($id)
+{
+	$this->mbarang->updateBarang($id);
+}
+
+function hapus($kode_barang)
+{
+	$this->mbarang->hapusBarang($kode_barang);	
+}
 }

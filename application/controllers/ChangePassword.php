@@ -24,8 +24,9 @@ class ChangePassword extends CI_Controller {
 			$this->load->view('partials/footer');
 
 		}else if ($this->session->userdata('no_user') != '') {
+			$data['url'] = 'Dashboard';
 			$this->load->view('partials/head',$data);
-			$this->load->view('partials/side');
+			$this->load->view('partials/side',$data);
 			$this->load->view('partials/nav');
 			$this->load->view('changePass'); 
 			$this->load->view('partials/copyright');

@@ -48,9 +48,9 @@ class Dashboard extends CI_Controller {
 		}
 
 		$data['grafik'] = $grafik;
-
+		$data['url'] = "Dashboard";
 		$this->load->view('partials/head',$data);
-		$this->load->view('partials/side');
+		$this->load->view('partials/side',$data);
 		$this->load->view('partials/nav');
 		$this->load->view('admin_master/dashboard',$data); //Contoh
 		$this->load->view('partials/copyright');

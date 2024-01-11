@@ -2,8 +2,8 @@
 <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">DataMaster /</span> Kategori</h4>
 <div class="card p-4">
 	<?php 
-	if ($this->session->userdata('crud')): 
-		echo $this->session->userdata('crud'); 
+	if ($this->session->flashdata('crud')): 
+		echo $this->session->flashdata('crud'); 
 	endif
 	?>
 	<div class="row">
@@ -13,7 +13,9 @@
 					<div class="my-3 px-4 py-3" style="border:1px solid #dbdade;">
 						<div>
 							<label for="defaultFormControlInput" class="form-label">Nama Kategori</label>
-							 <!-- <?php echo  validation_errors(); ?>  -->
+							<small class="text-danger">
+								<?php echo $this->session->flashdata('error_validation'); ?> 
+							</small>
 							<input
 							type="text"
 							class="form-control"

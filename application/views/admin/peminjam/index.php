@@ -5,15 +5,18 @@
             <h4 id="title">Tambah Peminjam</h4>
         </div>
         <?= $this->session->flashdata('success'); ?>
-        <?= $this->session->flashdata('error'); ?>
+        <?= $this->session->flashdata('error'); ?> 
+        <small class="text-danger">
+            <?= $this->session->flashdata('error_validation'); ?>
+        </small>
         <form id="form" action="<?= base_url('Peminjam/insert') ?>" method="POST">
             <div class="mb-3">
                 <label for="no_identitas">Identitas</label>
-                <input id="no_identitas" name="no_identitas" type="text" class="form-control">
+                <input id="no_identitas" name="no_identitas" type="text" class="form-control" required>
             </div>
             <div class="mb-3">
                 <label for="nama_peminjam">Nama Peminjam</label>
-                <input id="nama_peminjam" name="nama_peminjam" type="text" class="form-control">
+                <input id="nama_peminjam" name="nama_peminjam" type="text" class="form-control" required>
             </div>
             <div class="mb-3">
                 <label for="kelas">Kelas</label>
@@ -21,15 +24,15 @@
             </div>
             <div class="mb-3">
                 <label for="Alamat">Alamat</label>
-                <textarea name="alamat" id="alamat" cols="3" class="form-control"></textarea>
+                <textarea name="alamat" id="alamat" cols="3" class="form-control" required></textarea>
             </div>
             <div class="mb-3">
                 <label for="no_telp">No Telephone</label>
-                <input id="no_telp" name="no_telp" type="text" class="form-control">
+                <input id="no_telp" name="no_telp" type="text" class="form-control" required>
             </div>
             <div class="mb-3">
                 <label for="email">Email</label>
-                <input id="email" name="email" type="email" class="form-control">
+                <input id="email" name="email" type="email" class="form-control" required>
             </div>
             <div class="d-flex justify-content-end">
                 <button type="submit" class="btn btn-primary" id="btn_tambah">Tambah</button>
@@ -62,7 +65,7 @@
                 $no = 1;
                 $data = $this->db->get('tbpeminjam')->result();
                 foreach ($data as $row) {
-                ?>
+                    ?>
                     <tr>
                         <td><?= $no ?></td>
                         <td><?= $row->no_identitas; ?></td>
@@ -73,7 +76,7 @@
                         <td><?= $row->email; ?></td>
                         <td><button onclick="edit('<?= $row->no_identitas; ?>')" class="btn btn-sm btn-primary"><i class="ti ti-edit"></i></button><button onclick="hapus('<?= $row->no_identitas; ?>')" class="ms-1 btn btn-sm btn-danger"><i class="ti ti-trash"></i></button></td>
                     </tr>
-                <?php
+                    <?php
                     $no++;
                 }
                 ?>

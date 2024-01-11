@@ -44,19 +44,84 @@ foreach ($query as $d) {
             </a>
           </li>
         <?php elseif ($this->session->userdata('id_role') == 2) : ?>
+
+          <?php if ($url == 'Dashboard'){ ?>
+            <li class="menu-item active"> 
+              <a href="<?=base_url('Dashboard/');?>" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-smart-home"></i>
+                <div>Dashboard</div>
+              </a>
+            <?php }else{ ?>
+              <li class="menu-item"> 
+                <a href="<?=base_url('Dashboard/');?>" class="menu-link">
+                  <i class="menu-icon tf-icons ti ti-smart-home"></i>
+                  <div>Dashboard</div>
+                </a>
+              </li>  
+            <?php } ?>
+
+            <?php if ($url == 'Pending'){ ?>
+              <li class="menu-item active"> 
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                 <i class="menu-icon tf-icons ti ti-history"></i>
+                 <div>History</div> 
+               </a>
+               <ul class="menu-sub">
+                <li class="menu-item active">
+                  <a href="<?=base_url('History/Pending/');?>" class="menu-link">
+                    <div>Pending</div>
+                    <div class="badge bg-label-danger rounded-pill ms-auto"><?=$pending;?></div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="<?=base_url('History/Pinjam/');?>" class="menu-link">
+                    <div>Dipinjam</div>
+                    <div class="badge bg-label-warning rounded-pill ms-auto"><?=$dipinjam;?></div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="<?=base_url('History/Kembali/');?>" class="menu-link">
+                    <div>Kembali</div>
+                  </a>
+                </li> 
+              </ul>
+            </li> 
+
+          <?php }elseif($url == 'Pinjam'){?>
+            <li class="menu-item active"> 
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+               <i class="menu-icon tf-icons ti ti-history"></i>
+               <div>History</div> 
+             </a>
+             <ul class="menu-sub">
+              <li class="menu-item">
+                <a href="<?=base_url('History/Pending/');?>" class="menu-link">
+                  <div>Pending</div>
+                  <div class="badge bg-label-danger rounded-pill ms-auto"><?=$pending;?></div>
+                </a>
+              </li>
+              <li class="menu-item active">
+                <a href="<?=base_url('History/Pinjam/');?>" class="menu-link">
+                  <div>Dipinjam</div>
+                  <div class="badge bg-label-warning rounded-pill ms-auto"><?=$dipinjam;?></div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="<?=base_url('History/Kembali/');?>" class="menu-link">
+                  <div>Kembali</div>
+                </a>
+              </li> 
+            </ul>
+          </li> 
+
+        <?php }else if ($url == 'Kembali'){ ?>
           <li class="menu-item active"> 
-            <a href="<?=base_url('Dashboard/');?>" class="menu-link">
-              <i class="menu-icon tf-icons ti ti-smart-home"></i>
-              <div>Dashboard</div>
-            </a>
-          </li>  
-          <li class="menu-item"> 
             <a href="javascript:void(0);" class="menu-link menu-toggle">
              <i class="menu-icon tf-icons ti ti-history"></i>
              <div>History</div> 
            </a>
            <ul class="menu-sub">
-            <li class="menu-item ">
+            <li class="menu-item">
               <a href="<?=base_url('History/Pending/');?>" class="menu-link">
                 <div>Pending</div>
                 <div class="badge bg-label-danger rounded-pill ms-auto"><?=$pending;?></div>
@@ -68,38 +133,151 @@ foreach ($query as $d) {
                 <div class="badge bg-label-warning rounded-pill ms-auto"><?=$dipinjam;?></div>
               </a>
             </li>
-            <li class="menu-item">
+            <li class="menu-item active">
               <a href="<?=base_url('History/Kembali/');?>" class="menu-link">
                 <div>Kembali</div>
               </a>
-            </li> 
+            </li>
           </ul>
-        </li> 
-        <li class="menu-item active">
+        </li>
+
+      <?php }else{ ?> 
+        <li class="menu-item"> 
           <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <i class="menu-icon tf-icons ti ti-building-warehouse"></i>
-            <div>Data Master</div>
-            <div class="badge bg-label-primary rounded-pill ms-auto">3</div>
-          </a>
-          <ul class="menu-sub">
-            <li class="menu-item active">
-              <a href="<?=base_url('Peminjam/');?>" class="menu-link">
-                <div>Data User</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="<?=base_url('Barang/');?>" class="menu-link">
-                <div>Data Barang</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="<?=base_url('Kategori/');?>" class="menu-link">
-                <div>Data Kategori</div>
-              </a>
-            </li> 
-          </ul>
-        </li> 
-      <?php else: ?> 
-      <?php endif ?>
-    </ul>
-  </aside>
+           <i class="menu-icon tf-icons ti ti-history"></i>
+           <div>History</div> 
+         </a>
+         <ul class="menu-sub">
+          <li class="menu-item">
+            <a href="<?=base_url('History/Pending/');?>" class="menu-link">
+              <div>Pending</div>
+              <div class="badge bg-label-danger rounded-pill ms-auto"><?=$pending;?></div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="<?=base_url('History/Pinjam/');?>" class="menu-link">
+              <div>Dipinjam</div>
+              <div class="badge bg-label-warning rounded-pill ms-auto"><?=$dipinjam;?></div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="<?=base_url('History/Kembali/');?>" class="menu-link">
+              <div>Kembali</div>
+            </a>
+          </li> 
+        </ul>
+      </li> 
+    <?php } ?>
+
+
+
+    <?php if ($url == 'Peminjam'){ ?>
+      <li class="menu-item active">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class="menu-icon tf-icons ti ti-building-warehouse"></i>
+          <div>Data Master</div>
+          <div class="badge bg-label-primary rounded-pill ms-auto">3</div>
+        </a>
+        <ul class="menu-sub">
+          <li class="menu-item active">
+            <a href="<?=base_url('Peminjam/');?>" class="menu-link">
+              <div>Data User</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="<?=base_url('Barang/');?>" class="menu-link">
+              <div>Data Barang</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="<?=base_url('Kategori/');?>" class="menu-link">
+              <div>Data Kategori</div>
+            </a>
+          </li> 
+        </ul>
+      </li> 
+
+    <?php }else if ($url == 'Barang'){ ?>
+      <li class="menu-item active">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class="menu-icon tf-icons ti ti-building-warehouse"></i>
+          <div>Data Master</div>
+          <div class="badge bg-label-primary rounded-pill ms-auto">3</div>
+        </a>
+        <ul class="menu-sub">
+          <li class="menu-item">
+            <a href="<?=base_url('Peminjam/');?>" class="menu-link">
+              <div>Data User</div>
+            </a>
+          </li>
+          <li class="menu-item active">
+            <a href="<?=base_url('Barang/');?>" class="menu-link">
+              <div>Data Barang</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="<?=base_url('Kategori/');?>" class="menu-link">
+              <div>Data Kategori</div>
+            </a>
+          </li> 
+        </ul>
+      </li> 
+
+
+    <?php }else if ($url == 'Kategori'){ ?>
+      <li class="menu-item active">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class="menu-icon tf-icons ti ti-building-warehouse"></i>
+          <div>Data Master</div>
+          <div class="badge bg-label-primary rounded-pill ms-auto">3</div>
+        </a>
+        <ul class="menu-sub">
+          <li class="menu-item">
+            <a href="<?=base_url('Peminjam/');?>" class="menu-link">
+              <div>Data User</div>
+            </a>
+          </li>
+          <li class="menu-item ">
+            <a href="<?=base_url('Barang/');?>" class="menu-link">
+              <div>Data Barang</div>
+            </a>
+          </li>
+          <li class="menu-item active">
+            <a href="<?=base_url('Kategori/');?>" class="menu-link">
+              <div>Data Kategori</div>
+            </a>
+          </li> 
+        </ul>
+      </li> 
+
+    <?php }else{ ?> 
+      <li class="menu-item">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class="menu-icon tf-icons ti ti-building-warehouse"></i>
+          <div>Data Master</div>
+          <div class="badge bg-label-primary rounded-pill ms-auto">3</div>
+        </a>
+        <ul class="menu-sub">
+          <li class="menu-item">
+            <a href="<?=base_url('Peminjam/');?>" class="menu-link">
+              <div>Data User</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="<?=base_url('Barang/');?>" class="menu-link">
+              <div>Data Barang</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="<?=base_url('Kategori/');?>" class="menu-link">
+              <div>Data Kategori</div>
+            </a>
+          </li> 
+        </ul>
+      </li> 
+    <?php } ?>
+
+  <?php else: ?>
+  <?php endif ?> 
+</ul>
+</aside>
