@@ -52,16 +52,12 @@
   <link rel="stylesheet" href="<?=base_url('assets/vendor/css/pages/page-auth.css');?>" />
   <!-- Helpers -->
   <script src="<?= base_url('assets/vendor/js/helpers.js'); ?>"></script>
+  
+  <script src="<?= base_url('assets/js/config.js'); ?>"></script>
+  <script src="<?= base_url('assets/vendor/libs/jquery/jquery.js') ?>"></script>
+  
+</head>
 
-  <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
-    <!--? Template customizer: To hide customizer set displayCustomizer value false in config.js.  -->
-    <!-- <script src="<?= base_url('assets/vendor/js/template-customizer.js'); ?>"></script> -->
-    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-    <script src="<?= base_url('assets/js/config.js'); ?>"></script>
-    <script src="<?= base_url('assets/vendor/libs/jquery/jquery.js') ?>"></script>
-    
-  </head>
+<body>
 
-  <body>
-
-    <?= $this->session->flashdata('loginNotif'); ?>
+  <?= $this->session->flashdata('loginNotif'); ?>

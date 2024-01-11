@@ -105,7 +105,7 @@
 								fill="#7367F0" />
 							</svg>
 						</span>
-						<span class="app-brand-text demo text-body fw-bold ms-1">Vuexy</span>
+						<span class="app-brand-text demo text-body fw-bold ms-1">PinjamBarang</span>
 					</a>
 				</div>
 				<!-- /Logo -->
@@ -123,7 +123,9 @@
 							name="password"
 							placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
 							aria-describedby="password" />
-							<span class="input-group-text cursor-pointer"><i class="ti ti-eye-off"></i></span>
+							<span class="input-group-text cursor-pointer" id="mata1">
+								<i class="ti ti-eye-off" id="matanya1"></i>
+							</span>
 						</div>
 					</div>
 					<div class="mb-3 form-password-toggle">
@@ -136,7 +138,9 @@
 							name="confirm-password"
 							placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
 							aria-describedby="password" />
-							<span class="input-group-text cursor-pointer"><i class="ti ti-eye-off"></i></span>
+							<span class="input-group-text cursor-pointer" id="mata2">
+								<i class="ti ti-eye-off" id="matanya2"></i>
+							</span>
 						</div>
 					</div>
 					<button class="btn btn-primary d-grid w-100 mb-3"> Set Password Baru</button>
@@ -207,3 +211,38 @@
 	<?php endif; ?>
 </div>
 </div>
+
+
+<script>  
+	$(document).ready(function(){ 
+		$('#mata1').on('click',()=>{ 
+			if ($('#password').attr("type") == "password") {
+				$('#matanya1').removeClass("ti-eye-off");
+				$('#matanya1').addClass("ti-eye");
+				$('#password').removeAttr("type");
+				$('#password').attr("type","text"); 
+			}else{ 
+				$('#matanya1').removeClass("ti-eye");
+				$('#matanya1').addClass("ti-eye-off");
+				$('#password').removeAttr("type");
+				$('#password').attr("type","password"); 
+			}
+		});
+
+		$('#mata2').on('click',()=>{ 
+			if ($('#confirm-password').attr("type") == "password") {
+				$('#matanya2').removeClass("ti-eye-off");
+				$('#matanya2').addClass("ti-eye");
+				$('#confirm-password').removeAttr("type");
+				$('#confirm-password').attr("type","text"); 
+			}else{ 
+				$('#matanya2').removeClass("ti-eye");
+				$('#matanya2').addClass("ti-eye-off");
+				$('#confirm-password').removeAttr("type");
+				$('#confirm-password').attr("type","password"); 
+			}
+		});
+
+
+	});
+</script> 

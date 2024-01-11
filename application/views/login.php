@@ -1,4 +1,4 @@
-  
+
 <form name="formlogin" method="post" action="<?php echo base_url('Login/proseslogin'); ?>">
     <!----------------------- Main Container -------------------------->
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
@@ -23,8 +23,8 @@
                     </div>
                     <div class="input-group input-group-merge mb-1">
                         <input type="password" name="password" id="password" class="form-control form-control-lg fs-6" placeholder="Password" aria-describedby="password">
-                        <span class="input-group-text cursor-pointer" >
-                            <i class="ti ti-eye-off"></i>
+                        <span class="input-group-text cursor-pointer" id="mata">
+                            <i class="ti ti-eye-off" id="matanya"></i>
                         </span>
                     </div>
                     <div class="d-flex justify-content-end"> 
@@ -41,3 +41,21 @@
     </div>
 </div>
 </form> 
+
+<script>  
+    $(document).ready(function(){ 
+        $('#mata').on('click',()=>{ 
+            if ($('#password').attr("type") == "password") {
+                $('#matanya').removeClass("ti-eye-off");
+                $('#matanya').addClass("ti-eye");
+                $('#password').removeAttr("type");
+                $('#password').attr("type","text"); 
+            }else{ 
+                $('#matanya').removeClass("ti-eye");
+                $('#matanya').addClass("ti-eye-off");
+                $('#password').removeAttr("type");
+                $('#password').attr("type","password"); 
+            }
+        });
+    });
+</script> 

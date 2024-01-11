@@ -41,6 +41,7 @@ class Login extends CI_Controller {
 			$data['url'] = 'Forgot_Password';
 			$this->session->sess_destroy();
 		}
+		
 		$data['title'] = "Forgot Password";
 		$this->load->view('partials/head',$data); 
 		$this->load->view('ForgotPass',$data); 

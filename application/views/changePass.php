@@ -74,11 +74,13 @@
 									name="pass"
 									id="pass" 
 									aria-describedby="basic-default-password" readonly/>
-									<span class="input-group-text cursor-pointer" id="basic-default-password">
-										<i class="ti ti-eye-off"></i>
+									<span class="input-group-text cursor-pointer" id="mata">
+										<i class="ti ti-eye-off" id="matanya"></i>
 									</span>
 								</div>
-								<!-- <small class="text-danger"><?php echo validation_errors(); ?></small> -->
+								<small class="text-danger">
+									<?php echo $this->session->flashdata('error_validation'); ?>
+								</small>
 							</div> 
 							<div class="mt-3 d-flex justify-content-end">
 								<button type="submit" class="btn btn-primary" id="update" disabled>Submit</button>
@@ -92,6 +94,23 @@
 </div>
 
 
+<script>  
+    $(document).ready(function(){ 
+        $('#mata').on('click',()=>{ 
+            if ($('#pass').attr("type") == "password") {
+                $('#matanya').removeClass("ti-eye-off");
+                $('#matanya').addClass("ti-eye");
+                $('#pass').removeAttr("type");
+                $('#pass').attr("type","text"); 
+            }else{ 
+                $('#matanya').removeClass("ti-eye");
+                $('#matanya').addClass("ti-eye-off");
+                $('#pass').removeAttr("type");
+                $('#pass').attr("type","password"); 
+            }
+        });
+    });
+</script> 
 <script>
 
 	$(document).ready(function(){ 

@@ -53,13 +53,14 @@ class ChangePassword extends CI_Controller {
 			$id = $this->session->userdata('no_user'); 
 		}
 
-		// $this->form_validation->set_rules('pass', 'Password', 'required|trim|min_length[8]'); 
+		$this->form_validation->set_rules('pass', 'Password', 'required|trim|min_length[8]'); 
 
-		// if ($this->form_validation->run() != false) {  
-		$this->MChangePass->updateAcc($id);
-		// }else{
-		// 	$this->index();
-		// } 
+		if ($this->form_validation->run() != false) {  
+			$this->MChangePass->updateAcc($id);
+		}else{
+			$this->session->set_flashdata('error_validation',validation_errors());
+			redirect('ChangePassword/', 'refresh');
+		} 
 	}
 
 }
