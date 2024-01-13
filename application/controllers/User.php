@@ -30,6 +30,7 @@ class User extends CI_Controller
 		$no_identitas = $this->session->userdata('no_identitas');
 
 		$data['title'] = 'Status Pinjam';
+		$data['data'] = $this->MUser->getPeminjaman();
 
 		$data['jumlahOrder'] = $this->MUser->jumlahOrder($no_identitas);
 		$data["datastatus"] = $this->MUser->infoStatus($no_identitas); 

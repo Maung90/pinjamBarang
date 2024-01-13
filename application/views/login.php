@@ -29,7 +29,7 @@
                     </div>
                     <div class="d-flex justify-content-end"> 
                       <a href="<?=base_url('Login/Forgot_Password/'); ?>">
-                        <small>Forgot Password?</small>
+                        <small>Lupa Password?</small>
                     </a>
                 </div> 
                 <div class="input-group mt-4">

@@ -237,6 +237,11 @@ class MUser extends CI_Model {
 		return $query;
 	}
 
+	public function getPeminjaman()
+	{
+		 $data = $this->db->query('SELECT * FROM tb_peminjaman WHERE no_identitas = '.$this->session->userdata('no_identitas'). ' ORDER BY status_peminjaman DESC')->result();
+		 return $data;
+	}
 
 // fungsi untuk menginsert data ke tbnote
 	public function note($data){

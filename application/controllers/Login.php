@@ -42,7 +42,7 @@ class Login extends CI_Controller {
 			$this->session->sess_destroy();
 		}
 		
-		$data['title'] = "Forgot Password";
+		$data['title'] = "Lupa Password";
 		$this->load->view('partials/head',$data); 
 		$this->load->view('ForgotPass',$data); 
 		$this->load->view('partials/footer');
