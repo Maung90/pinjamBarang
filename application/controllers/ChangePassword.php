@@ -17,8 +17,9 @@ class ChangePassword extends CI_Controller {
 			$no_identitas = $this->session->userdata('no_identitas');
 			$data['jumlahOrder'] = $this->MUser->jumlahOrder($no_identitas); 
 
+			$data['url'] = 'Home';
 			$this->load->view('partials/head',$data);
-			$this->load->view('partials/navbarUser');
+			$this->load->view('partials/navbarUser',$data);
 			$this->load->view('changePass',$data); 
 			$this->load->view('partials/copyrightUser');
 			$this->load->view('partials/footer');

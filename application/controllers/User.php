@@ -15,9 +15,10 @@ class User extends CI_Controller
 		$data['data'] = $this->MKategori->joinBarang();
 		$data['jumlahOrder'] = $this->MUser->jumlahOrder($no_identitas);
 		$data['title'] = 'Home';
+		$data['url'] = "Home";
 
 		$this->load->view('partials/head',$data);
-		$this->load->view('partials/navbarUser');
+		$this->load->view('partials/navbarUser',$data);
 		$this->load->view('user/index',$data); 
 		$this->load->view('partials/copyrightUser');
 		$this->load->view('partials/footer');
@@ -37,9 +38,10 @@ class User extends CI_Controller
 
 		$data['jumlahOrder'] = $this->MUser->jumlahOrder($no_identitas);
 		
+		$data['url'] = "Status";
 
 		$this->load->view('partials/head',$data);
-		$this->load->view('partials/navbarUser');
+		$this->load->view('partials/navbarUser',$data);
 		$this->load->view('user/status',$data);
 		// $this->load->view('partials/copyrightUser');
 		$this->load->view('partials/footer');
@@ -56,10 +58,11 @@ class User extends CI_Controller
 		$data['data'] = $this->MUser->joinOrderBarang();
 		$data['total'] = $this->MUser->sumOrder($no_identitas);
 		$data['jumlahOrder'] = $this->MUser->jumlahOrder($no_identitas);
-		$data['title'] = 'Home';
+		$data['title'] = 'Checkout';
+		$data['url'] = "Checkout";
 		
 		$this->load->view('partials/head',$data);
-		$this->load->view('partials/navbarUser');
+		$this->load->view('partials/navbarUser',$data);
 		$this->load->view('user/checkout',$data); 
 		$this->load->view('partials/footer');
 	}

@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row mt-3">
     <div class="owl-carousel owl-theme owl-loaded owl-drag">
-        <img src="https://pnb.ac.id/img/cov-home.91f9f2e2.jpg" alt="Caraousel" class="rounded-3">
-        <img src="https://pnb.ac.id/img/bannner-selamat-dir.21bb8b29.jpeg" alt="Caraousel" class="rounded-3">
-        <!-- <img src="<?=base_url('assets/img/carousel/1.svg')?> " alt="Caraousel" class="rounded-3 h-25">
-        <img src="<?=base_url('assets/img/carousel/2.svg')?>" alt="Caraousel" class="rounded-3 h-25"> -->
+      <!-- <img src="https://pnb.ac.id/img/cov-home.91f9f2e2.jpg" alt="Caraousel" class="rounded-3"> -->
+      <img src="<?=base_url('assets/img/carousel/1.png')?>" alt="Caraousel" class="rounded-3 w-100 h-50"/>
+      <!-- <img src="https://pnb.ac.id/img/bannner-selamat-dir.21bb8b29.jpeg" alt="Caraousel" class="rounded-3"> -->
+      <img src="<?=base_url('assets/img/carousel/2.png')?>" alt="Caraousel" class="rounded-3 w-100 h-50"/>
     </div>
   </div>
   <div class="row mt-3">
@@ -17,7 +17,7 @@
   </div>
   <div class="row mt-3" id="result">
     <?php foreach ($data as $d) :
-    ?>
+      ?>
       <div class="col-6 col-lg-3  my-2">
         <div class="card  h-100 w-100">
           <div class="card-header fw-bold my-0" style="text-transform: capitalize;">
@@ -77,28 +77,28 @@
 
 <script>
   $(document).ready(function() {
-    var owl = $('.owl-carousel');
-            owl.owlCarousel({
-                loop: true,
-                margin: 10,
-                autoplay: true,
-                autoplayTimeout: 3000,
-                autoplayHoverPause: true,
-                responsive: {
-                    0: {
-                        mergeFit: false,
-                        items: 1
-                    },
-                    600: {
-                        mergeFit: false,
-                        items: 1
-                    },
-                    1000: {
-                        mergeFit: false,
-                        items: 1
-                    }
-                }
-            });
+    var owl = $(".owl-carousel");
+    owl.owlCarousel({
+      loop: true,
+      margin: 10,
+      autoplay: true,
+      autoplayTimeout: 3000,
+      autoplayHoverPause: true,
+      responsive: {
+        0: {
+          mergeFit: false,
+          items: 1
+        },
+        600: {
+          mergeFit: false,
+          items: 1
+        },
+        1000: {
+          mergeFit: false,
+          items: 1
+        }
+      }
+    });
     
     const no_identitas = "<?= $this->session->userdata('no_identitas') ?>" ? "<?= $this->session->userdata('no_identitas') ?>" : null;
     $('#Search').on('input', function() {
