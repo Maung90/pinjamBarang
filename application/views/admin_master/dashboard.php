@@ -1,3 +1,11 @@
+<?php 
+$tersedia = $this->db->where('status_barang','tersedia')->get('tbbarang')->num_rows();
+$dipinjam = $this->db->where('status_barang','dipinjam')->get('tbbarang')->num_rows();
+$tdk_tersedia = $this->db->where('status_barang','tidak tersedia')->get('tbbarang')->num_rows();
+$peminjam = $this->db->get('tbpeminjam')->num_rows();
+$barang = $this->db->get('tbbarang')->num_rows();
+
+?>
 <div class="row justify-content-center">
     <div class="col-12 mb-3">
         <div class="card p-4">
@@ -14,7 +22,7 @@
                             </svg>
                             Barang Tersedia
                         </h6>
-                        <h6 class="fw-bolder text-center m-0 p-0">1</h6>
+                        <h6 class="fw-bolder text-center m-0 p-0"><?=$tersedia;   ?> </h6>
                     </div>
                 </div>
                 <div class="col-4">
@@ -30,7 +38,7 @@
                             </svg>
                             Barang Dipinjam
                         </h6>
-                        <h6 class="fw-bolder text-center m-0 p-0">0</h6>
+                        <h6 class="fw-bolder text-center m-0 p-0"><?=$dipinjam;?></h6>
                     </div>
                 </div>
                 <div class="col-4">
@@ -46,7 +54,7 @@
                             </svg>
                             Barang Tidak Tersedia
                         </h6>
-                        <h6 class="fw-bolder text-center m-0 p-0">0</h6>
+                        <h6 class="fw-bolder text-center m-0 p-0"><?=$tdk_tersedia;?></h6>
                     </div>
                 </div>
             </div>
@@ -61,7 +69,7 @@
                             <i class="ti ti-users"></i>
                             Jumlah Peminjam
                         </h6>
-                        <h6 class="fw-bolder text-center m-0 p-0">3</h6>
+                        <h6 class="fw-bolder text-center m-0 p-0"><?=$peminjam;?></h6>
                     </div>
                 </div>
                 <div class="col-6">
@@ -70,7 +78,7 @@
                             <i class="ti ti-layout-grid"></i>
                             Jumlah Barang
                         </h6>
-                        <h6 class="fw-bolder text-center m-0 p-0">10</h6>
+                        <h6 class="fw-bolder text-center m-0 p-0"><?=$barang;?></h6>
                     </div>
                 </div>
             </div>
@@ -91,10 +99,10 @@
     <script>
         var chartData = [
             <?php foreach (array_reverse($grafik) as $loop){ ?> {
-                    x: '<?= $loop['tanggal']; ?>',
-                    y: <?= $loop['peminjaman']; ?>
-                },
-            <?php } ?>
+                x: '<?= $loop['tanggal']; ?>',
+                y: <?= $loop['peminjaman']; ?>
+            },
+        <?php } ?>
         ];
 
         var options = {

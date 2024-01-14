@@ -1,7 +1,10 @@
-<?php if (count($data) <=0)  {?>
-	<h4>
-		Barang tidak di temukan ...
-	</h4>
+<?php if (count($data) <=0)  {?>  
+	<div align="center" class="m-3">
+		<img src="<?=base_url('assets/img/carousel/nf.svg'); ?>" class="w-50 h-50" alt="Not Found ... ">
+		<h4 class="ms-5">
+			Barang tidak ditemukan ...
+		</h4>
+	</div>
 <?php }else{
 
 	foreach ($data as $d)  :
@@ -78,87 +81,87 @@
 			<?php 
 		endforeach;
 	} 
-?>
+	?>
 
 
-<script>
+	<script>
 
-	$('[id^=simpan]').on('click',function(response){
-		simpanData(response);
-	});
-
-	$('[id^=jumlah]').on('keyup',function(response){
-		if(event.keyCode == 13){ 
+		$('[id^=simpan]').on('click',function(response){
 			simpanData(response);
-		}
-	});
+		});
 
-	$('[id^=id]').on('click',function(){
-		const id = $(this).attr('id').split('-')[1];
+		$('[id^=jumlah]').on('keyup',function(response){
+			if(event.keyCode == 13){ 
+				simpanData(response);
+			}
+		});
 
-		$('#alert-'+id).addClass('d-none');
-		$('#alert-'+id).removeClass('d-block'); 
-		if ($(this).hasClass('btn-outline-danger')){
+		$('[id^=id]').on('click',function(){
+			const id = $(this).attr('id').split('-')[1];
 
-			var data = {
-				id_kategori : id,
-			};
-			$.ajax({
-				url : '<?= base_url('User/delete_order');?>',
-				type : 'POST',
-				data : data,
-				success : function (response){ 
-					$('#notif').text(response);
-					$('#id-'+id).attr('data-bs-toggle','modal');
-					$('#id-'+id).attr('data-bs-target','#modalCenter-'+id);
-					$('#id-'+id).addClass('btn-outline-primary');
-					$('#id-'+id).text('Pinjam Barang');
-					$('#id-'+id).removeClass('btn-outline-danger');
-				},
-				error : function (xhr, status, error) {
-					console.error('gagal mengubah sesi' + error);
-				}
+			$('#alert-'+id).addClass('d-none');
+			$('#alert-'+id).removeClass('d-block'); 
+			if ($(this).hasClass('btn-outline-danger')){
 
-			});
-
-		}
-	}); 
-
-	function simpanData(response) { 
-		const id = $(response.target).attr('id').split('-')[1]; 
-		if ($.trim($('#jumlah-'+id).val()) != '' && $('#jumlah-'+id).val() != null && $('#jumlah-'+id).val() != 0) { 
-			if ($('#jumlah-'+id).val() > parseInt($('#jumlah-'+id).attr('max')) ) {
-				$('#alert-'+id).removeClass('d-none');
-				$('#alert-'+id).text('Inputan yang anda masukan melebihi batas!');
-				$('#alert-'+id).addClass('d-block'); 
-			}else{
-				var data = { 
-					id_kategori :id,
-					jumlah : $('#jumlah-'+id).val(),
+				var data = {
+					id_kategori : id,
 				};
 				$.ajax({
-					url : '<?= base_url('User/proses_order');?>',
+					url : '<?= base_url('User/delete_order');?>',
 					type : 'POST',
 					data : data,
 					success : function (response){ 
 						$('#notif').text(response);
-						$('#jumlah-'+id).val('0');
-						$('#id-'+id).addClass('btn-outline-danger');
-						$('#id-'+id).text('Batal');
-						$('#id-'+id).removeClass('btn-outline-primary');
-						$('#id-'+id).removeAttr('data-bs-toggle');
-						$('#id-'+id).removeAttr('data-bs-target');
-						$('.modal, .fade').modal('hide');
+						$('#id-'+id).attr('data-bs-toggle','modal');
+						$('#id-'+id).attr('data-bs-target','#modalCenter-'+id);
+						$('#id-'+id).addClass('btn-outline-primary');
+						$('#id-'+id).text('Pinjam Barang');
+						$('#id-'+id).removeClass('btn-outline-danger');
 					},
 					error : function (xhr, status, error) {
 						console.error('gagal mengubah sesi' + error);
-					} 
-				});  
+					}
+
+				});
+
 			}
-		}else{
-			$('#alert-'+id).removeClass('d-none');
-			$('#alert-'+id).text('Masukan input dengan benar!');
-			$('#alert-'+id).addClass('d-block');
+		}); 
+
+		function simpanData(response) { 
+			const id = $(response.target).attr('id').split('-')[1]; 
+			if ($.trim($('#jumlah-'+id).val()) != '' && $('#jumlah-'+id).val() != null && $('#jumlah-'+id).val() != 0) { 
+				if ($('#jumlah-'+id).val() > parseInt($('#jumlah-'+id).attr('max')) ) {
+					$('#alert-'+id).removeClass('d-none');
+					$('#alert-'+id).text('Inputan yang anda masukan melebihi batas!');
+					$('#alert-'+id).addClass('d-block'); 
+				}else{
+					var data = { 
+						id_kategori :id,
+						jumlah : $('#jumlah-'+id).val(),
+					};
+					$.ajax({
+						url : '<?= base_url('User/proses_order');?>',
+						type : 'POST',
+						data : data,
+						success : function (response){ 
+							$('#notif').text(response);
+							$('#jumlah-'+id).val('0');
+							$('#id-'+id).addClass('btn-outline-danger');
+							$('#id-'+id).text('Batal');
+							$('#id-'+id).removeClass('btn-outline-primary');
+							$('#id-'+id).removeAttr('data-bs-toggle');
+							$('#id-'+id).removeAttr('data-bs-target');
+							$('.modal, .fade').modal('hide');
+						},
+						error : function (xhr, status, error) {
+							console.error('gagal mengubah sesi' + error);
+						} 
+					});  
+				}
+			}else{
+				$('#alert-'+id).removeClass('d-none');
+				$('#alert-'+id).text('Masukan input dengan benar!');
+				$('#alert-'+id).addClass('d-block');
+			}
 		}
-	}
-</script>
+	</script>

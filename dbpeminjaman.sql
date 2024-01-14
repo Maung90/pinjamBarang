@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 30 Des 2023 pada 12.38
+-- Generation Time: 14 Jan 2024 pada 05.35
 -- Versi Server: 10.1.13-MariaDB
 -- PHP Version: 5.6.23
 
@@ -61,14 +61,30 @@ CREATE TABLE `tbbarang` (
 --
 
 INSERT INTO `tbbarang` (`kode_barang`, `nama_barang`, `merk_barang`, `status_barang`, `image`, `id_kategori`) VALUES
-('inv001', 'proyektor1', 'samsung', 'tersedia', '', 1),
-('inv002', 'kabel roll 1', 'ssamsung', 'tersedia', '', 2),
-('inv003', 'proyektor1', 'samsung', 'tersedia', '', 1),
-('inv004', 'kabel roll 1', 'ssamsung', 'tersedia', '', 2),
-('inv005', 'proyektor1', 'samsung', 'tersedia', '', 1),
-('inv006', 'kabel roll 1', 'ssamsung', 'tersedia', '', 2),
-('inv007', 'proyektor1', 'samsung', 'tersedia', '', 1),
-('inv008', 'kabel roll 1', 'ssamsung', 'tersedia', '', 2);
+('inv001', 'Proyektor Epson 300', 'Epson', 'dipinjam', '296765aa9c9af110c40ac94e977cb610.jpeg', 1),
+('inv0010', 'Kabel VGA Razor L300', 'Razor', 'Tersedia', '086847ae877d22a3ebeae0f341ededc6.jpeg', 4),
+('inv0011', 'Kabel VGA Razor L300', 'Razor', 'tersedia', '086847ae877d22a3ebeae0f341ededc6.jpeg', 4),
+('inv0012', 'Speaker Sony K332', 'Sony', 'Tersedia', '99eb2fc379478a931df487a028fb33ae.jpeg', 5),
+('inv0013', 'Speaker Sony K332', 'Sony', 'tersedia', '99eb2fc379478a931df487a028fb33ae.jpeg', 5),
+('inv0014', 'Switch Deli 88', 'Deli', 'Tersedia', '0b03877c2eafe63a93fffc7b26a70028.jpeg', 6),
+('inv0015', 'Switch Deli 88', 'Deli', 'tersedia', '0b03877c2eafe63a93fffc7b26a70028.jpeg', 6),
+('inv0016', 'Switch Deli 88', 'Deli', 'tersedia', '0b03877c2eafe63a93fffc7b26a70028.jpeg', 6),
+('inv0017', 'Printer Epson P330', 'Epson', 'Tersedia', '8c9d03eb6489af01e90b2afb46c70b73.jpeg', 7),
+('inv0018', 'Printer Epson P330', 'Epson', 'tersedia', '8c9d03eb6489af01e90b2afb46c70b73.jpeg', 7),
+('inv0019', 'Printer Epson P330', 'Epson', 'tersedia', '8c9d03eb6489af01e90b2afb46c70b73.jpeg', 7),
+('inv002', 'Kabel Terminal', 'Uchida', 'dipinjam', 'ae13af5a7d5525d5cffebbf2192f13e4.jpg', 2),
+('inv0020', 'Router Acome K188', 'Acome', 'tersedia', 'e60b69decc4f23f0deb9858408c0cb06.jpeg', 8),
+('inv0021', 'Router Acome K188', 'Acome', 'Tersedia', 'e60b69decc4f23f0deb9858408c0cb06.jpeg', 8),
+('inv0022', 'Router Acome K188', 'Acome', 'tersedia', 'e60b69decc4f23f0deb9858408c0cb06.jpeg', 8),
+('inv0023', 'Router Acome K188', 'Acome', 'tersedia', 'e60b69decc4f23f0deb9858408c0cb06.jpeg', 8),
+('inv0024', 'Proyektor Acome J11', 'Acome', 'Tersedia', '296765aa9c9af110c40ac94e977cb610.jpeg', 1),
+('inv003', 'Proyektor Samsung S23', 'Samsung', 'dipinjam', '296765aa9c9af110c40ac94e977cb610.jpeg', 1),
+('inv004', 'Kabel Terminal', 'Uchida', 'Tersedia', '0d1742ec2debaa075acd1184221a639f.jpeg', 2),
+('inv005', 'Kabel Terminal', 'Miyako', 'Tersedia', 'ae13af5a7d5525d5cffebbf2192f13e4.jpg', 2),
+('inv006', 'Kabel Terminal', 'Miyako', 'Tersedia', '843d545597c074ae5846f7e994644d38.jpeg', 1),
+('inv007', 'Kabel HDMI Razor x22', 'Razor', 'Tersedia', '4e676fa7d23fb5f2c0862aa55a905cde.jpg', 3),
+('inv008', 'Kabel HDMI Razor x22', 'Razor', 'tersedia', '4e676fa7d23fb5f2c0862aa55a905cde.jpg', 3),
+('inv009', 'Kabel VGA Razor L300', 'Razor', 'Tersedia', '086847ae877d22a3ebeae0f341ededc6.jpeg', 4);
 
 -- --------------------------------------------------------
 
@@ -87,7 +103,13 @@ CREATE TABLE `tbkategori` (
 
 INSERT INTO `tbkategori` (`id_kategori`, `nama_kategori`) VALUES
 (1, 'Proyektor'),
-(2, 'kabel roll');
+(2, 'Kabel Roll'),
+(3, 'Kabel HDMI'),
+(4, 'Kabel VGA'),
+(5, 'Speaker'),
+(6, 'Switch'),
+(7, 'Printer'),
+(8, 'Router');
 
 -- --------------------------------------------------------
 
@@ -99,6 +121,13 @@ CREATE TABLE `tbnote` (
   `keterangan` varchar(100) DEFAULT NULL,
   `id_peminjaman` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data untuk tabel `tbnote`
+--
+
+INSERT INTO `tbnote` (`keterangan`, `id_peminjaman`) VALUES
+('9e8b59e5951915b41002509529311cbc.jpg', 'PNJ0001');
 
 -- --------------------------------------------------------
 
@@ -121,8 +150,11 @@ CREATE TABLE `tbpeminjam` (
 --
 
 INSERT INTO `tbpeminjam` (`no_identitas`, `nama_peminjam`, `kelas`, `alamat`, `no_telp`, `password`, `email`) VALUES
-('2215354031', 'Levri Stevani Widodo', '1', '1', '081558', '$2y$10$I6H2cuoez2F6hxOSDmsBquxb3pjvNhVbMO3.X3XYvzlR7FPHjWKqC', 'sepri.levri@gmail.com'),
-('43213568', 't723io', '236', '2345', '234', '$2y$10$JpiGQljfx99UdXhegRa6NOt7POepexu.B57dbP6QA8yIQaSzI5dpG', 'wsurya262@gmail.com');
+('2215354011', 'I Gede Surya Wibawa', '3C TRPL', 'Jalan Jimbaran', '0813379999', '$2y$10$DSZVAbX8x2CZOrr/nQCGUur41fLUuh2mMyzpGqRucQYRzYfeGUvwy', 'wsurya262@gmail.com'),
+('2215354031', 'Levri Stevani Widodo', '3C TRPL', 'Jalan Raya Renon', '0815589832', '$2y$10$DSZVAbX8x2CZOrr/nQCGUur41fLUuh2mMyzpGqRucQYRzYfeGUvwy', 'sepri.levri@gmail.com'),
+('2215354059', 'Nyoman Agus Mahardiputra', '3C TRPL', 'Jalan Sadewa', '0877822311', '$2y$10$DSZVAbX8x2CZOrr/nQCGUur41fLUuh2mMyzpGqRucQYRzYfeGUvwy', 'agus44@gmail.com'),
+('2215354071', 'Ida Bagus Putu Wibawa', '3C TRPL', 'Jalan nakula', '089123456', '$2y$10$DSZVAbX8x2CZOrr/nQCGUur41fLUuh2mMyzpGqRucQYRzYfeGUvwy', 'wibawa13@gmail.com'),
+('2215354079', 'M Irfan Rangganata', '3C TRPL', 'Jalan Bima', '0812332321', '$2y$10$DSZVAbX8x2CZOrr/nQCGUur41fLUuh2mMyzpGqRucQYRzYfeGUvwy', 'rangga123@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -147,20 +179,10 @@ CREATE TABLE `tbuser` (
 --
 
 INSERT INTO `tbuser` (`no_user`, `username`, `password`, `nama_user`, `email`, `no_telp`, `alamat`, `unit_kerja`, `id_role`) VALUES
-('0987654', '098765', '$2y$10$WiqajAs8j0Hc0EqvkgnWOuq9Iru96QG/2MuIYPZc/rDfvmhQfpZaO', '09876', 'wsurya262@gmail.com', '09876', '09876', 'Lab MI', 2),
-('09876543', '098765', '$2y$10$nLuSbjuAhG5s51Lz6EeeEOoTzTEI/vkoKlbIV6gtDpM3fwbClUdAq', '09876', 'wsurya262@gmail.com', '09876', '09876', 'Lab MI', 2),
-('098765431', '098765', '$2y$10$R35SCoD2YsFZFyLEzoQb/.UAcxQicSW.7t2CGbmfPnBC1V5LtoJTa', '09876', 'wsurya262@gmail.com', '09876', '09876', 'Lab MI', 2),
-('1', '1', '$2y$10$M/8i2Q475hCzjAN8AYEJ6.UwrwgTxGBgAV/CS3TJ7IV23FUBvFJDm', 'master', 'wsurya262@gmail.com', '122', '1', 'Lab MI', 1),
-('111', '098765', '1', '09876', 'wsurya262@gmail.com', '09876', '09876', 'Lab MI', 2),
-('111111', '234', '$2y$10$Gk20Bl2nMUcbGsfgDO0Cye43Af5NTUwKFY1rkwtW.RMHlo4UmiZVq', 'q', 'surya262@gmail.com', 'q', 'q', 'Lab MI', 2),
-('1231', '321321', '$2y$10$NXmXlYqdyJCDhkk77ptkDu.cZTiqhj9.NNhsVD8PzlrE3hLRX7SoG', '', 'wsurya262@gmail.com', '', '', 'Masukan Unit Kerja', 2),
-('1234567', '123456', '$2y$10$3wgIqmkOsA5gKrvtoA3fB.Qr3KHlrKQjT6o01yNH0jZZ1fjR47XTy', 'pengelola', 'wsurya262@gmail.com', '123', '1', 'Lab MI', 2),
-('214421234', '12345', '$2y$10$8vRCOZq17rR6amlP9.5zMuw2b0UsxZ06R558PLuaCa7JLynx3bfFi', '', 'wsurya262@gmail.com', '', '', 'Masukan Unit Kerja', 2),
-('3454', '4345', '$2y$10$doS1enwxYsuwTRYYLwZTmOrhdDrEM826mGS1uDQpn22eKMBZCkxgq', '', 'wsurya262@gmail.com', '', '', 'Masukan Unit Kerja', 2),
-('456374', '436743', '$2y$10$qX/DQpT0iJW9zbPbuT01/ukzI3pKCXd47P8w.DbpVRbxGC.s5jYf.', '', 'wsurya262@gmail.com', '', '', 'Masukan Unit Kerja', 2),
-('6352', '7396', '$2y$10$SI/mmSXRRCJwJ.p0nbGIyOW6b1/M2zouE5jWjrMzVP/HXIJqt.L4S', '', 'wsurya262@gmail.com', '', '', 'Masukan Unit Kerja', 2),
-('asdsa', 'sadasd', '$2y$10$5veaoHhLf.DckscjWrwUp.pzI68M/z8dlQD4zXZyZ3Qal1D3VeQb.', '', 'wsurya262@gmail.com', '', '', 'Masukan Unit Kerja', 2),
-('ASDSADAS', 'ASDSAD', '$2y$10$yAblX6H4IfDb2SgWEnHg4OxYIDAgzUYO.EY7cq1lpTmntPKwIu68C', '', 'wsurya262@gmail.com', '', '', 'Masukan Unit Kerja', 2);
+('1', '1', '$2y$10$M/8i2Q475hCzjAN8AYEJ6.UwrwgTxGBgAV/CS3TJ7IV23FUBvFJDm', 'master', 'wsurya262@gmail.com', '08123123', 'jalan penggangsaan timur', 'Lab MI', 1),
+('1238765431', 'admin2', '$2y$10$3wgIqmkOsA5gKrvtoA3fB.Qr3KHlrKQjT6o01yNH0jZZ1fjR47XTy', 'Irfan', 'wsurya262@gmail.com', '09876123', 'jalan eka laweya', 'Lab MI', 2),
+('221121212', 'admin1', '$2y$10$3wgIqmkOsA5gKrvtoA3fB.Qr3KHlrKQjT6o01yNH0jZZ1fjR47XTy', 'Adi', 'wsurya262@gmail.com', '0987612323', 'jalan imam bonjol', 'Lab MI', 2),
+('33212321', 'admin3', '$2y$10$3wgIqmkOsA5gKrvtoA3fB.Qr3KHlrKQjT6o01yNH0jZZ1fjR47XTy', 'Yoga', 'wsurya262@gmail.com', '0815323123', 'jalan raya puputan\r\n', 'Lab MI', 2);
 
 -- --------------------------------------------------------
 
@@ -179,24 +201,15 @@ CREATE TABLE `tb_history` (
 --
 
 INSERT INTO `tb_history` (`id_history`, `kode_barang`, `id_peminjaman`) VALUES
-(28, 'inv001', 'PNJ0004'),
-(29, 'inv004', 'PNJ0004'),
-(30, 'inv006', 'PNJ0005'),
-(31, 'inv008', 'PNJ0005'),
-(32, 'inv002', 'PNJ0006'),
-(33, 'inv004', 'PNJ0007'),
-(34, 'inv006', 'PNJ0007'),
-(35, 'inv008', 'PNJ0004'),
-(36, 'inv003', '1'),
-(37, 'inv005', '1'),
-(38, 'inv007', '1'),
-(39, 'inv002', 'PNJ0001'),
-(40, 'inv004', 'PNJ0001'),
-(41, 'inv006', 'PNJ0001'),
-(42, 'inv008', 'PNJ0001'),
-(43, 'inv003', 'PNJ0001'),
-(44, 'inv005', 'PNJ0001'),
-(45, 'inv007', 'PNJ0001');
+(71, 'inv002', 'PNJ0001'),
+(72, 'inv001', 'PNJ0001'),
+(73, 'inv002', 'PNJ0003'),
+(74, 'inv001', 'PNJ0003'),
+(75, 'inv002', 'PNJ0004'),
+(76, 'inv001', 'PNJ0004'),
+(77, 'inv001', 'PNJ0010'),
+(78, 'inv003', 'PNJ0010'),
+(79, 'inv002', 'PNJ0010');
 
 -- --------------------------------------------------------
 
@@ -216,7 +229,8 @@ CREATE TABLE `tb_order` (
 --
 
 INSERT INTO `tb_order` (`id_order`, `id_kategori`, `id_peminjam`, `jumlah`) VALUES
-(12, 2, '2215354031', 2);
+(1, 4, '2215354031', 2),
+(2, 5, '2215354031', 2);
 
 -- --------------------------------------------------------
 
@@ -237,16 +251,17 @@ CREATE TABLE `tb_peminjaman` (
 -- Dumping data untuk tabel `tb_peminjaman`
 --
 
-  INSERT INTO `tb_peminjaman` (`id_peminjaman`, `no_identitas`, `waktu_pengembalian`, `waktu_pinjam`, `approved_by`, `status_peminjaman`) VALUES
-  ('PNJ0001', '2215354031', '2023-12-25 16:09:00', '2023-12-25 15:09:04', NULL, 'pending'),
-  ('PNJ0002', '2215354031', '2023-12-26 20:09:16', '2023-12-25 22:02:08', 'NULL', 'pending'),
-  ('PNJ0003', '2215354031', '2023-12-26 00:00:00', '2023-12-25 22:02:08', 'NULL', 'pending'),
-  ('PNJ0004', '2215354031', '2023-12-26 16:00:00', '2023-12-25 22:02:08', '1234567', 'dikembalikan'),
-  ('PNJ0005', '2215354031', '2023-12-26 15:23:00', '2023-12-25 22:02:08', '1234567', 'dikembalikan'),
-  ('PNJ0006', '2215354031', '2023-12-26 17:00:00', '2023-12-25 22:02:08', '1234567', 'dipinjam'),
-  ('PNJ0007', '2215354031', '2023-12-26 16:05:00', '2023-12-25 22:02:08', '1234567', 'dipinjam'),
-  ('PNJ0008', '2215354031', '2023-12-26 00:00:00', '2023-12-25 22:02:08', 'NULL', 'dikembalikan'),
-  ('PNJ0009', '2215354031', '2023-12-26 00:00:00', '2023-12-25 22:02:08', 'NULL', 'dikembalikan');
+INSERT INTO `tb_peminjaman` (`id_peminjaman`, `no_identitas`, `waktu_pengembalian`, `waktu_pinjam`, `approved_by`, `status_peminjaman`) VALUES
+('PNJ0001', '2215354031', '2024-01-09 09:20:00', '2024-01-08 20:21:27', '33212321', 'dikembalikan'),
+('PNJ0002', '2215354079', '2024-01-13 14:00:00', '2024-01-13 09:03:08', '221121212', 'dikembalikan'),
+('PNJ0003', '2215354011', '2024-01-11 16:01:00', '2024-01-11 09:00:00', '1238765431', 'pending'),
+('PNJ0004', '2215354071', '2024-01-13 14:36:00', '2024-01-13 11:19:15', '1238765431', 'pending'),
+('PNJ0005', '2215354059', '2024-01-11 11:19:15', '2024-01-11 16:19:15', '221121212', 'dipinjam'),
+('PNJ0006', '2215354059', '2024-12-13 14:00:00', '2024-12-13 08:00:00', '221121212', 'dikembalikan'),
+('PNJ0007', '2215354071', '2024-01-03 14:00:00', '2024-01-03 09:00:00', '1238765431', 'dikembalikan'),
+('PNJ0008', '2215354031', '2024-01-03 16:00:00', '2024-01-03 10:00:00', '1238765431', 'dipinjam'),
+('PNJ0009', '2215354011', '2024-01-05 16:00:00', '2024-01-03 10:00:00', '33212321', 'dikembalikan'),
+('PNJ0010', '2215354031', '2024-01-14 16:08:00', '2024-01-14 00:34:06', '221121212', 'dipinjam');
 
 --
 -- Indexes for dumped tables
@@ -325,17 +340,17 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `tbkategori`
 --
 ALTER TABLE `tbkategori`
-  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `tb_history`
 --
 ALTER TABLE `tb_history`
-  MODIFY `id_history` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id_history` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 --
 -- AUTO_INCREMENT for table `tb_order`
 --
 ALTER TABLE `tb_order`
-  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --

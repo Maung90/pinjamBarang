@@ -47,7 +47,7 @@
           <script>
             document.write(new Date().getFullYear());
           </script>
-          ,   made with ❤️ by <a href="<?=base_url();?>" target="_blank" class="footer-text fw-bolder">Team--</a>
+          ,   made with ❤️ by <a href="<?=base_url();?>" target="_blank" class="footer-text fw-bolder">Kelompok Gemink</a>
         </div> 
       </div>
     </div>

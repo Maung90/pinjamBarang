@@ -3,6 +3,8 @@
     <div class="owl-carousel owl-theme owl-loaded owl-drag">
         <img src="https://pnb.ac.id/img/cov-home.91f9f2e2.jpg" alt="Caraousel" class="rounded-3">
         <img src="https://pnb.ac.id/img/bannner-selamat-dir.21bb8b29.jpeg" alt="Caraousel" class="rounded-3">
+        <!-- <img src="<?=base_url('assets/img/carousel/1.svg')?> " alt="Caraousel" class="rounded-3 h-25">
+        <img src="<?=base_url('assets/img/carousel/2.svg')?>" alt="Caraousel" class="rounded-3 h-25"> -->
     </div>
   </div>
   <div class="row mt-3">

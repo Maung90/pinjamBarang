@@ -41,20 +41,66 @@ class Barang extends CI_Controller
 			redirect('Barang/','refresh');
 		}else{
 
-		// Konfigurasi upload
+			// Konfigurasi upload
 			$config['upload_path'] = './assets/img/imgBarang/';
-			$config['allowed_types'] = 'gif|jpg|png';
-		$config['max_size'] = 5024; // 5 MB
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+			$config['max_size'] = 5024; // 5MB
+			$config['encrypt_name'] = TRUE;
+
+			$this->load->library('upload', $config);
+
+			if (!$this->upload->do_upload('image')) {
+				$error = array('error' => $this->upload->display_errors()); 
+				$this->session->set_flashdata('error_validation', $error);  
+				redirect('Barang/');
+
+			} else {
+				$upload_data = $this->upload->data();
+
+				$kode_barang = $this->input->post('kode_barang');
+				$nama_barang = $this->input->post('nama_barang');
+				$merk_barang = $this->input->post('merk_barang');
+				$status_barang = $this->input->post('status_barang');
+				$id_kategori = $this->input->post('id_kategori');
+
+			// Data gambar untuk disimpan ke database 
+				$data = array(
+					'kode_barang' =>$kode_barang,
+					'nama_barang' =>$nama_barang,
+					'merk_barang' =>$merk_barang,
+					'status_barang' =>$status_barang,
+					'image' =>$upload_data['file_name'],
+					'id_kategori' =>$id_kategori
+				);
+
+				$this->mbarang->simpanBarang($data); 
+			}
+		}
+	}
+
+	public function getBarang()
+	{
+
+	}
+	public function get($id)
+	{
+		$this->mbarang->get_barang($id);
+	}
+	public function update($id)
+	{
+		// Konfigurasi upload
+		$config['upload_path'] = './assets/img/imgBarang/';
+		$config['allowed_types'] = 'gif|jpg|png|jpeg';
+		$config['max_size'] = 5024; // 5MB
 		$config['encrypt_name'] = TRUE;
 
 		$this->load->library('upload', $config);
 
 		if (!$this->upload->do_upload('image')) {
-			$error = array('error' => $this->upload->display_errors());
-			// var_dump($config['upload_path']);
-			// var_dump($error);
-			// $this->load->view('admin/barang/index', $error);
-			redirect('barang/');
+			$error = array('error' => $this->upload->display_errors()); 
+			$this->session->set_flashdata('error_validation', $error);  
+			redirect('Barang/');
+
 		} else {
 			$upload_data = $this->upload->data();
 
@@ -64,44 +110,20 @@ class Barang extends CI_Controller
 			$status_barang = $this->input->post('status_barang');
 			$id_kategori = $this->input->post('id_kategori');
 
-			// Data gambar untuk disimpan ke database
-			// $data = array(
-			//     'file_path' => $upload_data['full_path']
-			// );
-			$data = array(
-				'kode_barang' =>$kode_barang,
+		// Data gambar untuk disimpan ke database 
+			$data = array( 
 				'nama_barang' =>$nama_barang,
 				'merk_barang' =>$merk_barang,
 				'status_barang' =>$status_barang,
 				'image' =>$upload_data['file_name'],
 				'id_kategori' =>$id_kategori
-			);
-
-			$this->mbarang->simpanBarang($data);
-			redirect('barang/');
+			); 
+			$this->mbarang->updateBarang($id,$data);
 		}
 	}
-}
 
-    // function simpan()
-	// {
-	// 	$this->mbarang->simpanBarang();
-	// }
-public function getBarang()
-{
-
-}
-public function get($id)
-{
-	$this->mbarang->get_barang($id);
-}
-public function update($id)
-{
-	$this->mbarang->updateBarang($id);
-}
-
-function hapus($kode_barang)
-{
-	$this->mbarang->hapusBarang($kode_barang);	
-}
+	function hapus($kode_barang)
+	{
+		$this->mbarang->hapusBarang($kode_barang);	
+	}
 }

@@ -163,7 +163,7 @@ class MUser extends CI_Model {
 // fungsi untuk mengambil dan men joinkan tb_order, tb_kategori dan tbbarang
 	public function joinOrderBarang()
 	{
-		$this->db->select('tbkategori.id_kategori,tb_order.jumlah,tb_order.id_order,tbkategori.nama_kategori,COUNT(tbbarang.id_kategori) AS jumlah_max');
+		$this->db->select('tbkategori.id_kategori,tb_order.jumlah,tb_order.id_order,tbkategori.nama_kategori,COUNT(tbbarang.id_kategori) AS jumlah_max, tbbarang.image');
 		$this->db->from('tb_order'); 
 		$this->db->join('tbkategori', 'tb_order.id_kategori = tbkategori.id_kategori', 'inner');
 		$this->db->join('tbbarang', 'tb_order.id_kategori = tbbarang.id_kategori', 'inner');

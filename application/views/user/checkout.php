@@ -17,7 +17,7 @@ $jumlah = intval($total);
         <div class="card accordion-item">
           <h2 class="accordion-header" id="<?=$d->id_kategori;?>">
             <button type="button" class="accordion-button collapsed d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#accordion-<?=$d->id_kategori;?>"  aria-expanded="false" aria-controls="accordion-<?=$d->id_kategori;?>"> 
-              <img class="img-fluid d-flex me-2 rounded" src="<?= base_url('assets/img/elements/4.jpg'); ?>" alt="Card image cap" style="width:8%;"/>
+              <img class="img-fluid d-flex me-2 rounded" src="<?= base_url('assets/img/imgBarang/'.$d->image); ?>" alt="Card image cap" style="width:8%;"/>
               <?=$d->nama_kategori;?>
             </button>
           </h2>
