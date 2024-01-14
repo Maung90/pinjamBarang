@@ -23,7 +23,7 @@ foreach ($query as $d) {
       <div class="app-brand demo">
         <a href="#" class="app-brand-link">
           <span class="app-brand-logo demo">
-            <img src="https://elearning.pnb.ac.id/img/logo-pnb.3aae610b.png" width="22" height="22" fill="none"></img>
+            <img src="<?=base_url('assets/img/photo.jpg')   ?> " width="22" height="22" fill="none"></img>
           </span>
           <span class="app-brand-text menu-text fw-bold">PNB - Pinjam Barang</span>
         </a>

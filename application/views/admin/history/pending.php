@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header">
-        <h4 class="m-0 p-0">Table Peminjam</h4>
+        <h4 class="m-0 p-0">Data Peminjaman</h4>
     </div>
     <div class="card-body">
         <div class="table-responsive pt-0">
@@ -10,8 +10,7 @@
                         <th>No</th>
                         <th>Identitas</th>
                         <th>Waktu Peminjaman</th>
-                        <th>Waktu Pengembalian</th>
-                        <th>Disetujui Oleh</th>
+                        <th>Waktu Pengembalian</th> 
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -26,8 +25,7 @@
                             <td><?= $no++; ?></td>
                             <td><?= $row->no_identitas; ?></td>
                             <td><?= $row->waktu_pinjam; ?></td>
-                            <td><?= $row->waktu_pengembalian; ?></td>
-                            <td><?= $row->approved_by; ?></td>
+                            <td><?= $row->waktu_pengembalian; ?></td> 
                             <td><span class="badge bg-warning rounded-pill text-capitalize"><?= $row->status_peminjaman; ?></span></td>
                             <td><button onclick="edit('<?= $row->id_peminjaman; ?>')" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#redeem"><i class="ti ti-edit"></i></button></td>
                         </tr>

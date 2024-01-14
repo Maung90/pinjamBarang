@@ -28,6 +28,7 @@
 <script src="<?= base_url('assets/vendor/libs/swiper/swiper.js') ?>"></script>
 <script src="<?= base_url('assets/vendor/libs/toastr/toastr.js') ?>"></script>
 <script src="<?= base_url('assets/vendor/libs/dropzone/dropzone.js') ?>"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
 
 <!-- Main JS -->

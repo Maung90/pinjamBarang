@@ -8,7 +8,7 @@ class Kategori extends CI_Controller
 		$this->load->model('MKategori');
 
 		if ($this->session->userdata('id_role') == null) { 
-			redirect('Error/','refresh');
+			redirect('Login/','refresh');
 		} else if ($this->session->userdata('id_role') != '2') { 
 			redirect('Master/','refresh');
 		}
@@ -16,9 +16,8 @@ class Kategori extends CI_Controller
 
 	public function insert()
 	{
-		$this->form_validation->set_message('is_unique', 'Nama %s tersebut telah tersedia.');
-		$this->form_validation->set_message('alpha', 'Nama %s tidak boleh mengandung apapun selain huruf.');
-		$this->form_validation->set_rules('nama_kategori', 'Kategori', 'required|trim|alpha|is_unique[tbkategori.nama_kategori]');
+		$this->form_validation->set_message('is_unique', 'Nama %s tersebut telah tersedia.'); 
+		$this->form_validation->set_rules('nama_kategori', 'Kategori', 'required|trim|is_unique[tbkategori.nama_kategori]');
 
 		if ($this->form_validation->run() == false) { 
 			$this->session->set_flashdata('error_validation', validation_errors());
@@ -48,8 +47,7 @@ class Kategori extends CI_Controller
 
 	public function update($id)
 	{
-		$this->form_validation->set_message('alpha', 'Nama %s tidak boleh mengandung apapun selain huruf.');
-		$this->form_validation->set_rules('nama_kategori', 'Kategori', 'required|trim|alpha');
+		$this->form_validation->set_rules('nama_kategori', 'Kategori', 'required|trim');
 		
 		if ($this->form_validation->run() == false) {  
 			$this->session->set_flashdata('error_validation', validation_errors());

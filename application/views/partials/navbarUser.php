@@ -1,6 +1,6 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand bg-primary">
-  <div class="container-fluid">
+  <div class="container">
     <a class="navbar-brand" href="<?=base_url();?>">PNB - Pinjam Barang</a>
     <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
       <ul class="navbar-nav d-flex align-items-center">
