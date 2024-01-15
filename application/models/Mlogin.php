@@ -31,12 +31,16 @@ class Mlogin extends CI_Model{
                     $this->session->set_flashdata('loginNotif', $this->sweetalert->toastr_success('Login Berhasil!', "Success"));
                     redirect('Dashboard/','refresh');	    
                 }else{
-                    $this->session->set_flashdata('loginNotif', $this->sweetalert->toastr_error('Login Gagal!', "Error"));
-                    redirect('Login/','refresh');	
+                    echo "1";
+                    var_dump($data);
+                    // $this->session->set_flashdata('loginNotif', $this->sweetalert->toastr_error('Login Gagal!', "Error"));
+                    // redirect('Login/','refresh');	
                 }
             }else{
-                $this->session->set_flashdata('loginNotif', $this->sweetalert->toastr_error('Login Gagal!', "Error"));
-                redirect('Login/','refresh');	
+                echo "2";
+                var_dump($data);
+                // $this->session->set_flashdata('loginNotif', $this->sweetalert->toastr_error('Login Gagal!', "Error"));
+                // redirect('Login/','refresh');	
             }
         }else if($querypeminjam->num_rows()>0){
             $data=$querypeminjam->row();
@@ -49,8 +53,11 @@ class Mlogin extends CI_Model{
             redirect('/','refresh'); 
         }else{
             // echo "Error"; 
-            $this->session->set_flashdata('loginNotif', $this->sweetalert->toastr_error('Login Gagal!', "Error"));
-            redirect('Login/','refresh');	
+            
+            echo "";
+            var_dump($data);
+            // $this->session->set_flashdata('loginNotif', $this->sweetalert->toastr_error('Login Gagal!', "Error"));
+            // redirect('Login/','refresh');	
         }
     }  
 

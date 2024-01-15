@@ -42,6 +42,8 @@
                             <option selected disabled>Pilih</option>
                             <option value="Tersedia">Tersedia</option>
                             <option value="Tidak Tersedia">Tidak Tersedia</option>
+                            <option value="dipinjam">Dipinjam</option>
+
                         </select>
                     </div>
                 </div>
@@ -172,7 +174,7 @@ function edit(id) {
             $('#merk_barang').val(data.merk_barang);
             $('#status_barang').val(data.status_barang);
             $('#image').val(data.image);
-            $('#id_kategori').val(data.id_kategori);
+            $('#id_kategori').val(data.nama_kategori);
 
             $('#btn_tambah').prop('disabled', true);
             $('#btn_update').prop('disabled', false);

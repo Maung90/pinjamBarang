@@ -245,10 +245,10 @@
         if ($response) {
             $this->sendMail($email,$username,$password);
             $this->session->set_flashdata('pesan','<div class="alert alert-success" role="alert"> Data Disimpan </div>');
-            redirect('Master/index', 'refresh');
+            redirect('Master/', 'refresh');
         }else{
             $this->session->set_flashdata('pesan','<div class="alert alert-danger" role="alert"> Data gagal disimpan </div>');
-            redirect('Master/index', 'refresh');
+            redirect('Master/', 'refresh');
         }
     }
         
@@ -262,8 +262,9 @@
         public function update_admin($id)
         {
             $data = $_POST;
-            $this->db->where('no_user',$id);
-            $data = $this->db->update('tbuser', $data);
+            if($this->db->where('username',$data['username']) -> get('tbuser') -> num_rows() < 0){
+                $this->db->where('no_user',$id);
+             $data = $this->db->update('tbuser', $data);
             if($data){
                 $this->session->set_flashdata('pesan','<div class="alert alert-success" role="alert">
                     Data berhasil diubah!
@@ -273,7 +274,13 @@
                     Data gagal diubah!
                 </div>');
             }
-            redirect('Master/index', 'refresh');
+            redirect('Master/', 'refresh');
+            }else {
+                $this->session->set_flashdata('pesan','<div class="alert alert-danger" role="alert">
+                    Data sudah ada
+                </div>');
+                redirect('Master/', 'refresh');
+            }
         }
 
         public function delete_admin($id)
@@ -289,7 +296,7 @@
                     Data gagal dihapus!
                 </div>');
             }
-            redirect('Master/index', 'refresh');
+            redirect('Master/', 'refresh');
         }
     }
 

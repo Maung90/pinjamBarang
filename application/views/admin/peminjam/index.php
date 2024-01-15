@@ -107,10 +107,13 @@
                     var form = "<?= base_url('Peminjam/update/') ?>" + data.no_identitas;
                     $('#form').attr('action', form);
                     $('#no_identitas').val(data.no_identitas);
+                    $('#no_identitas').attr('readonly','true');
                     $('#nama_peminjam').val(data.nama_peminjam);
                     $('#kelas').val(data.kelas);
                     $('#alamat').val(data.alamat);
                     $('#no_telp').val(data.no_telp);
+                    $('#email').val(data.email);
+                    $('#email').attr('readonly','true');
                     $('#title').text('Edit Peminjam');
                     $('#btn_tambah').prop('disabled', true);
                     $('#btn_update').prop('disabled', false);

@@ -13,9 +13,13 @@ class Mbarang extends CI_Model{
 
     public function get_barang($id)
     {
-        $this->db->where('kode_barang', $id);
-        $data = $this->db->get('tbbarang')->result();
-        echo json_encode($data);
+        $this->db->select('*');
+        $this->db->from('tbbarang'); 
+        $this->db->join('tbkategori', 'tbbarang.id_kategori = tbkategori.id_kategori', 'inner');  
+        $this->db->where('kode_barang', $id);   
+        $data = $this->db->get();
+        // $data = $this->db->get('tbbarang')->result();
+        echo json_encode($data->result());
     }
 
     public function getBarang()
@@ -49,11 +53,11 @@ class Mbarang extends CI_Model{
        $data = $this->db->query($sql);
        if($data){
         $this->session->set_flashdata('pesan','<div class="alert alert-success" role="alert">
-            Data berhasil diupdate!
+            Data berhasil dihapus!
             </div>');
     } else {
         $this->session->set_flashdata('pesan','<div class="alert alert-danger" role="alert">
-            Data gagal diupdate!
+            Data gagal dihapus!
             </div>');
     }
     redirect('Barang/','refresh');	

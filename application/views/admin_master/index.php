@@ -170,9 +170,11 @@ function edit(id) {
             var form = "<?= base_url('master/update/') ?>" + data.no_user;
             $('#form').attr('action', form);
             $('#no_user').val(data.no_user);
+            $('#no_user').attr('readonly','true');
             $('#username').val(data.username);
             $('#nama').val(data.nama_user);
             $('#email').val(data.email);
+            $('#email').attr('readonly','true');
             $('#alamat').val(data.alamat);
             $('#no_telp').val(data.no_telp);
             $('#kerja').val(data.unit_kerja);
