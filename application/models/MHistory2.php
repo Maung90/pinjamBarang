@@ -102,6 +102,21 @@ class MHistory2 extends CI_Model
 			echo "Status tidak ditemukan";
 		}
 	}
+
+	public function delete($id){
+		$this->db->where('id_peminjaman', $id);
+        $data = $this->db->delete('tb_peminjaman');
+        if($data){
+            $this->session->set_flashdata('success','<div class="alert alert-success" role="alert">
+                Data berhasil didelete!
+            </div>');
+        } else {
+            $this->session->set_flashdata('error','<div class="alert alert-danger" role="alert">
+                Data gagal didelete!
+            </div>');
+        }
+        redirect('History/pending');
+	}
 }
 
 /* End of file MHistory2.php */

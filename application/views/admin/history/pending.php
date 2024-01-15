@@ -3,6 +3,8 @@
         <h4 class="m-0 p-0">Data Peminjaman</h4>
     </div>
     <div class="card-body">
+        <?= $this->session->flashdata('success'); ?>
+        <?= $this->session->flashdata('error'); ?> 
         <div class="table-responsive pt-0">
             <table class="table" id="dataTable">
                 <thead>
@@ -27,7 +29,7 @@
                             <td><?= $row->waktu_pinjam; ?></td>
                             <td><?= $row->waktu_pengembalian; ?></td> 
                             <td><span class="badge bg-warning rounded-pill text-capitalize"><?= $row->status_peminjaman; ?></span></td>
-                            <td><button onclick="edit('<?= $row->id_peminjaman; ?>')" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#redeem"><i class="ti ti-edit"></i></button></td>
+                            <td><button onclick="edit('<?= $row->id_peminjaman; ?>')" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#redeem"><i class="ti ti-edit"></i></button><button onclick="hapus('<?= $row->id_peminjaman; ?>')" class="ms-1 btn btn-sm btn-danger"><i class="ti ti-trash"></i></button></td>
                         </tr>
                     <?php
                     }
@@ -85,4 +87,16 @@
         });
     }
 
+    function hapus(id) {
+        Swal.fire({
+            icon: "question",
+            title: "Apakah kamu yakin ingin menghapus data ini?",
+            showCancelButton: true,
+            confirmButtonText: "Hapus"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.open('<?= base_url('History/delete/') ?>'+id);
+            }
+        });
+    }
 </script>

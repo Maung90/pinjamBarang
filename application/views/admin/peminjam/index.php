@@ -103,6 +103,7 @@
                     });
                 }else{
                     var data = data[0];
+                    console.log(data);
                     var form = "<?= base_url('Peminjam/update/') ?>" + data.no_identitas;
                     $('#form').attr('action', form);
                     $('#no_identitas').val(data.no_identitas);
