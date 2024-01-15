@@ -168,6 +168,7 @@ class MUser extends CI_Model {
 		$this->db->join('tbkategori', 'tb_order.id_kategori = tbkategori.id_kategori', 'inner');
 		$this->db->join('tbbarang', 'tb_order.id_kategori = tbbarang.id_kategori', 'inner');
 		$this->db->where('tbbarang.status_barang', 'tersedia');
+		$this->db->where('tb_order.id_peminjam',$this->session->userdata('no_identitas'));
 		$this->db->group_by('tbbarang.id_kategori');
 		$this->db->group_by('tb_order.id_kategori');
 		$query = $this->db->get();
@@ -182,7 +183,7 @@ class MUser extends CI_Model {
 		$no_identitas = $this->session->userdata('no_identitas');
 		$jumlah = intval($this->db->select('jumlah,id_kategori')->where('id_order',$id)->get('tb_order')->row()->jumlah);
 
-		if ($jumlah > 0) {
+		if ($jumlah > 1) {
 			$response = $this->db->update('tb_order', ['jumlah' => $jumlah-1], ['id_order' => $id]);
 		}else{
 			$response = false;

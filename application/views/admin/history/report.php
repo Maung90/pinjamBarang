@@ -39,12 +39,9 @@ setlocale(LC_TIME, 'id_ID');
 <table border="1" width="100%">
     <thead>
       <tr>
-        <th>No</th>
-        <th>No Identias</th>
-        <th>Waktu Pinjam</th>
-        <th>Waktu Pengembalian</th>  
-		<th>Disetujui oleh</th>
-        <th>Kode Barang</th> 
+        <th>Tanggal Pinjam</th>
+        <th>Jumlah Barang</th>
+        <th>Jumlah Peminjam</th> 
       </tr>
     </thead>
     <tbody>
@@ -60,12 +57,9 @@ setlocale(LC_TIME, 'id_ID');
 			foreach ($barang as $p):
 	?>
 		<tr>
-		<th align="center"><?= $p->id_peminjaman; ?></th>
-		<td align="center"><?= $p->no_identitas; ?></td>
-		<td align="center"><?= $p->waktu_pinjam2; ?></td>
-		<td align="center"><?= $p->waktu_pengembalian2; ?></td>
-		<td align="center"><?= $p->nama_user; ?></td> 
-		<th align="center"><?= $p->kode_barang; ?></th> 
+		<th align="center"><?= $p->waktu; ?></th>
+		<td align="center"><?= $p->jumlah; ?></td>
+		<td align="center"><?= $p->peminjam; ?></td> 
       </tr>
       
      <?php
