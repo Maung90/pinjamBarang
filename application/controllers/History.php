@@ -82,4 +82,8 @@ class History extends CI_Controller {
  
 	}
 
+	public function delete($id){
+		$this->MHistory2->delete($id);
+	}
+
 }
