@@ -4,11 +4,12 @@ class Mlogin extends CI_Model{
         $username = $this->input->post('username');
         $password = $this->input->post('password');
 
-        $sql="select * from tbuser where username='".$username."' "; 
+        $sql="SELECT * FROM tbuser WHERE username='".$username."' "; 
         $query=$this->db->query($sql);
 
-        $sql="select * from tbpeminjam where no_identitas='".$username."' ";  
+        $sql="SELECT * FROM tbpeminjam WHERE no_identitas='".$username."' ";  
         $querypeminjam=$this->db->query($sql);
+
         if($query->num_rows()>0){
             $data=$query->row();
             if(password_verify($password,$data->password)){ 
@@ -19,7 +20,7 @@ class Mlogin extends CI_Model{
                         'nama_user'=>$data->nama_user,
                     );	
                     $this->session->set_userdata($array);
-                    $this->session->set_flashdata('loginNotif', $this->sweetalert->toastr_success('Login Berhasil!', "Success"));
+                    $this->session->set_flashdata('loginNotif', $this->sweetalert->toastr_success('Success', "Login Berhasil!"));
                     redirect('Master/','refresh');	
                 }elseif($data->id_role=="2"){ 
                     $array=array(
@@ -28,19 +29,18 @@ class Mlogin extends CI_Model{
                         'nama_user'=>$data->nama_user,
                     );	
                     $this->session->set_userdata($array);
-                    $this->session->set_flashdata('loginNotif', $this->sweetalert->toastr_success('Login Berhasil!', "Success"));
+                    $this->session->set_flashdata('loginNotif', $this->sweetalert->toastr_success('Success', "Login Berhasil!"));
                     redirect('Dashboard/','refresh');	    
                 }else{
-                    echo "1";
-                    var_dump($data);
-                    // $this->session->set_flashdata('loginNotif', $this->sweetalert->toastr_error('Login Gagal!', "Error"));
-                    // redirect('Login/','refresh');	
+                    $this->session->set_flashdata('loginNotif', $this->sweetalert->toastr_error('Oops!', "Login Gagal"));
+                    redirect('Login/','refresh');	
                 }
             }else{
-                echo "2";
-                var_dump($data);
-                // $this->session->set_flashdata('loginNotif', $this->sweetalert->toastr_error('Login Gagal!', "Error"));
-                // redirect('Login/','refresh');	
+                // echo "2";
+                // print_r($data->password);
+                // var_dump($data);
+                $this->session->set_flashdata('loginNotif', $this->sweetalert->toastr_error('Oops!', "Login Gagal"));
+                redirect('Login/','refresh');	
             }
         }else if($querypeminjam->num_rows()>0){
             $data=$querypeminjam->row();
@@ -48,16 +48,17 @@ class Mlogin extends CI_Model{
                 'no_identitas'=>$data->no_identitas,
                 'nama_peminjam'=>$data->nama_peminjam,    
             );	
-            $this->session->set_userdata($array);	
-            $this->session->set_flashdata('loginNotif', $this->sweetalert->toastr_success('Login Berhasil!', "Success"));
-            redirect('/','refresh'); 
+            if(password_verify($password,$data->password)){
+                $this->session->set_userdata($array);	
+                $this->session->set_flashdata('loginNotif', $this->sweetalert->toastr_success('Success', "Login Berhasil!"));
+                redirect('/','refresh'); 
+            }else{
+                $this->session->set_flashdata('loginNotif', $this->sweetalert->toastr_error('Oops!', "Login Gagal"));
+                redirect('Login/','refresh');
+            }
         }else{
-            // echo "Error"; 
-            
-            echo "";
-            var_dump($data);
-            // $this->session->set_flashdata('loginNotif', $this->sweetalert->toastr_error('Login Gagal!', "Error"));
-            // redirect('Login/','refresh');	
+            $this->session->set_flashdata('loginNotif', $this->sweetalert->toastr_error('Oops!', "Login Gagal"));
+            redirect('Login/','refresh');	
         }
     }  
 

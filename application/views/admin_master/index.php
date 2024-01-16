@@ -83,7 +83,7 @@
                     <div class="col-sm-10">
                         <button id="btn_tambah" type="submit" class="btn btn-primary me-2">Simpan</button>
                         <button id="btn_update" type="submit" class="btn btn-primary me-2" disabled>Edit</button>
-                        <button type="reset" class="btn btn-danger">Batal</button>
+                        <button type="reset" id="btn_reset" class="btn btn-danger">Batal</button>
                     </div>
                 </div>
             </form>
@@ -194,4 +194,12 @@ function edit(id) {
 $(document).ready(function(){
   $('#datatable').DataTable();
 });   
+
+$('#btn_reset').on('click', function() {
+    $('#form').attr('action', '<?= base_url('Master/simpanAdmin') ?>');
+    $('#no_user').removeAttr('readonly');
+    $('#email').removeAttr('readonly');
+    $('#btn_tambah').prop('disabled', false);
+    $('#btn_update').prop('disabled', true);
+});
 </script>

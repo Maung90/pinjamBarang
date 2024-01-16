@@ -56,7 +56,14 @@ class Master extends CI_Controller
 
 	public function update($id)
 	{
-		$this->madmin->update_admin($id);
+		$this->form_validation->set_rules('no_telp', 'No Telpon', 'required|trim|numeric|min_length[10]|max_length[13]'); 
+		
+		if ($this->form_validation->run() == false) { 
+			$this->session->set_flashdata('error_validation', validation_errors());
+			redirect('Master/','refresh');
+		}else{
+			$this->madmin->update_admin($id);
+		}
 	}
 
 	public function delete($id)

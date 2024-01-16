@@ -40,7 +40,7 @@
                     <div class="col-sm-10">
                         <select class="form-control phone-mask" id="status_barang" name="status_barang" placeholder="Masukan Status" required>
                             <option selected disabled>Pilih</option>
-                            <option value="Tersedia">Tersedia</option>
+                            <option value="tersedia">Tersedia</option>
                             <option value="Tidak Tersedia">Tidak Tersedia</option>
                             <option value="dipinjam">Dipinjam</option>
 

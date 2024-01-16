@@ -1,35 +1,37 @@
 <?php
-    class Madmin extends CI_Model{
+class Madmin extends CI_Model
+{
 
-        function buatpwd(){
-            $kata="ABCDEFGHIJKLMNPQRSTUVWXYZ123456789";
-            $password=substr(str_shuffle($kata),0,6);
-            return $password;
-        }
+    function buatpwd()
+    {
+        $kata = "ABCDEFGHIJKLMNPQRSTUVWXYZ123456789";
+        $password = substr(str_shuffle($kata), 0, 6);
+        return $password;
+    }
 
-        function sendMail($email,$username,$password){
-            $config ['useragent'] = "codeigniter";
-            $config ['mailpath'] = "usr/bin/sendmail";
-            $config ['protocol'] = "smtp";
-            $config ['smtp_host'] = "smtp.gmail.com";
-            $config ['smtp_port'] = "465";
-            $config ['smtp_user'] = "gedebagussurya4@gmail.com";
-            $config ['smtp_pass'] = "bcrv fdmw xznf iicx ";
-            $config ['smtp_crypto'] = "ssl";
-            $config ['charset'] = "utf-8";
-            $config ['mailtype'] = "html";
-            $config ['newline'] = "\r\n";
-            $config ['smtp_timeout'] = 30;
-            $config ['wordwrap'] = TRUE;
-    
-            $this->email->initialize($config);
-            $this->email->from('no-replay@gedebagussurya4@gmail.com','Surya Wibawa');
-            $this->email->to($email);
-            $this->email->subject("verifikasi email");
-            $this->email->attach('verifikasi');
-            $this->email->message
-            (
-                '<!DOCTYPE html>
+    function sendMail($email, $username, $password)
+    {
+        $config['useragent'] = "codeigniter";
+        $config['mailpath'] = "usr/bin/sendmail";
+        $config['protocol'] = "smtp";
+        $config['smtp_host'] = "smtp.gmail.com";
+        $config['smtp_port'] = "465";
+        $config['smtp_user'] = "gedebagussurya4@gmail.com";
+        $config['smtp_pass'] = "bcrv fdmw xznf iicx ";
+        $config['smtp_crypto'] = "ssl";
+        $config['charset'] = "utf-8";
+        $config['mailtype'] = "html";
+        $config['newline'] = "\r\n";
+        $config['smtp_timeout'] = 30;
+        $config['wordwrap'] = TRUE;
+
+        $this->email->initialize($config);
+        $this->email->from('no-replay@gedebagussurya4@gmail.com', 'Surya Wibawa');
+        $this->email->to($email);
+        $this->email->subject("verifikasi email");
+        $this->email->attach('verifikasi');
+        $this->email->message(
+            '<!DOCTYPE html>
                 <html lang="en" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
                 
                 <head>
@@ -183,9 +185,9 @@
                                                                 Kami ingin memberitahu Anda bahwa pendaftaran telah berhasil. Akun anda telah didaftarkan sesuai data yang diberikan.
                                                             </p>
                                                             <hr style="border-top:dashed 1px">
-                                                            Berikut username :'.$username.'
+                                                            Berikut username :' . $username . '
                                                             <br> 
-                                                            Berikut password :'.$password.'
+                                                            Berikut password :' . $password . '
                                                             <hr style="border-top:dashed 1px">
                                                             <p
                                                                 style=" sans-serif; font-size: 12px; mso-line-height-rule: exactly; margin: 0; margin-bottom: 8px;">
@@ -215,89 +217,111 @@
                 
                 </html>
                 '
-            );
-            $this->email->send();
-        }
-
-        function simpanData(){
-            $no_user = $this->input->post('no_user');
-            $username = $this->input->post('username');
-            $password = $this->buatpwd();
-            $email = $this->input->post('email');
-            $nama_user = $this->input->post('nama_user');
-            $no_telp = $this->input->post('no_telp');
-            $alamat = $this->input->post('alamat');
-            $unit_kerja = $this->input->post('unit_kerja');
-            $id_role = 2;
-
-            $data = array(
-                'no_user' =>$no_user,
-                'username' =>$username,
-                'password' =>password_hash($password, PASSWORD_BCRYPT),
-                'nama_user' =>$nama_user,
-                'email' =>$email,
-                'no_telp' =>$no_telp,
-                'alamat' =>$alamat,
-                'unit_kerja' =>$unit_kerja,
-                'id_role' =>$id_role
         );
-        $response = $this->db->insert('tbuser',$data);
+        $this->email->send();
+    }
+
+    function simpanData()
+    {
+        $no_user = $this->input->post('no_user');
+        $username = $this->input->post('username');
+        $password = $this->buatpwd();
+        $email = $this->input->post('email');
+        $nama_user = $this->input->post('nama_user');
+        $no_telp = $this->input->post('no_telp');
+        $alamat = $this->input->post('alamat');
+        $unit_kerja = $this->input->post('unit_kerja');
+        $id_role = 2;
+
+        $data = array(
+            'no_user' => $no_user,
+            'username' => $username,
+            'password' => password_hash($password, PASSWORD_BCRYPT),
+            'nama_user' => $nama_user,
+            'email' => $email,
+            'no_telp' => $no_telp,
+            'alamat' => $alamat,
+            'unit_kerja' => $unit_kerja,
+            'id_role' => $id_role
+        );
+        $response = $this->db->insert('tbuser', $data);
         if ($response) {
-            $this->sendMail($email,$username,$password);
-            $this->session->set_flashdata('pesan','<div class="alert alert-success" role="alert"> Data Disimpan </div>');
+            $this->sendMail($email, $username, $password);
+            $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert"> Data Disimpan </div>');
             redirect('Master/', 'refresh');
-        }else{
-            $this->session->set_flashdata('pesan','<div class="alert alert-danger" role="alert"> Data gagal disimpan </div>');
+        } else {
+            $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert"> Data gagal disimpan </div>');
             redirect('Master/', 'refresh');
         }
     }
-        
-        public function get_admin($id)
-        {
-            $this->db->where('no_user', $id);
-            $data = $this->db->get('tbuser')->result();
-            echo json_encode($data);
-        }
 
-        public function update_admin($id)
-        {
-            $data = $_POST;
-            if($this->db->where('username',$data['username']) -> get('tbuser') -> num_rows() < 0){
-                $this->db->where('no_user',$id);
-             $data = $this->db->update('tbuser', $data);
-            if($data){
-                $this->session->set_flashdata('pesan','<div class="alert alert-success" role="alert">
+    public function get_admin($id)
+    {
+        $this->db->where('no_user', $id);
+        $data = $this->db->get('tbuser')->result();
+        echo json_encode($data);
+    }
+
+    public function update_admin($id)
+    {
+        $data = $_POST;
+
+        $query1 = $this->db->where('username', $data['username'])->get('tbuser')->result();
+        $query2  = $this->db->where('no_user', $id)->get('tbuser')->result();
+        if (count($query1) < 0) {
+            $data = $this->db->update('tbuser', $data);
+
+            if ($data) {
+                $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
                     Data berhasil diubah!
                 </div>');
             } else {
-                $this->session->set_flashdata('pesan','<div class="alert alert-danger" role="alert">
+                $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
                     Data gagal diubah!
                 </div>');
             }
             redirect('Master/', 'refresh');
-            }else {
-                $this->session->set_flashdata('pesan','<div class="alert alert-danger" role="alert">
-                    Data sudah ada
+        } else {
+            if ($query1[0]->username == $query2[0]->username) {
+                $this->db->where('no_user', $id);
+                $data = $this->db->update('tbuser', $data);
+
+                if ($data) {
+                    $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
+                    Data berhasil diubah!
                 </div>');
+                } else {
+                    $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
+                    Data gagal diubah!
+                </div>');
+                }
+                redirect('Master/', 'refresh');
+            } else {
+                $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
+                        Data sudah ada
+                    </div>');
                 redirect('Master/', 'refresh');
             }
-        }
-
-        public function delete_admin($id)
-        {
-            $this->db->where('no_user',$id);
-            $data = $this->db->delete('tbuser');
-            if($data){
-                $this->session->set_flashdata('pesan','<div class="alert alert-success" role="alert">
-                    Data berhasil dihapus!
+            $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
+                    Data sudah ada
                 </div>');
-            } else {
-                $this->session->set_flashdata('pesan','<div class="alert alert-danger" role="alert">
-                    Data gagal dihapus!
-                </div>');
-            }
             redirect('Master/', 'refresh');
         }
     }
 
-?>
+    public function delete_admin($id)
+    {
+        $this->db->where('no_user', $id);
+        $data = $this->db->delete('tbuser');
+        if ($data) {
+            $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
+                    Data berhasil dihapus!
+                </div>');
+        } else {
+            $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
+                    Data gagal dihapus!
+                </div>');
+        }
+        redirect('Master/', 'refresh');
+    }
+}

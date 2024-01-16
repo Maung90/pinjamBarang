@@ -60,11 +60,11 @@ class MChangePass extends CI_Model {
 
 	public function UbahPassword()
 	{
-		$pass = password_hash($this->input->post('pass'), PASSWORD_BCRYPT); 
+		$pass = password_hash($this->input->post('password'), PASSWORD_BCRYPT); 
 		$data = array(
 			'password' => $pass,
 		);
-
+		
 		$peminjam = $this->db->select('no_identitas,email')->from('tbpeminjam')
 		->where(['email' => $this->session->userdata('email'), 'no_identitas' =>$this->session->userdata('id')])->get(); 
 
@@ -78,17 +78,16 @@ class MChangePass extends CI_Model {
 		}else if ($user->num_rows() >= 1) { 
 			$this->db->where('no_user',$this->session->userdata('id'));
 			$response = $this->db->update('tbuser', $data);
-
 		}else{
 			redirect('Login/','refresh');
 		} 
 		
 		if($response){
-			$this->session->set_flashdata('notif','<div class="alert alert-success" role="alert">
+			$this->session->set_flashdata('loginNotif','<div class="alert alert-success" role="alert">
 				Data berhasil diupdate!
 				</div>');
 		} else {
-			$this->session->set_flashdata('notif','<div class="alert alert-danger" role="alert">
+			$this->session->set_flashdata('loginNotif','<div class="alert alert-danger" role="alert">
 				Data gagal diupdate!
 				</div>');
 		}

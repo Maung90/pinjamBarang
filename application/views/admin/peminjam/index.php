@@ -144,6 +144,8 @@
 
     $('#btn_reset').on('click', function() {
         $('#title').text('Tambah Peminjam');
+        $('#no_identitas').removeAttr('readonly');
+        $('#email').removeAttr('readonly');
         $('#form').attr('action', '<?= base_url('Peminjam/insert') ?>');
         $('#btn_tambah').prop('disabled', false);
         $('#btn_update').prop('disabled', true);
