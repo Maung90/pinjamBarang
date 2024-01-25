@@ -34,7 +34,7 @@ setlocale(LC_TIME, 'id_ID');
 <hr/>
 
 <h2>
-	Riwayat Peminjaman
+	Riwayat Peminjaman 30 Hari Terakhir
 </h2>
 <table border="1" width="100%">
     <thead>
@@ -73,7 +73,7 @@ setlocale(LC_TIME, 'id_ID');
   </table>
 
   <h2>
-	Riwayat Penggunaan Barang
+	Riwayat Penggunaan Barang 30 Hari Terakhir
   </h2>
 
   
@@ -82,6 +82,7 @@ setlocale(LC_TIME, 'id_ID');
       <tr>
         <th>No</th> 
         <th>Kode Barang</th>
+		<th>Nama Barang</th>
         <th>Jumlah Penggunaan</th> 
       </tr>
     </thead>
@@ -100,6 +101,7 @@ setlocale(LC_TIME, 'id_ID');
 		<tr>
 		<th><?=$no; ?></th>
 		<td align="center"><?= $p->kode_barang; ?></td>
+		<td align="center"><?= $p->nama_barang; ?></td>
 		<td align="center"><?= $p->jumlah; ?></td>  
       </tr>
       

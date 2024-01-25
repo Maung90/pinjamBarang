@@ -112,6 +112,7 @@
       <tbody>
         <?php
         $no = 1;
+        $this->db->where('id_role', '2');
         $data = $this->db->get('tbuser')->result();
         foreach ($data as $value):
             ?>
@@ -172,6 +173,7 @@ function edit(id) {
             $('#no_user').val(data.no_user);
             $('#no_user').attr('readonly','true');
             $('#username').val(data.username);
+            $('#username').attr('readonly','true');
             $('#nama').val(data.nama_user);
             $('#email').val(data.email);
             $('#email').attr('readonly','true');
@@ -198,6 +200,7 @@ $(document).ready(function(){
 $('#btn_reset').on('click', function() {
     $('#form').attr('action', '<?= base_url('Master/simpanAdmin') ?>');
     $('#no_user').removeAttr('readonly');
+    $('#username').removeAttr('readonly');
     $('#email').removeAttr('readonly');
     $('#btn_tambah').prop('disabled', false);
     $('#btn_update').prop('disabled', true);

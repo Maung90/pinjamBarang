@@ -87,7 +87,7 @@ $barang = $this->db->get('tbbarang')->num_rows();
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title text-white">Grafik Peminjaman 30 Hari Terakhir</h5>
+                <h5 class="card-title">Grafik Peminjaman 30 Hari Terakhir</h5>
                 <div id="chart"></div>
             </div>
         </div>

@@ -76,6 +76,7 @@
                 var form = "<?= base_url('History/update/') ?>" + id + '/pending';
                 $('#form').attr('action', form);
                 $('#modal-body').html(data);
+                $(".selectpicker").selectpicker();
             },
             error: function(error) {
                 toastr.error("Data tidak di temukan", 'Error', {

@@ -34,26 +34,33 @@ class MHistory2 extends CI_Model
 	}
 	public function Report()
 	{
-		$data =	$this->db->query("SELECT DATE_FORMAT(tb_peminjaman.waktu_pinjam, '%d %b %Y') as waktu,COUNT(tb_history.id_peminjaman) AS jumlah, 						COUNT(tb_peminjaman.no_identitas) as peminjam
+		$data =	$this->db->query("SELECT DATE_FORMAT(tb_peminjaman.waktu_pinjam, '%d %b %Y') as waktu,
+							COUNT(tb_history.id_peminjaman) AS jumlah,
+							COUNT(tb_peminjaman.no_identitas) as peminjam
 						FROM tb_peminjaman 
 						INNER JOIN tb_history ON tb_history.id_peminjaman = tb_peminjaman.id_peminjaman
-						WHERE status_peminjaman = 'dikembalikan' GROUP BY waktu ")->result();
+						WHERE status_peminjaman = 'dikembalikan' AND tb_peminjaman.waktu_pinjam BETWEEN DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND CURDATE() + INTERVAL 1 DAY
+						GROUP BY waktu")->result();
 		// $data = $this->db->;
 
 		return $data;
 	}
 	public function Report2()
-	{ 
-		$data = $this->db->query("  
-		SELECT tb_history.kode_barang,COUNT(tb_history.kode_barang) AS jumlah 
-		FROM tb_history INNER JOIN tbbarang ON tbbarang.kode_barang = tb_history.kode_barang 
+	{
+		$data = $this->db->query("
+		SELECT tb_history.kode_barang, tbbarang.nama_barang, COUNT(tb_history.kode_barang) AS jumlah 
+		FROM tb_history
+		INNER JOIN tbbarang ON tbbarang.kode_barang = tb_history.kode_barang 
 		INNER JOIN tb_peminjaman ON tb_peminjaman.id_peminjaman = tb_history.id_peminjaman 
-		WHERE tb_peminjaman.waktu_pinjam >= CONCAT(YEAR(CURDATE()), '-', LPAD(MONTH(CURDATE()), 2, '0'), '-01') 
-		AND tb_peminjaman.waktu_pinjam <= LAST_DAY(CURDATE()) 
-		AND tb_peminjaman.status_peminjaman = 'dikembalikan' GROUP by tb_history.kode_barang")->result();
+		WHERE tb_peminjaman.waktu_pinjam >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)
+		  AND tb_peminjaman.waktu_pinjam <= CURDATE() + INTERVAL 1 DAY
+		  AND tb_peminjaman.status_peminjaman = 'dikembalikan' 
+		GROUP BY tb_history.kode_barang, tbbarang.nama_barang;		
+		")->result();
 
 		return $data;
 	}
+
 
 	public function update($id, $status)
 	{

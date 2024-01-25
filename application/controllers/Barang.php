@@ -97,10 +97,19 @@ class Barang extends CI_Controller
 		$this->load->library('upload', $config);
 
 		if (!$this->upload->do_upload('image')) {
-			$error = array('error' => $this->upload->display_errors()); 
-			$this->session->set_flashdata('error_validation', $error);  
+			$nama_barang = $this->input->post('nama_barang');
+			$merk_barang = $this->input->post('merk_barang');
+			$status_barang = $this->input->post('status_barang');
+			$id_kategori = $this->input->post('id_kategori');
+			
+			$data = array( 
+				'nama_barang' =>$nama_barang,
+				'merk_barang' =>$merk_barang,
+				'status_barang' =>$status_barang,
+				'id_kategori' =>$id_kategori
+			); 
+			$this->mbarang->updateBarang($id,$data);
 			redirect('Barang/');
-
 		} else {
 			$upload_data = $this->upload->data();
 

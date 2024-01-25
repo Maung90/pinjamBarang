@@ -51,7 +51,6 @@
                     <label class="col-sm-2 col-form-label" for="basic-default-message">Gambar Barang</label>
                     <div class="col-sm-10">
                         <input
-                        required
                         type="file"
                         class="form-control"
                         id="image"
@@ -173,8 +172,8 @@ function edit(id) {
             $('#nama_barang').val(data.nama_barang);
             $('#merk_barang').val(data.merk_barang);
             $('#status_barang').val(data.status_barang);
-            $('#image').val(data.image);
-            $('#id_kategori').val(data.nama_kategori);
+            // $('#image').val(data.image);
+            $('#id_kategori').val(data.id_kategori);
 
             $('#btn_tambah').prop('disabled', true);
             $('#btn_update').prop('disabled', false);

@@ -41,10 +41,12 @@
   <link rel="stylesheet" href="<?= base_url('assets/vendor/libs/toastr/toastr.css'); ?>" />
   <link rel="stylesheet" href="<?= base_url('assets/vendor/libs/animate-css/animate.css'); ?>" /> 
   <link rel="stylesheet" href="<?= base_url('assets/vendor/libs/dropzone/dropzone.css'); ?>" /> 
+  <link rel="stylesheet" href="<?= base_url('assets/vendor/libs/bootstrap-select/bootstrap-select.css') ?>" />
 
   <link rel="stylesheet" href="<?=base_url('assets/DataTables/DataTables/css/dataTables.bootstrap5.css');?>"> 
   <link rel="stylesheet" href="<?=base_url('assets/DataTables/dataTables.css');?>"> 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   
 
   <!-- Page CSS -->
